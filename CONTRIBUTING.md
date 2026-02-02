@@ -1,4 +1,4 @@
-# Contributing to Anchore Community Support Scripts
+# Contributing to Anchore Examples Repository
 
 First off, thank you for considering contributing! It is people like you who make this a valuable resource for the entire community.
 

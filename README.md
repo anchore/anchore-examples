@@ -1,6 +1,10 @@
-# Anchore Community Support Scripts
+<p align="center">
+  <img src="https://github.com/user-attachments/assets/87373dd0-58e0-48aa-8204-4511b08a9210" width="500" alt="Anchore Examples - Community Support Scripts Robot">
+</p>
 
-Welcome to the **Anchore Community Support Repository**. This repository is a collection of utility scripts, troubleshooting tools, and "quick-fix" solutions developed by our support engineers and the broader community.
+# Anchore Examples
+
+Welcome to the **Anchore Examples Repository**. This repository is a collection of utility scripts, troubleshooting tools, and "quick-fix" solutions developed by our support engineers and the broader community.
 
 > [!IMPORTANT]
 > **Legal Disclaimer & Maintenance Notice**
@@ -41,7 +45,7 @@ To ensure legal protection remains intact even if a script is downloaded individ
 
 ```bash
 # ---------------------------------------------------------------------------
-# Part of the Anchore Community Support Repository.
+# Part of the Anchore Examples Repository.
 # Licensed under the Apache License, Version 2.0 (the "License").
 #
 # THIS SCRIPT IS UNMAINTAINED AND PROVIDED "AS IS", WITHOUT WARRANTIES OR 
