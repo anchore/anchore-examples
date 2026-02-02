@@ -1,5 +1,5 @@
 <p align="center">
-  <img src="https://github.com/user-attachments/assets/87373dd0-58e0-48aa-8204-4511b08a9210" width="500" alt="Anchore Examples - Community Support Scripts Robot">
+  <img src="https://github.com/user-attachments/assets/e2232437-b4dd-4a47-931e-79619f7280f3" width="500" alt="Anchore Examples - Community Support Scripts Robot">
 </p>
 
 # Anchore Examples
