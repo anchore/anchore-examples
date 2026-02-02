@@ -1,6 +1,11 @@
 <p align="center">
   <img src="https://github.com/user-attachments/assets/e2232437-b4dd-4a47-931e-79619f7280f3" width="275" alt="Anchore Examples Robot">
+  <br>
   <img src="https://github.com/user-attachments/assets/92ca4fb0-68d0-4aed-9734-1907faf254fa" width="250" alt="Anchore Examples - Community Support Scripts Text">
+</p>
+
+<p align="right">
+ &nbsp;<a href="" target="_blank"><img alt="License: Apache-2.0" src="https://img.shields.io/badge/License-Apache%202.0-blue.svg"></a>&nbsp;
 </p>
 
 # Anchore Examples
