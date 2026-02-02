@@ -1,6 +1,16 @@
-# Anchore Community Support Scripts
+<div align="center" style="line-height: 10px;">
+  <img src="https://github.com/user-attachments/assets/92ca4fb0-68d0-4aed-9734-1907faf254fa" width="500" alt="Anchore Examples Text">
+  <br>
+  <img src="https://github.com/user-attachments/assets/e2232437-b4dd-4a47-931e-79619f7280f3" width="330" alt="Anchore Examples Robot">
+</div>
 
-Welcome to the **Anchore Community Support Repository**. This repository is a collection of utility scripts, troubleshooting tools, and "quick-fix" solutions developed by our support engineers and the broader community.
+<p align="right">
+ &nbsp;<a href="" target="_blank"><img alt="License: Apache-2.0" src="https://img.shields.io/badge/License-Apache%202.0-blue.svg"></a>&nbsp;
+</p>
+
+# Anchore Examples
+
+Welcome to the **Anchore Examples Repository**. This repository is a collection of utility scripts, troubleshooting tools, and "quick-fix" solutions developed by our support engineers and the broader community.
 
 > [!IMPORTANT]
 > **Legal Disclaimer & Maintenance Notice**
@@ -41,7 +51,7 @@ To ensure legal protection remains intact even if a script is downloaded individ
 
 ```bash
 # ---------------------------------------------------------------------------
-# Part of the Anchore Community Support Repository.
+# Part of the Anchore Examples Repository.
 # Licensed under the Apache License, Version 2.0 (the "License").
 #
 # THIS SCRIPT IS UNMAINTAINED AND PROVIDED "AS IS", WITHOUT WARRANTIES OR 

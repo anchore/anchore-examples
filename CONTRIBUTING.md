@@ -1,4 +1,4 @@
-# Contributing to Anchore Community Support Scripts
+# Contributing to Anchore Examples Repository
 
 First off, thank you for considering contributing! It is people like you who make this a valuable resource for the entire community.
 
@@ -24,7 +24,7 @@ Before writing code, check the **Issues** tab to see if someone else is already 
 ### 2. Fork and Clone
 Fork this repository to your own GitHub account and clone it locally:
 ```bash
-git clone [https://github.com/YOUR-USERNAME/](https://github.com/YOUR-USERNAME/)[repo-name].git
+git clone https://github.com/YOUR-USERNAME/anchore-examples.git
 ```
 
 ## 3. Script Requirements
