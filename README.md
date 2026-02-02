@@ -1,7 +1,7 @@
 <div align="center" style="line-height: 10px;">
-  <img src="https://github.com/user-attachments/assets/e2232437-b4dd-4a47-931e-79619f7280f3" width="275" alt="Anchore Examples Robot">
+  <img src="https://github.com/user-attachments/assets/92ca4fb0-68d0-4aed-9734-1907faf254fa" width="250" alt="Anchore Examples Text">
   <br>
-  <img src="https://github.com/user-attachments/assets/92ca4fb0-68d0-4aed-9734-1907faf254fa" width="250" alt="Anchore Examples - Community Support Scripts Text">
+  <img src="https://github.com/user-attachments/assets/e2232437-b4dd-4a47-931e-79619f7280f3" width="275" alt="Anchore Examples Robot">
 </div>
 
 <p align="right">
