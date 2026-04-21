@@ -365,7 +365,7 @@ services:
     build: 
       context: .
       dockerfile: Dockerfile
-    container_name: jenkin
+    container_name: jenkins
     user: root
     restart: always #restart: always  # This ensures it rebuilds/restarts if shutdown or crashed
     ports:
