@@ -1,0 +1,116 @@
+# ---------------------------------------------------------------------------
+# Part of the Anchore Examples Repository.
+# Licensed under the Apache License, Version 2.0 (the "License").
+#
+# THIS FILE IS UNMAINTAINED AND PROVIDED "AS IS", WITHOUT WARRANTIES OR
+# CONDITIONS OF ANY KIND. USE AT YOUR OWN RISK.
+# ---------------------------------------------------------------------------
+
+trigger:
+- main
+
+pool:
+  vmImage: 'ubuntu-latest'
+
+variables:
+  # Required for using Azure Container Registry
+  dockerRegistryConnection: 'AnchoreCS_ACR_Connection'
+  imageName: 'demo/my-app'
+  imageTag: '$(Build.BuildId)'
+
+stages:
+
+# ==========================================================
+# STAGE 1: CONTAINER BUILD AND PUSH
+# ==========================================================
+- stage: BuildStage
+  displayName: 'Build App Image & Push to ACR'
+  jobs:
+  - job: BuildJob
+    displayName: 'Build and Push Image'
+    steps:
+    - task: Docker@2
+      displayName: 'Execute Docker BuildAndPush'
+      inputs:
+        command: 'buildAndPush'
+        containerRegistry: '$(dockerRegistryConnection)' 
+        repository: '$(imageName)'
+        dockerfile: '$(Build.SourcesDirectory)/Dockerfile'
+        tags: |
+          $(imageTag)
+          latest
+
+# ==========================================================
+# STAGE 2: ANCHORE ANALYSIS
+# ==========================================================
+- stage: SecurityStage
+  displayName: 'Security Analysis'
+  dependsOn: BuildStage
+  condition: succeeded()
+  jobs:
+  - job: ScanJob
+    displayName: 'Anchore Enterprise Analysis'
+    steps:
+
+    # 1. Install anchorectl binary
+    - script: |
+        echo "Downloading matching anchorectl binary from enterprise mirror..."
+        curl -o anchorectl.tar.gz https://anchorectl-releases.anchore.io/anchorectl/v5.27.1/anchorectl_5.27.1_linux_amd64.tar.gz
+        tar -xzf anchorectl.tar.gz
+        chmod +x anchorectl
+        sudo mv anchorectl /usr/local/bin/
+        anchorectl version
+      displayName: 'Install Anchorectl CLI'
+
+    # 2. Verify connection to Anchore Enterprise API
+    - script: |
+        echo "=========================================================="
+        echo "RUNNING PRE-FLIGHT CONNECTIVITY CHECK TO ANCHORE API"
+        echo "=========================================================="
+        echo "Verifying network route to $ANCHORECTL_URL..."
+        
+        if ! anchorectl system status; then
+          echo "❌ ERROR: Cannot reach or authenticate with Anchore Enterprise API."
+          exit 1
+        fi
+        echo "✅ SUCCESS: Connected to Anchore Enterprise backend services."
+      displayName: 'Verify API Connectivity'
+      env:
+        ANCHORECTL_PASSWORD: $(ANCHORECTL_PASSWORD)
+
+    # 3. Add private registry information (ACR in this case)
+    - script: |
+        echo "=========================================================="
+        echo "LINKING PRIVATE AZURE CONTAINER REGISTRY TO ANCHORE"
+        echo "=========================================================="
+        export ANCHORECTL_REGISTRY_PASSWORD=$ACR_PASSWORD
+
+        if anchorectl registry list | grep -q "$ACR_REGISTRY"; then
+          echo "Registry $ACR_REGISTRY is already linked. Skipping creation."
+        else
+          echo "Registering new registry credentials..."
+          anchorectl registry add "$ACR_REGISTRY" --username "$ACR_USERNAME"
+        fi
+      displayName: 'Sync Registry Credentials'
+      env:
+        ANCHORECTL_PASSWORD: $(ANCHORECTL_PASSWORD)
+        ACR_PASSWORD: $(ACR_PASSWORD)
+
+    # 4. Trigger Analysis & Get Vulnerabilities
+    - script: |
+        echo "=========================================================="
+        echo "TRIGGER ANCHORE ANALYSIS ON IMAGE"
+        echo "=========================================================="
+        echo "Requesting Anchore Enterprise to pull and analyze: $IMAGE_TO_SCAN"
+
+        anchorectl image add "$IMAGE_TO_SCAN" --wait
+
+        echo "Showing Vulnerability Results:"
+        anchorectl image vulnerabilities "$IMAGE_TO_SCAN"
+
+        echo "Checking for policy compliance..."
+        anchorectl image check "$IMAGE_TO_SCAN" --fail-based-on-results
+      displayName: 'Scan and report vulns and compliance'
+      env:
+        ANCHORECTL_PASSWORD: $(ANCHORECTL_PASSWORD)
+        IMAGE_TO_SCAN: $(ACR_REGISTRY)/$(imageName):$(imageTag)

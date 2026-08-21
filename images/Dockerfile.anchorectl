@@ -1,0 +1,23 @@
+# ---------------------------------------------------------------------------
+# Part of the Anchore Examples Repository.
+# Licensed under the Apache License, Version 2.0 (the "License").
+#
+# THIS FILE IS UNMAINTAINED AND PROVIDED "AS IS", WITHOUT WARRANTIES OR
+# CONDITIONS OF ANY KIND. USE AT YOUR OWN RISK.
+# ---------------------------------------------------------------------------
+
+# This file installs anchorectl binary utility onto a base alpine image.
+
+FROM alpine:3.20
+
+ARG ANCHORECTL_VERSION=6.0.0
+
+# Download, extract, and clean up anchorectl in a single layer
+RUN apk add --no-cache curl tar && \
+    curl -LO "https://anchorectl-releases.anchore.io/anchorectl/v${ANCHORECTL_VERSION}/anchorectl_${ANCHORECTL_VERSION}_linux_amd64.tar.gz" && \
+    tar -xzf anchorectl_${ANCHORECTL_VERSION}_linux_amd64.tar.gz && \
+    mv anchorectl /usr/local/bin/ && \
+    rm -rf anchorectl_${ANCHORECTL_VERSION}_linux_amd64.tar.gz /var/cache/apk/*
+
+
+CMD ["/usr/local/bin/anchorectl"]

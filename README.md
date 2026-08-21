@@ -24,7 +24,7 @@ Welcome to the **Anchore Examples Repository**. This repository is a collection 
 ---
 
 ## 🛠 Repository Purpose
-This repo serves as a "community toolbox" for scenarios that fall outside of our core product features or long-term roadmap. 
+This repo serves as a "community toolbox" for scenarios that fall outside of our core product features or long-term road-map. 
 * **Bridge the Gap:** Solutions for niche edge cases.
 * **Troubleshooting:** Quick diagnostic scripts for common environment issues.
 * **Community Driven:** An open space for customers to share and refine their own automated workarounds.
@@ -46,14 +46,14 @@ We welcome contributions! If you have a script that solved a problem or an impro
 * You grant Anchore and all users a permanent, non-exclusive license to use and modify your code.
 * You represent that you are the rightful owner of the contribution or have the right to submit it.
 
-## 📝 Required Script Header
-To ensure legal protection remains intact even if a script is downloaded individually, please include this header at the top of any new script:
+## 📝 Required File Header
+To ensure legal protection remains intact even if a file is downloaded individually, please include this header at the top of any new file:
 
 ```bash
 # ---------------------------------------------------------------------------
 # Part of the Anchore Examples Repository.
 # Licensed under the Apache License, Version 2.0 (the "License").
 #
-# THIS SCRIPT IS UNMAINTAINED AND PROVIDED "AS IS", WITHOUT WARRANTIES OR 
+# THIS FILE IS UNMAINTAINED AND PROVIDED "AS IS", WITHOUT WARRANTIES OR 
 # CONDITIONS OF ANY KIND. USE AT YOUR OWN RISK.
 # ---------------------------------------------------------------------------

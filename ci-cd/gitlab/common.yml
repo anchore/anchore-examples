@@ -1,0 +1,30 @@
+.anchore_setup:
+    - |
+      echo "=========================================================="
+      echo "INSTALLING ANCHORECTL"
+      echo "=========================================================="
+      if ! command -v anchorectl &> /dev/null; then
+        echo "Downloading matching anchorectl binary from enterprise mirror..."
+        curl -o anchorectl.tar.gz https://anchorectl-releases.anchore.io/anchorectl/v${ANCHORECTL_VERSION}/anchorectl_${ANCHORECTL_VERSION}_linux_amd64.tar.gz
+        tar -xzf anchorectl.tar.gz
+        chmod +x anchorectl
+        mv anchorectl /usr/local/bin/
+      else
+        echo "anchorectl already installed, skipping download."
+      fi
+      if ! anchorectl version; then
+        echo "ERROR: anchorectl not installed or cannot be found."
+        exit 1
+      fi
+      echo "SUCCESS: anchorectl installed."
+
+      echo "=========================================================="
+      echo "RUNNING CONNECTIVITY CHECK TO ANCHORE API"
+      echo "=========================================================="
+      echo "Verifying network route to $ANCHORECTL_URL..."
+
+      if ! anchorectl system status; then
+        echo "ERROR: Cannot reach or authenticate with Anchore Enterprise API."
+        exit 1
+      fi
+      echo "SUCCESS: Connected to Anchore Enterprise backend services."

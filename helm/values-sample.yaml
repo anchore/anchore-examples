@@ -1,0 +1,40 @@
+# ---------------------------------------------------------------------------
+# Part of the Anchore Examples Repository.
+# Licensed under the Apache License, Version 2.0 (the "License").
+#
+# THIS FILE IS UNMAINTAINED AND PROVIDED "AS IS", WITHOUT WARRANTIES OR
+# CONDITIONS OF ANY KIND. USE AT YOUR OWN RISK.
+# ---------------------------------------------------------------------------
+
+# These Helm value overrides are typical for an enterprise deployment with an external database.
+# This configuration provides an ingress host URL and a reference to a TLS cert file in your namespace
+
+licenseSecretName: anchore-enterprise-license
+imagePullSecretName: anchore-enterprise-pullcreds
+useExistingSecrets: true
+existingSecretName: anchore-enterprise-env
+useExistingLicenseSecret: true
+
+ingress:
+  enabled: true
+  apiPaths:
+    - /v2/
+    - /version
+    - /exp
+  uiPath: /
+  uiHosts:
+    - anchore.your-domain.com
+  apiHosts:
+    - anchore.your-domain.com
+  ingressClassName: nginx
+  tls:
+    - hosts:
+        - anchore.your-domain.com
+      secretName: your-tls-cert
+  annotations:
+    nginx.ingress.kubernetes.io/proxy-body-size: "0"
+    nginx.ingress.kubernetes.io/proxy-read-timeout: "600"
+    nginx.ingress.kubernetes.io/proxy-send-timeout: "600"
+    nginx.ingress.kubernetes.io/force-ssl-redirect: "true"
+postgresql:
+  enabled: false
