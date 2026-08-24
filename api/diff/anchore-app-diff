@@ -1,0 +1,479 @@
+#!/usr/bin/env python3
+# ---------------------------------------------------------------------------
+# Part of the Anchore Examples Repository.
+# Licensed under the Apache License, Version 2.0 (the "License").
+#
+# THIS FILE IS UNMAINTAINED AND PROVIDED "AS IS", WITHOUT WARRANTIES OR
+# CONDITIONS OF ANY KIND. USE AT YOUR OWN RISK.
+# ---------------------------------------------------------------------------
+"""
+anchore-app-diff — visual CLI diff of packages, vulnerabilities, and policy
+findings between two versions of an application in Anchore Enterprise.
+
+Data is fetched live via `anchorectl app version {package,vuln,policy} ...`,
+so it uses whatever endpoint and credentials your ~/.anchorectl.yaml (or
+ANCHORECTL_* environment variables) point at.
+
+Prerequisites: python3 (3.8+, stdlib only) and anchorectl on PATH.
+
+Usage:
+    anchore-app-diff --app APP OLD_VERSION NEW_VERSION
+    anchore-app-diff --app myapp 2.3 2.4
+    anchore-app-diff --app myapp 2.3 2.4 --section vulns     # vulns only
+    anchore-app-diff --app myapp 2.3 2.4 --fail-on high      # CI gate
+"""
+
+import argparse
+import json
+import os
+import shutil
+import subprocess
+import sys
+
+# ---------------------------------------------------------------- colors ---
+
+class C:
+    enabled = sys.stdout.isatty() and os.environ.get("NO_COLOR") is None
+
+    @classmethod
+    def _c(cls, code, s):
+        return f"\033[{code}m{s}\033[0m" if cls.enabled else str(s)
+
+    @classmethod
+    def bold(cls, s):    return cls._c("1", s)
+    @classmethod
+    def dim(cls, s):     return cls._c("2", s)
+    @classmethod
+    def red(cls, s):     return cls._c("31", s)
+    @classmethod
+    def green(cls, s):   return cls._c("32", s)
+    @classmethod
+    def yellow(cls, s):  return cls._c("33", s)
+    @classmethod
+    def blue(cls, s):    return cls._c("34", s)
+    @classmethod
+    def magenta(cls, s): return cls._c("35", s)
+    @classmethod
+    def cyan(cls, s):    return cls._c("36", s)
+    @classmethod
+    def crit(cls, s):    return cls._c("1;97;41", s)  # bold white on red
+
+
+SEV_ORDER = {"critical": 0, "high": 1, "medium": 2, "low": 3,
+             "negligible": 4, "unknown": 5}
+
+ACTION_ORDER = {"stop": 0, "warn": 1, "go": 2}
+
+def sev_color(sev, s=None):
+    s = sev.upper() if s is None else s
+    sev = sev.lower()
+    if sev == "critical":   return C.crit(f" {s} ")
+    if sev == "high":       return C.red(s)
+    if sev == "medium":     return C.yellow(s)
+    if sev == "low":        return C.blue(s)
+    return C.dim(s)
+
+def action_color(action, s=None):
+    s = action.upper() if s is None else s
+    action = action.lower()
+    if action == "stop": return C.red(s)
+    if action == "warn": return C.yellow(s)
+    if action == "go":   return C.green(s)
+    return C.dim(s)
+
+
+def term_width():
+    return min(shutil.get_terminal_size(fallback=(110, 24)).columns, 130)
+
+
+def header(title):
+    w = term_width()
+    print()
+    print(C.dim("┌" + "─" * (w - 2) + "┐"))
+    print(C.dim("│") + C.bold(f" {title} ".center(w - 2)) + C.dim("│"))
+    print(C.dim("└" + "─" * (w - 2) + "┘"))
+
+
+# ------------------------------------------------------------- anchorectl ---
+
+def run_anchorectl(cmd_args, timeout):
+    cmd = ["anchorectl"] + cmd_args + ["-o", "json"]
+    try:
+        out = subprocess.run(cmd, capture_output=True, text=True,
+                             timeout=timeout)
+    except FileNotFoundError:
+        sys.exit("error: anchorectl not found on PATH")
+    except subprocess.TimeoutExpired:
+        sys.exit(f"error: {' '.join(cmd)} timed out after {timeout}s")
+    if out.returncode != 0:
+        sys.exit(f"error: {' '.join(cmd)} failed:\n{out.stderr.strip()}")
+    try:
+        return json.loads(out.stdout)
+    except json.JSONDecodeError:
+        sys.exit(f"error: could not parse JSON from: {' '.join(cmd)}")
+
+def fetch_list(kind, app, version, timeout):
+    if kind == "policy":
+        args = ["app", "version", "policy", "findings", "list", version,
+                "--app", app]
+    else:
+        args = ["app", "version", kind, "list", version, "--app", app]
+    data = run_anchorectl(args, timeout)
+    if not isinstance(data, list):
+        sys.exit(f"error: unexpected response for {kind} list of "
+                 f"{app} {version} (expected a JSON array)")
+    return data
+
+def fetch_policy_status(app, version, timeout):
+    return run_anchorectl(["app", "version", "policy", "status", "get",
+                           version, "--app", app], timeout)
+
+
+# ---------------------------------------------------------------- packages ---
+
+def pkg_key(p):
+    return p.get("purl") or f"{p.get('type','?')}:{p.get('name','?')}@{p.get('version','?')}"
+
+def diff_packages(app, old_ver, new_ver, timeout):
+    old = {pkg_key(p): p for p in fetch_list("package", app, old_ver, timeout)}
+    new = {pkg_key(p): p for p in fetch_list("package", app, new_ver, timeout)}
+
+    added   = [new[k] for k in new.keys() - old.keys()]
+    removed = [old[k] for k in old.keys() - new.keys()]
+
+    # A "changed" package is one whose name+type appears on both sides of
+    # the added/removed lists — i.e. a version bump rather than a true
+    # addition or removal.
+    def nt(p): return (p.get("name"), p.get("type"))
+    added_nt   = {nt(p) for p in added}
+    removed_nt = {nt(p) for p in removed}
+    changed_nt = added_nt & removed_nt
+
+    changed = []
+    for key in sorted(changed_nt, key=lambda x: str(x[0]).lower()):
+        olds = sorted(p.get("version", "?") for p in removed if nt(p) == key)
+        news = sorted(p.get("version", "?") for p in added if nt(p) == key)
+        changed.append((key[0], key[1], olds, news))
+    added   = sorted((p for p in added if nt(p) not in changed_nt),
+                     key=lambda p: str(p.get("name", "")).lower())
+    removed = sorted((p for p in removed if nt(p) not in changed_nt),
+                     key=lambda p: str(p.get("name", "")).lower())
+
+    header(f"PACKAGE DIFF   {app} {old_ver} → {new_ver}")
+    print(f"  {old_ver}: {C.bold(len(old))} packages    "
+          f"{new_ver}: {C.bold(len(new))} packages    "
+          + C.green(f"+{len(added)} added") + "  "
+          + C.red(f"-{len(removed)} removed") + "  "
+          + C.yellow(f"~{len(changed)} changed"))
+    print()
+
+    name_w = max([len(str(p.get("name", ""))) for p in added + removed] +
+                 [len(str(c[0])) for c in changed] + [12]) + 2
+
+    if added:
+        print(C.bold(C.green("  ▲ ADDED")))
+        for p in added:
+            eco = p.get("type", "?")
+            print(C.green(f"    + {p.get('name','?'):<{name_w}} {p.get('version','?'):<14}")
+                  + C.dim(f" [{eco}]  {p.get('purl') or ''}"))
+        print()
+    if removed:
+        print(C.bold(C.red("  ▼ REMOVED")))
+        for p in removed:
+            eco = p.get("type", "?")
+            print(C.red(f"    - {p.get('name','?'):<{name_w}} {p.get('version','?'):<14}")
+                  + C.dim(f" [{eco}]"))
+        print()
+    if changed:
+        print(C.bold(C.yellow("  ● VERSION CHANGED")))
+        for name, eco, olds, news in changed:
+            print(C.yellow(f"    ~ {name:<{name_w}} ")
+                  + C.red(", ".join(olds)) + " → " + C.green(", ".join(news))
+                  + C.dim(f"  [{eco}]"))
+        print()
+    if not (added or removed or changed):
+        print(C.dim("  no package changes\n"))
+
+    return added, removed, changed
+
+
+# ------------------------------------------------------------------- vulns ---
+
+def vuln_key(v):
+    return (v.get("vulnerabilityId"),
+            v.get("purl") or f"{v.get('packageName')}@{v.get('packageVersion')}")
+
+def sev_bar(vulns, label):
+    counts = {}
+    for v in vulns:
+        s = (v.get("severity") or "unknown").lower()
+        counts[s] = counts.get(s, 0) + 1
+    parts = []
+    for s in sorted(counts, key=lambda x: SEV_ORDER.get(x, 9)):
+        parts.append(sev_color(s, f"{s.capitalize()}: {counts[s]}"))
+    total = len(vulns)
+    print(f"  {label:<10} {C.bold(total)} total   " + "   ".join(parts))
+
+def fix_of(v):
+    fixes = v.get("fixVersions") or []
+    if fixes:
+        return fixes[0].get("version", "")
+    return ""
+
+def print_vuln_rows(vulns, sign, color):
+    id_w  = max([len(v.get("vulnerabilityId") or "?") for v in vulns] + [16]) + 2
+    pkg_w = max([len(f"{v.get('packageName','?')}@{v.get('packageVersion','?')}")
+                 for v in vulns] + [20]) + 2
+    for v in sorted(vulns, key=lambda v: (SEV_ORDER.get((v.get("severity") or "unknown").lower(), 9),
+                                          -(v.get("anchoreScore") or 0),
+                                          v.get("vulnerabilityId") or "")):
+        sev = (v.get("severity") or "unknown").lower()
+        badge = sev_color(sev, f"{sev.upper():<10}") if sev != "critical" else sev_color(sev, f"{sev.upper():<8}")
+        pkg = f"{v.get('packageName','?')}@{v.get('packageVersion','?')}"
+        kev = C.crit(" KEV ") + " " if v.get("kev") else "      "
+        fix = fix_of(v)
+        fix_s = C.dim(f"fix: {fix}") if fix else C.dim("no fix")
+        score = v.get("anchoreScore")
+        score_s = C.dim(f"score {score:>5}") if score is not None else ""
+        print(f"    {color(sign)} {badge} {v.get('vulnerabilityId') or '?':<{id_w}}"
+              f"{pkg:<{pkg_w}}{kev}{score_s}  {fix_s}")
+
+def diff_vulns(app, old_ver, new_ver, timeout):
+    old_list = fetch_list("vuln", app, old_ver, timeout)
+    new_list = fetch_list("vuln", app, new_ver, timeout)
+    old = {vuln_key(v): v for v in old_list}
+    new = {vuln_key(v): v for v in new_list}
+
+    introduced = [new[k] for k in new.keys() - old.keys()]
+    resolved   = [old[k] for k in old.keys() - new.keys()]
+
+    header(f"VULNERABILITY DIFF   {app} {old_ver} → {new_ver}")
+    sev_bar(old_list, old_ver)
+    sev_bar(new_list, new_ver)
+    delta = len(new_list) - len(old_list)
+    arrow = C.red(f"▲ +{delta}") if delta > 0 else (C.green(f"▼ {delta}") if delta < 0 else "no change")
+    print(f"  {'delta':<10} {arrow}   "
+          + C.red(f"+{len(introduced)} introduced") + "  "
+          + C.green(f"-{len(resolved)} resolved"))
+    print()
+
+    if introduced:
+        print(C.bold(C.red(f"  ▲ INTRODUCED IN {new_ver}  ({len(introduced)})")))
+        print_vuln_rows(introduced, "+", C.red)
+        print()
+    if resolved:
+        print(C.bold(C.green(f"  ▼ RESOLVED SINCE {old_ver}  ({len(resolved)})")))
+        print_vuln_rows(resolved, "-", C.green)
+        print()
+    if not (introduced or resolved):
+        print(C.dim("  no vulnerability changes\n"))
+
+    return introduced, resolved
+
+
+# ------------------------------------------------------------------ policy ---
+
+def policy_key(f):
+    rule = f.get("rule") or {}
+    res = f.get("result") or {}
+    return (rule.get("gate"), rule.get("name"), res.get("triggerId"))
+
+def policy_status_line(status, label, unique):
+    st = (status.get("status") or "unknown").lower()
+    st_s = C.red("FAIL") if st == "fail" else (C.green("PASS") if st == "pass" else C.dim(st.upper()))
+    total = (status.get("stats") or {}).get("totalFindings", "?")
+    pol = status.get("policyName") or status.get("policyId") or "?"
+    print(f"  {label:<10} {st_s}   {C.bold(unique)} unique findings "
+          + C.dim(f"({total} total)") + "   " + C.dim(f"policy: {pol}"))
+
+def print_policy_rows(findings, sign, color):
+    gate_w = max([len(f"{(f.get('rule') or {}).get('gate','?')}/{(f.get('rule') or {}).get('name','?')}")
+                  for f in findings] + [12]) + 2
+    trig_w = max([len((f.get("result") or {}).get("triggerId") or "?")
+                  for f in findings] + [12]) + 2
+    msg_w = max(term_width() - (8 + 8 + gate_w + trig_w), 20)
+    for f in sorted(findings, key=lambda f: (
+            ACTION_ORDER.get(((f.get("result") or {}).get("action") or "").lower(), 9),
+            (f.get("rule") or {}).get("gate") or "",
+            (f.get("result") or {}).get("triggerId") or "")):
+        res = f.get("result") or {}
+        rule = f.get("rule") or {}
+        action = (res.get("action") or "?").lower()
+        badge = action_color(action, f"{action.upper():<6}")
+        gate = f"{rule.get('gate','?')}/{rule.get('name','?')}"
+        trig = res.get("triggerId") or "?"
+        allow = C.cyan("[allowlisted] ") if res.get("allowlisted") else ""
+        msg = (res.get("message") or "").replace("\n", " ")
+        if len(msg) > msg_w:
+            msg = msg[:msg_w - 1] + "…"
+        print(f"    {color(sign)} {badge} {gate:<{gate_w}}{trig:<{trig_w}}"
+              + allow + C.dim(msg))
+
+def diff_policy(app, old_ver, new_ver, timeout):
+    old_list = fetch_list("policy", app, old_ver, timeout)
+    new_list = fetch_list("policy", app, new_ver, timeout)
+    # The findings list can contain identical rows repeated per occurrence;
+    # dedupe by (gate, rule name, triggerId) so the diff is one row per
+    # distinct finding.
+    old = {policy_key(f): f for f in old_list}
+    new = {policy_key(f): f for f in new_list}
+
+    introduced = [new[k] for k in new.keys() - old.keys()]
+    resolved   = [old[k] for k in old.keys() - new.keys()]
+
+    header(f"POLICY DIFF   {app} {old_ver} → {new_ver}")
+    policy_status_line(fetch_policy_status(app, old_ver, timeout), old_ver,
+                       len(old))
+    policy_status_line(fetch_policy_status(app, new_ver, timeout), new_ver,
+                       len(new))
+    print(f"  {'delta':<10} "
+          + C.red(f"+{len(introduced)} introduced") + "  "
+          + C.green(f"-{len(resolved)} resolved"))
+    print()
+
+    if introduced:
+        print(C.bold(C.red(f"  ▲ INTRODUCED IN {new_ver}  ({len(introduced)})")))
+        print_policy_rows(introduced, "+", C.red)
+        print()
+    if resolved:
+        print(C.bold(C.green(f"  ▼ RESOLVED SINCE {old_ver}  ({len(resolved)})")))
+        print_policy_rows(resolved, "-", C.green)
+        print()
+    if not (introduced or resolved):
+        print(C.dim("  no policy finding changes\n"))
+
+    return introduced, resolved
+
+
+# -------------------------------------------------------------------- main ---
+
+def main():
+    ap = argparse.ArgumentParser(
+        prog="anchore-app-diff",
+        formatter_class=argparse.RawDescriptionHelpFormatter,
+        description="""\
+Visual diff of two versions of an application in Anchore Enterprise.
+
+Compares the packages (SBOM contents), vulnerabilities, and policy
+findings of two app versions and prints what was added, removed,
+changed, introduced, and resolved between them — with severity
+breakdowns, fix versions, Anchore risk scores, CISA KEV flags, and
+policy gate actions.
+
+Data is fetched live from your Anchore Enterprise deployment using
+anchorectl, so both app versions must already exist there (e.g. created
+via SBOM import or image analysis).
+
+Prerequisites:
+  * anchorectl on your PATH, configured to reach your deployment
+    (~/.anchorectl.yaml or ANCHORECTL_URL / ANCHORECTL_USERNAME /
+    ANCHORECTL_PASSWORD environment variables)
+  * an account with access to the app you are diffing
+
+Find your app and version names with:
+  anchorectl app list
+  anchorectl app version list <APP>
+
+Exit codes:
+  0  success
+  1  error (anchorectl missing, request failed, bad arguments)
+  2  a --fail-on condition matched""",
+        epilog="""\
+examples:
+  # full diff (packages + vulnerabilities + policy) between two versions
+  anchore-app-diff --app jarjar 1.0.0 1.0.1
+
+  # only the package diff
+  anchore-app-diff --app jarjar 1.0.0 1.0.1 --section packages
+
+  # only the vulnerability diff
+  anchore-app-diff --app jarjar 1.0.0 1.0.1 --section vulns
+
+  # CI gate: fail (exit 2) if the new version introduces high or
+  # critical vulns, or any new stop-action policy finding
+  anchore-app-diff --app jarjar 1.0.0 1.0.1 --fail-on high --fail-on stop
+
+  # keep colors when piping to a pager
+  anchore-app-diff --app jarjar 1.0.0 1.0.1 --color always | less -R""")
+    ap.add_argument("old_version", metavar="OLD_VERSION",
+                    help="the older app version to compare (name or UUID)")
+    ap.add_argument("new_version", metavar="NEW_VERSION",
+                    help="the newer app version to compare (name or UUID)")
+    ap.add_argument("--app", required=True, metavar="APP",
+                    help="the app name or ID (required)")
+    ap.add_argument("--section", choices=["packages", "vulns", "policy", "all"],
+                    default="all",
+                    help="which diff to show (default: all)")
+    ap.add_argument("--fail-on", action="append", default=[],
+                    choices=["critical", "high", "medium", "low", "stop"],
+                    metavar="COND",
+                    help="exit 2 if the diff introduces a vuln at or above "
+                         "this severity (critical/high/medium/low) or a new "
+                         "stop-action policy finding (stop); repeatable")
+    ap.add_argument("--timeout", type=int, default=120, metavar="SECONDS",
+                    help="timeout per anchorectl call (default: 120)")
+    ap.add_argument("--color", choices=["auto", "always", "never"],
+                    default="auto",
+                    help="colorize output (default: auto — on for "
+                         "terminals, off when piped)")
+    args = ap.parse_args()
+
+    if args.color == "always":
+        C.enabled = True
+    elif args.color == "never":
+        C.enabled = False
+
+    if args.old_version == args.new_version:
+        sys.exit("error: OLD_VERSION and NEW_VERSION are the same")
+
+    sev_conds = [c for c in args.fail_on if c != "stop"]
+    if sev_conds and args.section not in ("vulns", "all"):
+        sys.exit(f"error: --fail-on {sev_conds[0]} requires the vulns "
+                 "section (--section vulns or all)")
+    if "stop" in args.fail_on and args.section not in ("policy", "all"):
+        sys.exit("error: --fail-on stop requires the policy section "
+                 "(--section policy or all)")
+
+    print(C.bold(f"\n  Anchore Enterprise · app diff · "
+                 f"{args.app} {args.old_version} → {args.new_version}"))
+
+    failures = []
+
+    if args.section in ("packages", "all"):
+        diff_packages(args.app, args.old_version, args.new_version,
+                      args.timeout)
+    if args.section in ("vulns", "all"):
+        introduced, _ = diff_vulns(args.app, args.old_version,
+                                   args.new_version, args.timeout)
+        crit = sum(1 for v in introduced
+                   if (v.get("severity") or "").lower() == "critical")
+        if crit:
+            print("  " + C.crit(f" ⚠ {crit} new CRITICAL "
+                                f"vulnerabilit{'y' if crit == 1 else 'ies'} "
+                                f"introduced in {args.new_version} ") + "\n")
+        if sev_conds:
+            worst = min(SEV_ORDER.get(c, 9) for c in sev_conds)
+            hits = sum(1 for v in introduced
+                       if SEV_ORDER.get((v.get("severity") or "unknown").lower(), 9) <= worst)
+            if hits:
+                failures.append(f"{hits} introduced vulnerabilities at or "
+                                f"above the --fail-on threshold")
+    if args.section in ("policy", "all"):
+        pol_introduced, _ = diff_policy(args.app, args.old_version,
+                                        args.new_version, args.timeout)
+        if "stop" in args.fail_on:
+            stops = sum(1 for f in pol_introduced
+                        if ((f.get("result") or {}).get("action") or "").lower() == "stop"
+                        and not (f.get("result") or {}).get("allowlisted"))
+            if stops:
+                failures.append(f"{stops} introduced stop-action policy "
+                                f"findings")
+
+    if failures:
+        for f in failures:
+            print("  " + C.red(f"✗ fail-on: {f}"))
+        print()
+        sys.exit(2)
+
+if __name__ == "__main__":
+    main()
