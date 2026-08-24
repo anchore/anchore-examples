@@ -16,6 +16,50 @@ By submitting a Pull Request (PR) to this repository, you agree to the following
 
 ---
 
+## ✍️ Signing Your Contribution (DCO)
+
+We've chosen to use the Developer's Certificate of Origin (DCO) method that is employed by the Linux Kernel Project, which provides a simple way to contribute to the Anchore project. **Every commit in your Pull Request must be signed off** — the DCO check will fail otherwise.
+
+The process is to certify the DCO 1.1 text below:
+
+```text
+Developer's Certificate of Origin 1.1
+
+By making a contribution to this project, I certify that:
+
+(a) The contribution was created in whole or in part by me and I
+    have the right to submit it under the open source license
+    indicated in the file; or
+
+(b) The contribution is based upon previous work that, to the best
+    of my knowledge, is covered under an appropriate open source
+    license and I have the right under that license to submit that
+    work with modifications, whether created in whole or in part
+    by me, under the same open source license (unless I am
+    permitted to submit under a different license), as indicated
+    in the file; or
+
+(c) The contribution was provided directly to me by some other
+    person who certified (a), (b) or (c) and I have not modified
+    it.
+
+(d) I understand and agree that this project and the contribution
+    are public and that a record of the contribution (including all
+    personal information I submit with it, including my sign-off) is
+    maintained indefinitely and may be redistributed consistent with
+    this project or the open source license(s) involved.
+```
+
+Then, when it comes time to submit a contribution, include the following text in your contribution commit message:
+
+```text
+Signed-off-by: Joan Doe <joan.doe@email.com>
+```
+
+This message can be entered manually, or if you have configured git with the correct `user.name` and `user.email`, you can use the `-s` option to `git commit` to automatically include the signoff message. If you forgot to sign off commits already on your branch, you can fix them with `git rebase --signoff main` and force-push.
+
+---
+
 ## 🚀 How to Contribute
 
 ### 1. Find or Create an Issue
@@ -45,6 +89,8 @@ Check for hardcoded paths or credentials—always use variables or environment f
 
 ## 5. Submit a Pull Request
 Once your script is ready:
+
+Sign off every commit (`git commit -s`) — see [Signing Your Contribution (DCO)](#%EF%B8%8F-signing-your-contribution-dco).
 
 Push your changes to your fork.
 
