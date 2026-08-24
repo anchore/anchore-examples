@@ -24,10 +24,10 @@ Welcome to the **Anchore Examples Repository**. This repository is a collection 
 ---
 
 ## 🛠 Repository Purpose
-This repo serves as a "community toolbox" for scenarios that fall outside of our core product features or long-term road-map. 
-* **Bridge the Gap:** Solutions for niche edge cases.
+This repo serves as a "community toolbox". 
+* **Solutions:** Quick solutions for edge cases or custom functionality which is outside of our current feature-set.
 * **Troubleshooting:** Quick diagnostic scripts for common environment issues.
-* **Community Driven:** An open space for customers to share and refine their own automated workarounds.
+* **Community Driven:** An open space to share.
 
 ## ⚖️ Licensing
 Everything in this repository is licensed under the **Apache License 2.0**. This permissive license allows you to freely use, modify, and distribute the scripts, even for commercial purposes, while providing Anchore with essential legal protections.
