@@ -7,7 +7,7 @@
 # ---------------------------------------------------------------------------
 
 # These Helm value overrides are typical for an enterprise deployment with an external database.
-# This configuration provides an ingress host URL and a reference to a TLS cert file in your namespace
+# This configuration provides an ingress host URL and a reference to a TLS cert file in your namespace.
 
 licenseSecretName: anchore-enterprise-license
 imagePullSecretName: anchore-enterprise-pullcreds

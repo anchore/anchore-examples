@@ -6,6 +6,8 @@
 # CONDITIONS OF ANY KIND. USE AT YOUR OWN RISK.
 # ---------------------------------------------------------------------------
 
+# Azure native container build and push. Uses Azure DevOps plus Azure Container Registry.
+
 trigger:
 - main
 
