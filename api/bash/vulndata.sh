@@ -1,12 +1,12 @@
+#!/bin/bash
+
 # ---------------------------------------------------------------------------
 # Part of the Anchore Examples Repository.
 # Licensed under the Apache License, Version 2.0 (the "License").
 #
-# THIS SCRIPT IS UNMAINTAINED AND PROVIDED "AS IS", WITHOUT WARRANTIES OR 
+# THIS FILE IS UNMAINTAINED AND PROVIDED "AS IS", WITHOUT WARRANTIES OR
 # CONDITIONS OF ANY KIND. USE AT YOUR OWN RISK.
 # ---------------------------------------------------------------------------
-
-#!/bin/bash
 
 # --- Configuration ---
 # put variables for username, password, and Anchore_URL in anchore.env file

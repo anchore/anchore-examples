@@ -1,0 +1,41 @@
+# ---------------------------------------------------------------------------
+# Part of the Anchore Examples Repository.
+# Licensed under the Apache License, Version 2.0 (the "License").
+#
+# THIS FILE IS UNMAINTAINED AND PROVIDED "AS IS", WITHOUT WARRANTIES OR
+# CONDITIONS OF ANY KIND. USE AT YOUR OWN RISK.
+# ---------------------------------------------------------------------------
+
+variables:
+  ANCHORECTL_VERSION: '6.0.0'
+  REGISTRY: "registry:5000"
+  IMAGE_TAG: "$REGISTRY/demo-app:$CI_PIPELINE_ID"
+
+stages:
+  - build
+  - anchore
+
+build_and_push:
+  stage: build
+  image: docker:27-cli
+  variables:
+    DOCKER_HOST: "tcp://docker:2375"
+    DOCKER_TLS_CERTDIR: ""
+  services:
+    - name: docker:27-dind
+  script:
+    - docker build -t $IMAGE_TAG .
+    - docker push $IMAGE_TAG
+
+anchore_analysis:
+  stage: anchore
+  image: "$REGISTRY/utilities/anchorectl:latest"
+  variables:
+    ANCHORECTL_REGISTRY_INSECURE: "true"
+  script:
+    - anchorectl registry add $REGISTRY --type "docker_v2" --secure-connection=false --validate=false || echo "Registry already exists..."
+    - echo "Running Anchore analysis..."
+    - anchorectl image add $IMAGE_TAG --wait
+    - echo "Checking image for policy compliance..."
+    - anchorectl image check $IMAGE_TAG
+
