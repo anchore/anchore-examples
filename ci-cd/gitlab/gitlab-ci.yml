@@ -9,7 +9,6 @@
 variables:
   ANCHORECTL_VERSION: '6.0.0'
   REGISTRY: "registry:5000"
-  HOST_REGISTRY: "localhost:5005"
   IMAGE_TAG: "$REGISTRY/demo-app:$CI_PIPELINE_ID"
 
 stages:
@@ -24,40 +23,19 @@ build_and_push:
     DOCKER_TLS_CERTDIR: ""
   services:
     - name: docker:27-dind
-      command: ["--insecure-registry=registry:5000"]
-
   script:
-    - nc -zv registry 5000
     - docker build -t $IMAGE_TAG .
     - docker push $IMAGE_TAG
 
 anchore_analysis:
   stage: anchore
-  image: "$HOST_REGISTRY/utility/anchorectl:latest"
+  image: "$REGISTRY/utilities/anchorectl:latest"
   variables:
     ANCHORECTL_REGISTRY_INSECURE: "true"
   script:
-    # - echo "Downloading matching anchorectl binary from enterprise mirror..."
-    # - curl -LO "https://anchorectl-releases.anchore.io/anchorectl/v${ANCHORECTL_VERSION}/anchorectl_${ANCHORECTL_VERSION}_linux_amd64.tar.gz"
-    # - tar -xzf anchorectl_${ANCHORECTL_VERSION}_linux_amd64.tar.gz
-    # - chmod +x anchorectl
-    # - mv anchorectl /usr/local/bin/
-    # - anchorectl version
-    - |
-       echo "=========================================================="
-       echo "RUNNING PRE-FLIGHT CONNECTIVITY CHECK TO ANCHORE API"
-       echo "=========================================================="
-       echo "Verifying network route to $ANCHORECTL_URL..."
-       
-       if ! anchorectl system status; then
-         echo "❌ ERROR: Cannot reach or authenticate with Anchore Enterprise API."
-         exit 1
-       fi
-       echo "✅ SUCCESS: Connected to Anchore Enterprise backend services."
-
     - anchorectl registry add $REGISTRY --type "docker_v2" --secure-connection=false --validate=false || echo "Registry already exists..."
     - echo "Running Anchore analysis..."
     - anchorectl image add $IMAGE_TAG --wait
     - echo "Checking image for policy compliance..."
     - anchorectl image check $IMAGE_TAG
-    - echo "Check Anchore results at http://localhost:3000/admin/artifacts/image/registry:5000/demo-app/$CI_PIPELINE_ID"
+
