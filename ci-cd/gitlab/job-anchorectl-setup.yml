@@ -6,6 +6,9 @@
 # CONDITIONS OF ANY KIND. USE AT YOUR OWN RISK.
 # ---------------------------------------------------------------------------
 
+
+# Downloads and install anchorectl. This is useful if you want to do this for every pipeline or you want to add it to a container image for Docker or Kubernetes build runners.
+# Verifies connectivity to Anchore Enterprise server. Environment variables should be set per anchorectl documentation
 .anchore_setup:
     - |
       echo "=========================================================="
