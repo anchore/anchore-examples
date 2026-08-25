@@ -9,11 +9,19 @@
 # ---------------------------------------------------------------------------
 
 # --- Configuration ---
-# put variables for username, password, and Anchore_URL in anchore.env file
-if [ -f ./anchore.env ]; then
+# Reuse ANCHORECTL_USERNAME / ANCHORECTL_PASSWORD / ANCHORECTL_URL if you already have
+# anchorectl configured in your shell. Otherwise fall back to an anchore.env file with
+# USERNAME, PASSWORD, and ANCHORE_URL (see README).
+USERNAME="${ANCHORECTL_USERNAME:-$USERNAME}"
+PASSWORD="${ANCHORECTL_PASSWORD:-$PASSWORD}"
+ANCHORE_URL="${ANCHORECTL_URL:-$ANCHORE_URL}"
+
+if [[ -z "$USERNAME" || -z "$PASSWORD" || -z "$ANCHORE_URL" ]] && [ -f ./anchore.env ]; then
     source ./anchore.env
-else
-    echo "Error: anchore.env file not found."
+fi
+
+if [[ -z "$USERNAME" || -z "$PASSWORD" || -z "$ANCHORE_URL" ]]; then
+    echo "Error: missing credentials. Set ANCHORECTL_USERNAME, ANCHORECTL_PASSWORD, and ANCHORECTL_URL in your environment, or create an anchore.env file."
     exit 1
 fi
 
