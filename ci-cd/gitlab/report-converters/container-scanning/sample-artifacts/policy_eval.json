@@ -1,0 +1,3547 @@
+{
+  "evaluatedTag": "registry.example.com/examples/python-ubuntu:0003ca701c1b510eb5f8c4916d4568be33419b3c",
+  "evaluations": [
+    {
+      "comparisonImageDigest": "sha256:cdb5fd928fced577cfecf12c8966e830fcdf42ee481fb0b91904eeddc2fe5eff",
+      "details": {
+        "findings": [
+          {
+            "action": "stop",
+            "allowlistMatch": null,
+            "allowlisted": false,
+            "gate": "dockerfile",
+            "inheritedFromBase": null,
+            "message": "User root found as effective user, which is explicity not allowed",
+            "policyId": "AC-6(10)",
+            "recommendation": "AC-6(10) LEAST PRIVILEGE | PROHIBIT NON-PRIVILEGED USERS FROM EXECUTING PRIVILEGED FUNCTIONS\n--\nNIST SP 800-53, REV. 5 Page 38\n--\nThe container should not run as the root user. A root user running inside of a container is an excessive level of privilege. A USER line should be added to the Dockerfile to drop root privileges",
+            "ruleId": "fbe300b9-085b-4648-ba54-00d0b1130ae4",
+            "trigger": "effective_user",
+            "triggerId": "cbff271f45d32e78dcc1979dbca9c14d"
+          },
+          {
+            "action": "warn",
+            "allowlistMatch": null,
+            "allowlisted": false,
+            "gate": "vulnerabilities",
+            "inheritedFromBase": null,
+            "message": "MEDIUM Vulnerability found in os package type (dpkg) - libgnutls30t64-3.8.3-1.1ubuntu3.5    (CVE-2026-42013 - https://ubuntu.com/security/CVE-2026-42013)",
+            "policyId": "RA-5",
+            "recommendation": "RA-5 VULNERABILITY MONITORING AND SCANNING\n--\nNIST SP 800-53, REV. 5 Page 242\n--\nVulnerabilities were found in the image. Please update or remediate these findings",
+            "ruleId": "0821c410-b0d4-4a25-90d7-aa71b46d7e32",
+            "trigger": "package",
+            "triggerId": "CVE-2026-42013+libgnutls30t64"
+          },
+          {
+            "action": "warn",
+            "allowlistMatch": null,
+            "allowlisted": false,
+            "gate": "vulnerabilities",
+            "inheritedFromBase": null,
+            "message": "MEDIUM Vulnerability found in os package type (dpkg) - libudev1-255.4-1ubuntu8.15    (CVE-2026-40225 - https://ubuntu.com/security/CVE-2026-40225)",
+            "policyId": "RA-5",
+            "recommendation": "RA-5 VULNERABILITY MONITORING AND SCANNING\n--\nNIST SP 800-53, REV. 5 Page 242\n--\nVulnerabilities were found in the image. Please update or remediate these findings",
+            "ruleId": "0821c410-b0d4-4a25-90d7-aa71b46d7e32",
+            "trigger": "package",
+            "triggerId": "CVE-2026-40225+libudev1"
+          },
+          {
+            "action": "warn",
+            "allowlistMatch": null,
+            "allowlisted": false,
+            "gate": "vulnerabilities",
+            "inheritedFromBase": null,
+            "message": "MEDIUM Vulnerability found in os package type (dpkg) - libpython3.12-stdlib-3.12.3-1ubuntu0.13    (CVE-2025-69534 - https://ubuntu.com/security/CVE-2025-69534)",
+            "policyId": "RA-5",
+            "recommendation": "RA-5 VULNERABILITY MONITORING AND SCANNING\n--\nNIST SP 800-53, REV. 5 Page 242\n--\nVulnerabilities were found in the image. Please update or remediate these findings",
+            "ruleId": "0821c410-b0d4-4a25-90d7-aa71b46d7e32",
+            "trigger": "package",
+            "triggerId": "CVE-2025-69534+libpython3.12-stdlib"
+          },
+          {
+            "action": "warn",
+            "allowlistMatch": null,
+            "allowlisted": false,
+            "gate": "vulnerabilities",
+            "inheritedFromBase": null,
+            "message": "MEDIUM Vulnerability found in os package type (dpkg) - python3.12-venv-3.12.3-1ubuntu0.13    (CVE-2026-2297 - https://ubuntu.com/security/CVE-2026-2297)",
+            "policyId": "RA-5",
+            "recommendation": "RA-5 VULNERABILITY MONITORING AND SCANNING\n--\nNIST SP 800-53, REV. 5 Page 242\n--\nVulnerabilities were found in the image. Please update or remediate these findings",
+            "ruleId": "0821c410-b0d4-4a25-90d7-aa71b46d7e32",
+            "trigger": "package",
+            "triggerId": "CVE-2026-2297+python3.12-venv"
+          },
+          {
+            "action": "warn",
+            "allowlistMatch": null,
+            "allowlisted": false,
+            "gate": "vulnerabilities",
+            "inheritedFromBase": null,
+            "message": "MEDIUM Vulnerability found in os package type (dpkg) - libpython3.12-stdlib-3.12.3-1ubuntu0.13    (CVE-2026-6100 - https://ubuntu.com/security/CVE-2026-6100)",
+            "policyId": "RA-5",
+            "recommendation": "RA-5 VULNERABILITY MONITORING AND SCANNING\n--\nNIST SP 800-53, REV. 5 Page 242\n--\nVulnerabilities were found in the image. Please update or remediate these findings",
+            "ruleId": "0821c410-b0d4-4a25-90d7-aa71b46d7e32",
+            "trigger": "package",
+            "triggerId": "CVE-2026-6100+libpython3.12-stdlib"
+          },
+          {
+            "action": "warn",
+            "allowlistMatch": null,
+            "allowlisted": false,
+            "gate": "vulnerabilities",
+            "inheritedFromBase": null,
+            "message": "MEDIUM Vulnerability found in os package type (dpkg) - python3.12-venv-3.12.3-1ubuntu0.13    (CVE-2026-3087 - https://ubuntu.com/security/CVE-2026-3087)",
+            "policyId": "RA-5",
+            "recommendation": "RA-5 VULNERABILITY MONITORING AND SCANNING\n--\nNIST SP 800-53, REV. 5 Page 242\n--\nVulnerabilities were found in the image. Please update or remediate these findings",
+            "ruleId": "0821c410-b0d4-4a25-90d7-aa71b46d7e32",
+            "trigger": "package",
+            "triggerId": "CVE-2026-3087+python3.12-venv"
+          },
+          {
+            "action": "warn",
+            "allowlistMatch": null,
+            "allowlisted": false,
+            "gate": "vulnerabilities",
+            "inheritedFromBase": null,
+            "message": "MEDIUM Vulnerability found in os package type (dpkg) - libpython3.12-stdlib-3.12.3-1ubuntu0.13    (CVE-2026-1502 - https://ubuntu.com/security/CVE-2026-1502)",
+            "policyId": "RA-5",
+            "recommendation": "RA-5 VULNERABILITY MONITORING AND SCANNING\n--\nNIST SP 800-53, REV. 5 Page 242\n--\nVulnerabilities were found in the image. Please update or remediate these findings",
+            "ruleId": "0821c410-b0d4-4a25-90d7-aa71b46d7e32",
+            "trigger": "package",
+            "triggerId": "CVE-2026-1502+libpython3.12-stdlib"
+          },
+          {
+            "action": "warn",
+            "allowlistMatch": null,
+            "allowlisted": false,
+            "gate": "vulnerabilities",
+            "inheritedFromBase": null,
+            "message": "MEDIUM Vulnerability found in os package type (dpkg) - python3.12-3.12.3-1ubuntu0.13    (CVE-2026-4224 - https://ubuntu.com/security/CVE-2026-4224)",
+            "policyId": "RA-5",
+            "recommendation": "RA-5 VULNERABILITY MONITORING AND SCANNING\n--\nNIST SP 800-53, REV. 5 Page 242\n--\nVulnerabilities were found in the image. Please update or remediate these findings",
+            "ruleId": "0821c410-b0d4-4a25-90d7-aa71b46d7e32",
+            "trigger": "package",
+            "triggerId": "CVE-2026-4224+python3.12"
+          },
+          {
+            "action": "warn",
+            "allowlistMatch": null,
+            "allowlisted": false,
+            "gate": "vulnerabilities",
+            "inheritedFromBase": null,
+            "message": "MEDIUM Vulnerability found in os package type (dpkg) - python3.12-minimal-3.12.3-1ubuntu0.13    (CVE-2026-1502 - https://ubuntu.com/security/CVE-2026-1502)",
+            "policyId": "RA-5",
+            "recommendation": "RA-5 VULNERABILITY MONITORING AND SCANNING\n--\nNIST SP 800-53, REV. 5 Page 242\n--\nVulnerabilities were found in the image. Please update or remediate these findings",
+            "ruleId": "0821c410-b0d4-4a25-90d7-aa71b46d7e32",
+            "trigger": "package",
+            "triggerId": "CVE-2026-1502+python3.12-minimal"
+          },
+          {
+            "action": "warn",
+            "allowlistMatch": null,
+            "allowlisted": false,
+            "gate": "vulnerabilities",
+            "inheritedFromBase": null,
+            "message": "MEDIUM Vulnerability found in os package type (dpkg) - python3.12-minimal-3.12.3-1ubuntu0.13    (CVE-2026-6100 - https://ubuntu.com/security/CVE-2026-6100)",
+            "policyId": "RA-5",
+            "recommendation": "RA-5 VULNERABILITY MONITORING AND SCANNING\n--\nNIST SP 800-53, REV. 5 Page 242\n--\nVulnerabilities were found in the image. Please update or remediate these findings",
+            "ruleId": "0821c410-b0d4-4a25-90d7-aa71b46d7e32",
+            "trigger": "package",
+            "triggerId": "CVE-2026-6100+python3.12-minimal"
+          },
+          {
+            "action": "warn",
+            "allowlistMatch": null,
+            "allowlisted": false,
+            "gate": "vulnerabilities",
+            "inheritedFromBase": null,
+            "message": "MEDIUM Vulnerability found in os package type (dpkg) - tar-1.35+dfsg-3build1    (CVE-2026-5704 - https://ubuntu.com/security/CVE-2026-5704)",
+            "policyId": "RA-5",
+            "recommendation": "RA-5 VULNERABILITY MONITORING AND SCANNING\n--\nNIST SP 800-53, REV. 5 Page 242\n--\nVulnerabilities were found in the image. Please update or remediate these findings",
+            "ruleId": "0821c410-b0d4-4a25-90d7-aa71b46d7e32",
+            "trigger": "package",
+            "triggerId": "CVE-2026-5704+tar"
+          },
+          {
+            "action": "warn",
+            "allowlistMatch": null,
+            "allowlisted": false,
+            "gate": "vulnerabilities",
+            "inheritedFromBase": null,
+            "message": "MEDIUM Vulnerability found in os package type (dpkg) - libpython3.12-minimal-3.12.3-1ubuntu0.13    (CVE-2026-1299 - https://ubuntu.com/security/CVE-2026-1299)",
+            "policyId": "RA-5",
+            "recommendation": "RA-5 VULNERABILITY MONITORING AND SCANNING\n--\nNIST SP 800-53, REV. 5 Page 242\n--\nVulnerabilities were found in the image. Please update or remediate these findings",
+            "ruleId": "0821c410-b0d4-4a25-90d7-aa71b46d7e32",
+            "trigger": "package",
+            "triggerId": "CVE-2026-1299+libpython3.12-minimal"
+          },
+          {
+            "action": "warn",
+            "allowlistMatch": null,
+            "allowlisted": false,
+            "gate": "vulnerabilities",
+            "inheritedFromBase": null,
+            "message": "MEDIUM Vulnerability found in os package type (dpkg) - python3.12-3.12.3-1ubuntu0.13    (CVE-2026-1502 - https://ubuntu.com/security/CVE-2026-1502)",
+            "policyId": "RA-5",
+            "recommendation": "RA-5 VULNERABILITY MONITORING AND SCANNING\n--\nNIST SP 800-53, REV. 5 Page 242\n--\nVulnerabilities were found in the image. Please update or remediate these findings",
+            "ruleId": "0821c410-b0d4-4a25-90d7-aa71b46d7e32",
+            "trigger": "package",
+            "triggerId": "CVE-2026-1502+python3.12"
+          },
+          {
+            "action": "warn",
+            "allowlistMatch": null,
+            "allowlisted": false,
+            "gate": "vulnerabilities",
+            "inheritedFromBase": null,
+            "message": "MEDIUM Vulnerability found in os package type (dpkg) - libgnutls30t64-3.8.3-1.1ubuntu3.5    (CVE-2026-3832 - https://ubuntu.com/security/CVE-2026-3832)",
+            "policyId": "RA-5",
+            "recommendation": "RA-5 VULNERABILITY MONITORING AND SCANNING\n--\nNIST SP 800-53, REV. 5 Page 242\n--\nVulnerabilities were found in the image. Please update or remediate these findings",
+            "ruleId": "0821c410-b0d4-4a25-90d7-aa71b46d7e32",
+            "trigger": "package",
+            "triggerId": "CVE-2026-3832+libgnutls30t64"
+          },
+          {
+            "action": "warn",
+            "allowlistMatch": null,
+            "allowlisted": false,
+            "gate": "vulnerabilities",
+            "inheritedFromBase": null,
+            "message": "MEDIUM Vulnerability found in os package type (dpkg) - python3.12-minimal-3.12.3-1ubuntu0.13    (CVE-2026-3446 - https://ubuntu.com/security/CVE-2026-3446)",
+            "policyId": "RA-5",
+            "recommendation": "RA-5 VULNERABILITY MONITORING AND SCANNING\n--\nNIST SP 800-53, REV. 5 Page 242\n--\nVulnerabilities were found in the image. Please update or remediate these findings",
+            "ruleId": "0821c410-b0d4-4a25-90d7-aa71b46d7e32",
+            "trigger": "package",
+            "triggerId": "CVE-2026-3446+python3.12-minimal"
+          },
+          {
+            "action": "warn",
+            "allowlistMatch": null,
+            "allowlisted": false,
+            "gate": "vulnerabilities",
+            "inheritedFromBase": null,
+            "message": "MEDIUM Vulnerability found in os package type (dpkg) - libsystemd0-255.4-1ubuntu8.15    (CVE-2026-40224 - https://ubuntu.com/security/CVE-2026-40224)",
+            "policyId": "RA-5",
+            "recommendation": "RA-5 VULNERABILITY MONITORING AND SCANNING\n--\nNIST SP 800-53, REV. 5 Page 242\n--\nVulnerabilities were found in the image. Please update or remediate these findings",
+            "ruleId": "0821c410-b0d4-4a25-90d7-aa71b46d7e32",
+            "trigger": "package",
+            "triggerId": "CVE-2026-40224+libsystemd0"
+          },
+          {
+            "action": "warn",
+            "allowlistMatch": null,
+            "allowlisted": false,
+            "gate": "vulnerabilities",
+            "inheritedFromBase": null,
+            "message": "MEDIUM Vulnerability found in os package type (dpkg) - libudev1-255.4-1ubuntu8.15    (CVE-2026-40223 - https://ubuntu.com/security/CVE-2026-40223)",
+            "policyId": "RA-5",
+            "recommendation": "RA-5 VULNERABILITY MONITORING AND SCANNING\n--\nNIST SP 800-53, REV. 5 Page 242\n--\nVulnerabilities were found in the image. Please update or remediate these findings",
+            "ruleId": "0821c410-b0d4-4a25-90d7-aa71b46d7e32",
+            "trigger": "package",
+            "triggerId": "CVE-2026-40223+libudev1"
+          },
+          {
+            "action": "warn",
+            "allowlistMatch": null,
+            "allowlisted": false,
+            "gate": "vulnerabilities",
+            "inheritedFromBase": null,
+            "message": "MEDIUM Vulnerability found in os package type (dpkg) - python3.12-venv-3.12.3-1ubuntu0.13    (CVE-2025-13462 - https://ubuntu.com/security/CVE-2025-13462)",
+            "policyId": "RA-5",
+            "recommendation": "RA-5 VULNERABILITY MONITORING AND SCANNING\n--\nNIST SP 800-53, REV. 5 Page 242\n--\nVulnerabilities were found in the image. Please update or remediate these findings",
+            "ruleId": "0821c410-b0d4-4a25-90d7-aa71b46d7e32",
+            "trigger": "package",
+            "triggerId": "CVE-2025-13462+python3.12-venv"
+          },
+          {
+            "action": "warn",
+            "allowlistMatch": null,
+            "allowlisted": false,
+            "gate": "vulnerabilities",
+            "inheritedFromBase": null,
+            "message": "MEDIUM Vulnerability found in os package type (dpkg) - libgnutls30t64-3.8.3-1.1ubuntu3.5    (CVE-2026-33846 - https://ubuntu.com/security/CVE-2026-33846)",
+            "policyId": "RA-5",
+            "recommendation": "RA-5 VULNERABILITY MONITORING AND SCANNING\n--\nNIST SP 800-53, REV. 5 Page 242\n--\nVulnerabilities were found in the image. Please update or remediate these findings",
+            "ruleId": "0821c410-b0d4-4a25-90d7-aa71b46d7e32",
+            "trigger": "package",
+            "triggerId": "CVE-2026-33846+libgnutls30t64"
+          },
+          {
+            "action": "warn",
+            "allowlistMatch": null,
+            "allowlisted": false,
+            "gate": "vulnerabilities",
+            "inheritedFromBase": null,
+            "message": "MEDIUM Vulnerability found in os package type (dpkg) - libc-bin-2.39-0ubuntu8.7    (CVE-2026-6238 - https://ubuntu.com/security/CVE-2026-6238)",
+            "policyId": "RA-5",
+            "recommendation": "RA-5 VULNERABILITY MONITORING AND SCANNING\n--\nNIST SP 800-53, REV. 5 Page 242\n--\nVulnerabilities were found in the image. Please update or remediate these findings",
+            "ruleId": "0821c410-b0d4-4a25-90d7-aa71b46d7e32",
+            "trigger": "package",
+            "triggerId": "CVE-2026-6238+libc-bin"
+          },
+          {
+            "action": "warn",
+            "allowlistMatch": null,
+            "allowlisted": false,
+            "gate": "vulnerabilities",
+            "inheritedFromBase": null,
+            "message": "MEDIUM Vulnerability found in os package type (dpkg) - python3.12-3.12.3-1ubuntu0.13    (CVE-2026-1299 - https://ubuntu.com/security/CVE-2026-1299)",
+            "policyId": "RA-5",
+            "recommendation": "RA-5 VULNERABILITY MONITORING AND SCANNING\n--\nNIST SP 800-53, REV. 5 Page 242\n--\nVulnerabilities were found in the image. Please update or remediate these findings",
+            "ruleId": "0821c410-b0d4-4a25-90d7-aa71b46d7e32",
+            "trigger": "package",
+            "triggerId": "CVE-2026-1299+python3.12"
+          },
+          {
+            "action": "warn",
+            "allowlistMatch": null,
+            "allowlisted": false,
+            "gate": "vulnerabilities",
+            "inheritedFromBase": null,
+            "message": "MEDIUM Vulnerability found in os package type (dpkg) - python3.12-minimal-3.12.3-1ubuntu0.13    (CVE-2026-3479 - https://ubuntu.com/security/CVE-2026-3479)",
+            "policyId": "RA-5",
+            "recommendation": "RA-5 VULNERABILITY MONITORING AND SCANNING\n--\nNIST SP 800-53, REV. 5 Page 242\n--\nVulnerabilities were found in the image. Please update or remediate these findings",
+            "ruleId": "0821c410-b0d4-4a25-90d7-aa71b46d7e32",
+            "trigger": "package",
+            "triggerId": "CVE-2026-3479+python3.12-minimal"
+          },
+          {
+            "action": "warn",
+            "allowlistMatch": null,
+            "allowlisted": false,
+            "gate": "vulnerabilities",
+            "inheritedFromBase": null,
+            "message": "MEDIUM Vulnerability found in os package type (dpkg) - python3.12-3.12.3-1ubuntu0.13    (CVE-2026-3644 - https://ubuntu.com/security/CVE-2026-3644)",
+            "policyId": "RA-5",
+            "recommendation": "RA-5 VULNERABILITY MONITORING AND SCANNING\n--\nNIST SP 800-53, REV. 5 Page 242\n--\nVulnerabilities were found in the image. Please update or remediate these findings",
+            "ruleId": "0821c410-b0d4-4a25-90d7-aa71b46d7e32",
+            "trigger": "package",
+            "triggerId": "CVE-2026-3644+python3.12"
+          },
+          {
+            "action": "warn",
+            "allowlistMatch": null,
+            "allowlisted": false,
+            "gate": "vulnerabilities",
+            "inheritedFromBase": null,
+            "message": "LOW Vulnerability found in os package type (dpkg) - login-1:4.13+dfsg1-4ubuntu3.2    (CVE-2024-56433 - https://ubuntu.com/security/CVE-2024-56433)",
+            "policyId": "RA-5",
+            "recommendation": "RA-5 VULNERABILITY MONITORING AND SCANNING\n--\nNIST SP 800-53, REV. 5 Page 242\n--\nVulnerabilities were found in the image. Please update or remediate these findings",
+            "ruleId": "0821c410-b0d4-4a25-90d7-aa71b46d7e32",
+            "trigger": "package",
+            "triggerId": "CVE-2024-56433+login"
+          },
+          {
+            "action": "warn",
+            "allowlistMatch": null,
+            "allowlisted": false,
+            "gate": "vulnerabilities",
+            "inheritedFromBase": null,
+            "message": "MEDIUM Vulnerability found in os package type (dpkg) - libexpat1-2.6.1-2ubuntu0.4    (CVE-2026-4739 - https://ubuntu.com/security/CVE-2026-4739)",
+            "policyId": "RA-5",
+            "recommendation": "RA-5 VULNERABILITY MONITORING AND SCANNING\n--\nNIST SP 800-53, REV. 5 Page 242\n--\nVulnerabilities were found in the image. Please update or remediate these findings",
+            "ruleId": "0821c410-b0d4-4a25-90d7-aa71b46d7e32",
+            "trigger": "package",
+            "triggerId": "CVE-2026-4739+libexpat1"
+          },
+          {
+            "action": "warn",
+            "allowlistMatch": null,
+            "allowlisted": false,
+            "gate": "vulnerabilities",
+            "inheritedFromBase": null,
+            "message": "LOW Vulnerability found in os package type (dpkg) - ncurses-base-6.4+20240113-1ubuntu2    (CVE-2025-69720 - https://ubuntu.com/security/CVE-2025-69720)",
+            "policyId": "RA-5",
+            "recommendation": "RA-5 VULNERABILITY MONITORING AND SCANNING\n--\nNIST SP 800-53, REV. 5 Page 242\n--\nVulnerabilities were found in the image. Please update or remediate these findings",
+            "ruleId": "0821c410-b0d4-4a25-90d7-aa71b46d7e32",
+            "trigger": "package",
+            "triggerId": "CVE-2025-69720+ncurses-base"
+          },
+          {
+            "action": "warn",
+            "allowlistMatch": null,
+            "allowlisted": false,
+            "gate": "vulnerabilities",
+            "inheritedFromBase": null,
+            "message": "LOW Vulnerability found in os package type (dpkg) - libncursesw6-6.4+20240113-1ubuntu2    (CVE-2025-6141 - https://ubuntu.com/security/CVE-2025-6141)",
+            "policyId": "RA-5",
+            "recommendation": "RA-5 VULNERABILITY MONITORING AND SCANNING\n--\nNIST SP 800-53, REV. 5 Page 242\n--\nVulnerabilities were found in the image. Please update or remediate these findings",
+            "ruleId": "0821c410-b0d4-4a25-90d7-aa71b46d7e32",
+            "trigger": "package",
+            "triggerId": "CVE-2025-6141+libncursesw6"
+          },
+          {
+            "action": "warn",
+            "allowlistMatch": null,
+            "allowlisted": false,
+            "gate": "vulnerabilities",
+            "inheritedFromBase": null,
+            "message": "MEDIUM Vulnerability found in os package type (dpkg) - libc6-2.39-0ubuntu8.7    (CVE-2026-5358 - https://ubuntu.com/security/CVE-2026-5358)",
+            "policyId": "RA-5",
+            "recommendation": "RA-5 VULNERABILITY MONITORING AND SCANNING\n--\nNIST SP 800-53, REV. 5 Page 242\n--\nVulnerabilities were found in the image. Please update or remediate these findings",
+            "ruleId": "0821c410-b0d4-4a25-90d7-aa71b46d7e32",
+            "trigger": "package",
+            "triggerId": "CVE-2026-5358+libc6"
+          },
+          {
+            "action": "warn",
+            "allowlistMatch": null,
+            "allowlisted": false,
+            "gate": "vulnerabilities",
+            "inheritedFromBase": null,
+            "message": "MEDIUM Vulnerability found in os package type (dpkg) - libsystemd0-255.4-1ubuntu8.15    (CVE-2026-40226 - https://ubuntu.com/security/CVE-2026-40226)",
+            "policyId": "RA-5",
+            "recommendation": "RA-5 VULNERABILITY MONITORING AND SCANNING\n--\nNIST SP 800-53, REV. 5 Page 242\n--\nVulnerabilities were found in the image. Please update or remediate these findings",
+            "ruleId": "0821c410-b0d4-4a25-90d7-aa71b46d7e32",
+            "trigger": "package",
+            "triggerId": "CVE-2026-40226+libsystemd0"
+          },
+          {
+            "action": "warn",
+            "allowlistMatch": null,
+            "allowlisted": false,
+            "gate": "vulnerabilities",
+            "inheritedFromBase": null,
+            "message": "MEDIUM Vulnerability found in os package type (dpkg) - python3-pip-whl-24.0+dfsg-1ubuntu1.3    (CVE-2026-21441 - https://ubuntu.com/security/CVE-2026-21441)",
+            "policyId": "RA-5",
+            "recommendation": "RA-5 VULNERABILITY MONITORING AND SCANNING\n--\nNIST SP 800-53, REV. 5 Page 242\n--\nVulnerabilities were found in the image. Please update or remediate these findings",
+            "ruleId": "0821c410-b0d4-4a25-90d7-aa71b46d7e32",
+            "trigger": "package",
+            "triggerId": "CVE-2026-21441+python3-pip-whl"
+          },
+          {
+            "action": "warn",
+            "allowlistMatch": null,
+            "allowlisted": false,
+            "gate": "vulnerabilities",
+            "inheritedFromBase": null,
+            "message": "MEDIUM Vulnerability found in os package type (dpkg) - libsystemd0-255.4-1ubuntu8.15    (CVE-2026-40228 - https://ubuntu.com/security/CVE-2026-40228)",
+            "policyId": "RA-5",
+            "recommendation": "RA-5 VULNERABILITY MONITORING AND SCANNING\n--\nNIST SP 800-53, REV. 5 Page 242\n--\nVulnerabilities were found in the image. Please update or remediate these findings",
+            "ruleId": "0821c410-b0d4-4a25-90d7-aa71b46d7e32",
+            "trigger": "package",
+            "triggerId": "CVE-2026-40228+libsystemd0"
+          },
+          {
+            "action": "warn",
+            "allowlistMatch": null,
+            "allowlisted": false,
+            "gate": "vulnerabilities",
+            "inheritedFromBase": null,
+            "message": "MEDIUM Vulnerability found in os package type (dpkg) - libudev1-255.4-1ubuntu8.15    (CVE-2026-40224 - https://ubuntu.com/security/CVE-2026-40224)",
+            "policyId": "RA-5",
+            "recommendation": "RA-5 VULNERABILITY MONITORING AND SCANNING\n--\nNIST SP 800-53, REV. 5 Page 242\n--\nVulnerabilities were found in the image. Please update or remediate these findings",
+            "ruleId": "0821c410-b0d4-4a25-90d7-aa71b46d7e32",
+            "trigger": "package",
+            "triggerId": "CVE-2026-40224+libudev1"
+          },
+          {
+            "action": "warn",
+            "allowlistMatch": null,
+            "allowlisted": false,
+            "gate": "vulnerabilities",
+            "inheritedFromBase": null,
+            "message": "MEDIUM Vulnerability found in os package type (dpkg) - python3.12-minimal-3.12.3-1ubuntu0.13    (CVE-2026-4786 - https://ubuntu.com/security/CVE-2026-4786)",
+            "policyId": "RA-5",
+            "recommendation": "RA-5 VULNERABILITY MONITORING AND SCANNING\n--\nNIST SP 800-53, REV. 5 Page 242\n--\nVulnerabilities were found in the image. Please update or remediate these findings",
+            "ruleId": "0821c410-b0d4-4a25-90d7-aa71b46d7e32",
+            "trigger": "package",
+            "triggerId": "CVE-2026-4786+python3.12-minimal"
+          },
+          {
+            "action": "warn",
+            "allowlistMatch": null,
+            "allowlisted": false,
+            "gate": "vulnerabilities",
+            "inheritedFromBase": null,
+            "message": "MEDIUM Vulnerability found in os package type (dpkg) - libudev1-255.4-1ubuntu8.15    (CVE-2026-40227 - https://ubuntu.com/security/CVE-2026-40227)",
+            "policyId": "RA-5",
+            "recommendation": "RA-5 VULNERABILITY MONITORING AND SCANNING\n--\nNIST SP 800-53, REV. 5 Page 242\n--\nVulnerabilities were found in the image. Please update or remediate these findings",
+            "ruleId": "0821c410-b0d4-4a25-90d7-aa71b46d7e32",
+            "trigger": "package",
+            "triggerId": "CVE-2026-40227+libudev1"
+          },
+          {
+            "action": "warn",
+            "allowlistMatch": null,
+            "allowlisted": false,
+            "gate": "vulnerabilities",
+            "inheritedFromBase": null,
+            "message": "MEDIUM Vulnerability found in os package type (dpkg) - libc6-2.39-0ubuntu8.7    (CVE-2026-5435 - https://ubuntu.com/security/CVE-2026-5435)",
+            "policyId": "RA-5",
+            "recommendation": "RA-5 VULNERABILITY MONITORING AND SCANNING\n--\nNIST SP 800-53, REV. 5 Page 242\n--\nVulnerabilities were found in the image. Please update or remediate these findings",
+            "ruleId": "0821c410-b0d4-4a25-90d7-aa71b46d7e32",
+            "trigger": "package",
+            "triggerId": "CVE-2026-5435+libc6"
+          },
+          {
+            "action": "warn",
+            "allowlistMatch": null,
+            "allowlisted": false,
+            "gate": "vulnerabilities",
+            "inheritedFromBase": null,
+            "message": "MEDIUM Vulnerability found in os package type (dpkg) - libcap2-1:2.66-5ubuntu2.2 (fixed in: 1:2.66-5ubuntu2.4)   (CVE-2026-4878 - https://ubuntu.com/security/CVE-2026-4878)",
+            "policyId": "RA-5",
+            "recommendation": "RA-5 VULNERABILITY MONITORING AND SCANNING\n--\nNIST SP 800-53, REV. 5 Page 242\n--\nVulnerabilities were found in the image. Please update or remediate these findings",
+            "ruleId": "0821c410-b0d4-4a25-90d7-aa71b46d7e32",
+            "trigger": "package",
+            "triggerId": "CVE-2026-4878+libcap2"
+          },
+          {
+            "action": "warn",
+            "allowlistMatch": null,
+            "allowlisted": false,
+            "gate": "vulnerabilities",
+            "inheritedFromBase": null,
+            "message": "MEDIUM Vulnerability found in os package type (dpkg) - libpython3.12-stdlib-3.12.3-1ubuntu0.13    (CVE-2026-1299 - https://ubuntu.com/security/CVE-2026-1299)",
+            "policyId": "RA-5",
+            "recommendation": "RA-5 VULNERABILITY MONITORING AND SCANNING\n--\nNIST SP 800-53, REV. 5 Page 242\n--\nVulnerabilities were found in the image. Please update or remediate these findings",
+            "ruleId": "0821c410-b0d4-4a25-90d7-aa71b46d7e32",
+            "trigger": "package",
+            "triggerId": "CVE-2026-1299+libpython3.12-stdlib"
+          },
+          {
+            "action": "warn",
+            "allowlistMatch": null,
+            "allowlisted": false,
+            "gate": "vulnerabilities",
+            "inheritedFromBase": null,
+            "message": "MEDIUM Vulnerability found in os package type (dpkg) - libc6-2.39-0ubuntu8.7    (CVE-2026-5928 - https://ubuntu.com/security/CVE-2026-5928)",
+            "policyId": "RA-5",
+            "recommendation": "RA-5 VULNERABILITY MONITORING AND SCANNING\n--\nNIST SP 800-53, REV. 5 Page 242\n--\nVulnerabilities were found in the image. Please update or remediate these findings",
+            "ruleId": "0821c410-b0d4-4a25-90d7-aa71b46d7e32",
+            "trigger": "package",
+            "triggerId": "CVE-2026-5928+libc6"
+          },
+          {
+            "action": "warn",
+            "allowlistMatch": null,
+            "allowlisted": false,
+            "gate": "vulnerabilities",
+            "inheritedFromBase": null,
+            "message": "MEDIUM Vulnerability found in os package type (dpkg) - libexpat1-2.6.1-2ubuntu0.4    (CVE-2026-41080 - https://ubuntu.com/security/CVE-2026-41080)",
+            "policyId": "RA-5",
+            "recommendation": "RA-5 VULNERABILITY MONITORING AND SCANNING\n--\nNIST SP 800-53, REV. 5 Page 242\n--\nVulnerabilities were found in the image. Please update or remediate these findings",
+            "ruleId": "0821c410-b0d4-4a25-90d7-aa71b46d7e32",
+            "trigger": "package",
+            "triggerId": "CVE-2026-41080+libexpat1"
+          },
+          {
+            "action": "warn",
+            "allowlistMatch": null,
+            "allowlisted": false,
+            "gate": "vulnerabilities",
+            "inheritedFromBase": null,
+            "message": "MEDIUM Vulnerability found in os package type (dpkg) - libgnutls30t64-3.8.3-1.1ubuntu3.5    (CVE-2026-5419 - https://ubuntu.com/security/CVE-2026-5419)",
+            "policyId": "RA-5",
+            "recommendation": "RA-5 VULNERABILITY MONITORING AND SCANNING\n--\nNIST SP 800-53, REV. 5 Page 242\n--\nVulnerabilities were found in the image. Please update or remediate these findings",
+            "ruleId": "0821c410-b0d4-4a25-90d7-aa71b46d7e32",
+            "trigger": "package",
+            "triggerId": "CVE-2026-5419+libgnutls30t64"
+          },
+          {
+            "action": "warn",
+            "allowlistMatch": null,
+            "allowlisted": false,
+            "gate": "vulnerabilities",
+            "inheritedFromBase": null,
+            "message": "MEDIUM Vulnerability found in os package type (dpkg) - python3-pip-whl-24.0+dfsg-1ubuntu1.3    (CVE-2026-6357 - https://ubuntu.com/security/CVE-2026-6357)",
+            "policyId": "RA-5",
+            "recommendation": "RA-5 VULNERABILITY MONITORING AND SCANNING\n--\nNIST SP 800-53, REV. 5 Page 242\n--\nVulnerabilities were found in the image. Please update or remediate these findings",
+            "ruleId": "0821c410-b0d4-4a25-90d7-aa71b46d7e32",
+            "trigger": "package",
+            "triggerId": "CVE-2026-6357+python3-pip-whl"
+          },
+          {
+            "action": "warn",
+            "allowlistMatch": null,
+            "allowlisted": false,
+            "gate": "vulnerabilities",
+            "inheritedFromBase": null,
+            "message": "MEDIUM Vulnerability found in os package type (dpkg) - python3.12-3.12.3-1ubuntu0.13    (CVE-2026-4786 - https://ubuntu.com/security/CVE-2026-4786)",
+            "policyId": "RA-5",
+            "recommendation": "RA-5 VULNERABILITY MONITORING AND SCANNING\n--\nNIST SP 800-53, REV. 5 Page 242\n--\nVulnerabilities were found in the image. Please update or remediate these findings",
+            "ruleId": "0821c410-b0d4-4a25-90d7-aa71b46d7e32",
+            "trigger": "package",
+            "triggerId": "CVE-2026-4786+python3.12"
+          },
+          {
+            "action": "warn",
+            "allowlistMatch": null,
+            "allowlisted": false,
+            "gate": "vulnerabilities",
+            "inheritedFromBase": null,
+            "message": "MEDIUM Vulnerability found in os package type (dpkg) - libpython3.12-stdlib-3.12.3-1ubuntu0.13    (CVE-2026-3298 - https://ubuntu.com/security/CVE-2026-3298)",
+            "policyId": "RA-5",
+            "recommendation": "RA-5 VULNERABILITY MONITORING AND SCANNING\n--\nNIST SP 800-53, REV. 5 Page 242\n--\nVulnerabilities were found in the image. Please update or remediate these findings",
+            "ruleId": "0821c410-b0d4-4a25-90d7-aa71b46d7e32",
+            "trigger": "package",
+            "triggerId": "CVE-2026-3298+libpython3.12-stdlib"
+          },
+          {
+            "action": "warn",
+            "allowlistMatch": null,
+            "allowlisted": false,
+            "gate": "vulnerabilities",
+            "inheritedFromBase": null,
+            "message": "MEDIUM Vulnerability found in os package type (dpkg) - libpython3.12-minimal-3.12.3-1ubuntu0.13    (CVE-2026-6100 - https://ubuntu.com/security/CVE-2026-6100)",
+            "policyId": "RA-5",
+            "recommendation": "RA-5 VULNERABILITY MONITORING AND SCANNING\n--\nNIST SP 800-53, REV. 5 Page 242\n--\nVulnerabilities were found in the image. Please update or remediate these findings",
+            "ruleId": "0821c410-b0d4-4a25-90d7-aa71b46d7e32",
+            "trigger": "package",
+            "triggerId": "CVE-2026-6100+libpython3.12-minimal"
+          },
+          {
+            "action": "warn",
+            "allowlistMatch": null,
+            "allowlisted": false,
+            "gate": "vulnerabilities",
+            "inheritedFromBase": null,
+            "message": "MEDIUM Vulnerability found in os package type (dpkg) - python3.12-venv-3.12.3-1ubuntu0.13    (CVE-2026-4224 - https://ubuntu.com/security/CVE-2026-4224)",
+            "policyId": "RA-5",
+            "recommendation": "RA-5 VULNERABILITY MONITORING AND SCANNING\n--\nNIST SP 800-53, REV. 5 Page 242\n--\nVulnerabilities were found in the image. Please update or remediate these findings",
+            "ruleId": "0821c410-b0d4-4a25-90d7-aa71b46d7e32",
+            "trigger": "package",
+            "triggerId": "CVE-2026-4224+python3.12-venv"
+          },
+          {
+            "action": "warn",
+            "allowlistMatch": null,
+            "allowlisted": false,
+            "gate": "vulnerabilities",
+            "inheritedFromBase": null,
+            "message": "MEDIUM Vulnerability found in os package type (dpkg) - libpython3.12-minimal-3.12.3-1ubuntu0.13    (CVE-2025-69534 - https://ubuntu.com/security/CVE-2025-69534)",
+            "policyId": "RA-5",
+            "recommendation": "RA-5 VULNERABILITY MONITORING AND SCANNING\n--\nNIST SP 800-53, REV. 5 Page 242\n--\nVulnerabilities were found in the image. Please update or remediate these findings",
+            "ruleId": "0821c410-b0d4-4a25-90d7-aa71b46d7e32",
+            "trigger": "package",
+            "triggerId": "CVE-2025-69534+libpython3.12-minimal"
+          },
+          {
+            "action": "warn",
+            "allowlistMatch": null,
+            "allowlisted": false,
+            "gate": "vulnerabilities",
+            "inheritedFromBase": null,
+            "message": "MEDIUM Vulnerability found in os package type (dpkg) - python3.12-minimal-3.12.3-1ubuntu0.13    (CVE-2025-69534 - https://ubuntu.com/security/CVE-2025-69534)",
+            "policyId": "RA-5",
+            "recommendation": "RA-5 VULNERABILITY MONITORING AND SCANNING\n--\nNIST SP 800-53, REV. 5 Page 242\n--\nVulnerabilities were found in the image. Please update or remediate these findings",
+            "ruleId": "0821c410-b0d4-4a25-90d7-aa71b46d7e32",
+            "trigger": "package",
+            "triggerId": "CVE-2025-69534+python3.12-minimal"
+          },
+          {
+            "action": "warn",
+            "allowlistMatch": null,
+            "allowlisted": false,
+            "gate": "vulnerabilities",
+            "inheritedFromBase": null,
+            "message": "MEDIUM Vulnerability found in os package type (dpkg) - libsystemd0-255.4-1ubuntu8.15    (CVE-2026-40223 - https://ubuntu.com/security/CVE-2026-40223)",
+            "policyId": "RA-5",
+            "recommendation": "RA-5 VULNERABILITY MONITORING AND SCANNING\n--\nNIST SP 800-53, REV. 5 Page 242\n--\nVulnerabilities were found in the image. Please update or remediate these findings",
+            "ruleId": "0821c410-b0d4-4a25-90d7-aa71b46d7e32",
+            "trigger": "package",
+            "triggerId": "CVE-2026-40223+libsystemd0"
+          },
+          {
+            "action": "warn",
+            "allowlistMatch": null,
+            "allowlisted": false,
+            "gate": "vulnerabilities",
+            "inheritedFromBase": null,
+            "message": "MEDIUM Vulnerability found in os package type (dpkg) - libexpat1-2.6.1-2ubuntu0.4    (CVE-2026-45186 - https://ubuntu.com/security/CVE-2026-45186)",
+            "policyId": "RA-5",
+            "recommendation": "RA-5 VULNERABILITY MONITORING AND SCANNING\n--\nNIST SP 800-53, REV. 5 Page 242\n--\nVulnerabilities were found in the image. Please update or remediate these findings",
+            "ruleId": "0821c410-b0d4-4a25-90d7-aa71b46d7e32",
+            "trigger": "package",
+            "triggerId": "CVE-2026-45186+libexpat1"
+          },
+          {
+            "action": "warn",
+            "allowlistMatch": null,
+            "allowlisted": false,
+            "gate": "vulnerabilities",
+            "inheritedFromBase": null,
+            "message": "MEDIUM Vulnerability found in os package type (dpkg) - libpython3.12-stdlib-3.12.3-1ubuntu0.13    (CVE-2026-4786 - https://ubuntu.com/security/CVE-2026-4786)",
+            "policyId": "RA-5",
+            "recommendation": "RA-5 VULNERABILITY MONITORING AND SCANNING\n--\nNIST SP 800-53, REV. 5 Page 242\n--\nVulnerabilities were found in the image. Please update or remediate these findings",
+            "ruleId": "0821c410-b0d4-4a25-90d7-aa71b46d7e32",
+            "trigger": "package",
+            "triggerId": "CVE-2026-4786+libpython3.12-stdlib"
+          },
+          {
+            "action": "warn",
+            "allowlistMatch": null,
+            "allowlisted": false,
+            "gate": "vulnerabilities",
+            "inheritedFromBase": null,
+            "message": "MEDIUM Vulnerability found in os package type (dpkg) - libpython3.12-stdlib-3.12.3-1ubuntu0.13    (CVE-2026-3479 - https://ubuntu.com/security/CVE-2026-3479)",
+            "policyId": "RA-5",
+            "recommendation": "RA-5 VULNERABILITY MONITORING AND SCANNING\n--\nNIST SP 800-53, REV. 5 Page 242\n--\nVulnerabilities were found in the image. Please update or remediate these findings",
+            "ruleId": "0821c410-b0d4-4a25-90d7-aa71b46d7e32",
+            "trigger": "package",
+            "triggerId": "CVE-2026-3479+libpython3.12-stdlib"
+          },
+          {
+            "action": "warn",
+            "allowlistMatch": null,
+            "allowlisted": false,
+            "gate": "vulnerabilities",
+            "inheritedFromBase": null,
+            "message": "MEDIUM Vulnerability found in os package type (dpkg) - libpython3.12-minimal-3.12.3-1ubuntu0.13    (CVE-2026-4224 - https://ubuntu.com/security/CVE-2026-4224)",
+            "policyId": "RA-5",
+            "recommendation": "RA-5 VULNERABILITY MONITORING AND SCANNING\n--\nNIST SP 800-53, REV. 5 Page 242\n--\nVulnerabilities were found in the image. Please update or remediate these findings",
+            "ruleId": "0821c410-b0d4-4a25-90d7-aa71b46d7e32",
+            "trigger": "package",
+            "triggerId": "CVE-2026-4224+libpython3.12-minimal"
+          },
+          {
+            "action": "warn",
+            "allowlistMatch": null,
+            "allowlisted": false,
+            "gate": "vulnerabilities",
+            "inheritedFromBase": null,
+            "message": "MEDIUM Vulnerability found in os package type (dpkg) - libpython3.12-minimal-3.12.3-1ubuntu0.13    (CVE-2026-6019 - https://ubuntu.com/security/CVE-2026-6019)",
+            "policyId": "RA-5",
+            "recommendation": "RA-5 VULNERABILITY MONITORING AND SCANNING\n--\nNIST SP 800-53, REV. 5 Page 242\n--\nVulnerabilities were found in the image. Please update or remediate these findings",
+            "ruleId": "0821c410-b0d4-4a25-90d7-aa71b46d7e32",
+            "trigger": "package",
+            "triggerId": "CVE-2026-6019+libpython3.12-minimal"
+          },
+          {
+            "action": "warn",
+            "allowlistMatch": null,
+            "allowlisted": false,
+            "gate": "vulnerabilities",
+            "inheritedFromBase": null,
+            "message": "MEDIUM Vulnerability found in os package type (dpkg) - dpkg-1.22.6ubuntu6.5 (fixed in: 1.22.6ubuntu6.6)   (CVE-2026-2219 - https://ubuntu.com/security/CVE-2026-2219)",
+            "policyId": "RA-5",
+            "recommendation": "RA-5 VULNERABILITY MONITORING AND SCANNING\n--\nNIST SP 800-53, REV. 5 Page 242\n--\nVulnerabilities were found in the image. Please update or remediate these findings",
+            "ruleId": "0821c410-b0d4-4a25-90d7-aa71b46d7e32",
+            "trigger": "package",
+            "triggerId": "CVE-2026-2219+dpkg"
+          },
+          {
+            "action": "warn",
+            "allowlistMatch": null,
+            "allowlisted": false,
+            "gate": "vulnerabilities",
+            "inheritedFromBase": null,
+            "message": "MEDIUM Vulnerability found in os package type (dpkg) - libgnutls30t64-3.8.3-1.1ubuntu3.5    (CVE-2026-5260 - https://ubuntu.com/security/CVE-2026-5260)",
+            "policyId": "RA-5",
+            "recommendation": "RA-5 VULNERABILITY MONITORING AND SCANNING\n--\nNIST SP 800-53, REV. 5 Page 242\n--\nVulnerabilities were found in the image. Please update or remediate these findings",
+            "ruleId": "0821c410-b0d4-4a25-90d7-aa71b46d7e32",
+            "trigger": "package",
+            "triggerId": "CVE-2026-5260+libgnutls30t64"
+          },
+          {
+            "action": "warn",
+            "allowlistMatch": null,
+            "allowlisted": false,
+            "gate": "vulnerabilities",
+            "inheritedFromBase": null,
+            "message": "MEDIUM Vulnerability found in os package type (dpkg) - python3.12-venv-3.12.3-1ubuntu0.13    (CVE-2026-3644 - https://ubuntu.com/security/CVE-2026-3644)",
+            "policyId": "RA-5",
+            "recommendation": "RA-5 VULNERABILITY MONITORING AND SCANNING\n--\nNIST SP 800-53, REV. 5 Page 242\n--\nVulnerabilities were found in the image. Please update or remediate these findings",
+            "ruleId": "0821c410-b0d4-4a25-90d7-aa71b46d7e32",
+            "trigger": "package",
+            "triggerId": "CVE-2026-3644+python3.12-venv"
+          },
+          {
+            "action": "warn",
+            "allowlistMatch": null,
+            "allowlisted": false,
+            "gate": "vulnerabilities",
+            "inheritedFromBase": null,
+            "message": "MEDIUM Vulnerability found in os package type (dpkg) - libuuid1-2.39.3-9ubuntu6.5    (CVE-2026-27456 - https://ubuntu.com/security/CVE-2026-27456)",
+            "policyId": "RA-5",
+            "recommendation": "RA-5 VULNERABILITY MONITORING AND SCANNING\n--\nNIST SP 800-53, REV. 5 Page 242\n--\nVulnerabilities were found in the image. Please update or remediate these findings",
+            "ruleId": "0821c410-b0d4-4a25-90d7-aa71b46d7e32",
+            "trigger": "package",
+            "triggerId": "CVE-2026-27456+libuuid1"
+          },
+          {
+            "action": "warn",
+            "allowlistMatch": null,
+            "allowlisted": false,
+            "gate": "vulnerabilities",
+            "inheritedFromBase": null,
+            "message": "MEDIUM Vulnerability found in os package type (dpkg) - libgnutls30t64-3.8.3-1.1ubuntu3.5    (CVE-2026-42010 - https://ubuntu.com/security/CVE-2026-42010)",
+            "policyId": "RA-5",
+            "recommendation": "RA-5 VULNERABILITY MONITORING AND SCANNING\n--\nNIST SP 800-53, REV. 5 Page 242\n--\nVulnerabilities were found in the image. Please update or remediate these findings",
+            "ruleId": "0821c410-b0d4-4a25-90d7-aa71b46d7e32",
+            "trigger": "package",
+            "triggerId": "CVE-2026-42010+libgnutls30t64"
+          },
+          {
+            "action": "warn",
+            "allowlistMatch": null,
+            "allowlisted": false,
+            "gate": "vulnerabilities",
+            "inheritedFromBase": null,
+            "message": "MEDIUM Vulnerability found in os package type (dpkg) - libgcrypt20-1.10.3-2build1    (CVE-2026-41990 - https://ubuntu.com/security/CVE-2026-41990)",
+            "policyId": "RA-5",
+            "recommendation": "RA-5 VULNERABILITY MONITORING AND SCANNING\n--\nNIST SP 800-53, REV. 5 Page 242\n--\nVulnerabilities were found in the image. Please update or remediate these findings",
+            "ruleId": "0821c410-b0d4-4a25-90d7-aa71b46d7e32",
+            "trigger": "package",
+            "triggerId": "CVE-2026-41990+libgcrypt20"
+          },
+          {
+            "action": "warn",
+            "allowlistMatch": null,
+            "allowlisted": false,
+            "gate": "vulnerabilities",
+            "inheritedFromBase": null,
+            "message": "MEDIUM Vulnerability found in os package type (dpkg) - libsystemd0-255.4-1ubuntu8.15    (CVE-2026-40227 - https://ubuntu.com/security/CVE-2026-40227)",
+            "policyId": "RA-5",
+            "recommendation": "RA-5 VULNERABILITY MONITORING AND SCANNING\n--\nNIST SP 800-53, REV. 5 Page 242\n--\nVulnerabilities were found in the image. Please update or remediate these findings",
+            "ruleId": "0821c410-b0d4-4a25-90d7-aa71b46d7e32",
+            "trigger": "package",
+            "triggerId": "CVE-2026-40227+libsystemd0"
+          },
+          {
+            "action": "warn",
+            "allowlistMatch": null,
+            "allowlisted": false,
+            "gate": "vulnerabilities",
+            "inheritedFromBase": null,
+            "message": "MEDIUM Vulnerability found in os package type (dpkg) - python3.12-minimal-3.12.3-1ubuntu0.13    (CVE-2026-1299 - https://ubuntu.com/security/CVE-2026-1299)",
+            "policyId": "RA-5",
+            "recommendation": "RA-5 VULNERABILITY MONITORING AND SCANNING\n--\nNIST SP 800-53, REV. 5 Page 242\n--\nVulnerabilities were found in the image. Please update or remediate these findings",
+            "ruleId": "0821c410-b0d4-4a25-90d7-aa71b46d7e32",
+            "trigger": "package",
+            "triggerId": "CVE-2026-1299+python3.12-minimal"
+          },
+          {
+            "action": "warn",
+            "allowlistMatch": null,
+            "allowlisted": false,
+            "gate": "vulnerabilities",
+            "inheritedFromBase": null,
+            "message": "MEDIUM Vulnerability found in os package type (dpkg) - libpython3.12-minimal-3.12.3-1ubuntu0.13    (CVE-2026-3298 - https://ubuntu.com/security/CVE-2026-3298)",
+            "policyId": "RA-5",
+            "recommendation": "RA-5 VULNERABILITY MONITORING AND SCANNING\n--\nNIST SP 800-53, REV. 5 Page 242\n--\nVulnerabilities were found in the image. Please update or remediate these findings",
+            "ruleId": "0821c410-b0d4-4a25-90d7-aa71b46d7e32",
+            "trigger": "package",
+            "triggerId": "CVE-2026-3298+libpython3.12-minimal"
+          },
+          {
+            "action": "warn",
+            "allowlistMatch": null,
+            "allowlisted": false,
+            "gate": "vulnerabilities",
+            "inheritedFromBase": null,
+            "message": "MEDIUM Vulnerability found in os package type (dpkg) - python3.12-minimal-3.12.3-1ubuntu0.13    (CVE-2026-3298 - https://ubuntu.com/security/CVE-2026-3298)",
+            "policyId": "RA-5",
+            "recommendation": "RA-5 VULNERABILITY MONITORING AND SCANNING\n--\nNIST SP 800-53, REV. 5 Page 242\n--\nVulnerabilities were found in the image. Please update or remediate these findings",
+            "ruleId": "0821c410-b0d4-4a25-90d7-aa71b46d7e32",
+            "trigger": "package",
+            "triggerId": "CVE-2026-3298+python3.12-minimal"
+          },
+          {
+            "action": "warn",
+            "allowlistMatch": null,
+            "allowlisted": false,
+            "gate": "vulnerabilities",
+            "inheritedFromBase": null,
+            "message": "MEDIUM Vulnerability found in os package type (dpkg) - libgnutls30t64-3.8.3-1.1ubuntu3.5    (CVE-2026-42014 - https://ubuntu.com/security/CVE-2026-42014)",
+            "policyId": "RA-5",
+            "recommendation": "RA-5 VULNERABILITY MONITORING AND SCANNING\n--\nNIST SP 800-53, REV. 5 Page 242\n--\nVulnerabilities were found in the image. Please update or remediate these findings",
+            "ruleId": "0821c410-b0d4-4a25-90d7-aa71b46d7e32",
+            "trigger": "package",
+            "triggerId": "CVE-2026-42014+libgnutls30t64"
+          },
+          {
+            "action": "warn",
+            "allowlistMatch": null,
+            "allowlisted": false,
+            "gate": "vulnerabilities",
+            "inheritedFromBase": null,
+            "message": "MEDIUM Vulnerability found in os package type (dpkg) - libc6-2.39-0ubuntu8.7    (CVE-2026-4437 - https://ubuntu.com/security/CVE-2026-4437)",
+            "policyId": "RA-5",
+            "recommendation": "RA-5 VULNERABILITY MONITORING AND SCANNING\n--\nNIST SP 800-53, REV. 5 Page 242\n--\nVulnerabilities were found in the image. Please update or remediate these findings",
+            "ruleId": "0821c410-b0d4-4a25-90d7-aa71b46d7e32",
+            "trigger": "package",
+            "triggerId": "CVE-2026-4437+libc6"
+          },
+          {
+            "action": "warn",
+            "allowlistMatch": null,
+            "allowlisted": false,
+            "gate": "vulnerabilities",
+            "inheritedFromBase": null,
+            "message": "MEDIUM Vulnerability found in os package type (dpkg) - python3.12-minimal-3.12.3-1ubuntu0.13    (CVE-2026-6019 - https://ubuntu.com/security/CVE-2026-6019)",
+            "policyId": "RA-5",
+            "recommendation": "RA-5 VULNERABILITY MONITORING AND SCANNING\n--\nNIST SP 800-53, REV. 5 Page 242\n--\nVulnerabilities were found in the image. Please update or remediate these findings",
+            "ruleId": "0821c410-b0d4-4a25-90d7-aa71b46d7e32",
+            "trigger": "package",
+            "triggerId": "CVE-2026-6019+python3.12-minimal"
+          },
+          {
+            "action": "warn",
+            "allowlistMatch": null,
+            "allowlisted": false,
+            "gate": "vulnerabilities",
+            "inheritedFromBase": null,
+            "message": "MEDIUM Vulnerability found in os package type (dpkg) - python3.12-venv-3.12.3-1ubuntu0.13    (CVE-2026-6100 - https://ubuntu.com/security/CVE-2026-6100)",
+            "policyId": "RA-5",
+            "recommendation": "RA-5 VULNERABILITY MONITORING AND SCANNING\n--\nNIST SP 800-53, REV. 5 Page 242\n--\nVulnerabilities were found in the image. Please update or remediate these findings",
+            "ruleId": "0821c410-b0d4-4a25-90d7-aa71b46d7e32",
+            "trigger": "package",
+            "triggerId": "CVE-2026-6100+python3.12-venv"
+          },
+          {
+            "action": "warn",
+            "allowlistMatch": null,
+            "allowlisted": false,
+            "gate": "vulnerabilities",
+            "inheritedFromBase": null,
+            "message": "MEDIUM Vulnerability found in os package type (dpkg) - libpython3.12-minimal-3.12.3-1ubuntu0.13    (CVE-2026-3479 - https://ubuntu.com/security/CVE-2026-3479)",
+            "policyId": "RA-5",
+            "recommendation": "RA-5 VULNERABILITY MONITORING AND SCANNING\n--\nNIST SP 800-53, REV. 5 Page 242\n--\nVulnerabilities were found in the image. Please update or remediate these findings",
+            "ruleId": "0821c410-b0d4-4a25-90d7-aa71b46d7e32",
+            "trigger": "package",
+            "triggerId": "CVE-2026-3479+libpython3.12-minimal"
+          },
+          {
+            "action": "warn",
+            "allowlistMatch": null,
+            "allowlisted": false,
+            "gate": "vulnerabilities",
+            "inheritedFromBase": null,
+            "message": "LOW Vulnerability found in os package type (dpkg) - liblzma5-5.6.1+really5.4.5-1ubuntu0.2    (CVE-2026-34743 - https://ubuntu.com/security/CVE-2026-34743)",
+            "policyId": "RA-5",
+            "recommendation": "RA-5 VULNERABILITY MONITORING AND SCANNING\n--\nNIST SP 800-53, REV. 5 Page 242\n--\nVulnerabilities were found in the image. Please update or remediate these findings",
+            "ruleId": "0821c410-b0d4-4a25-90d7-aa71b46d7e32",
+            "trigger": "package",
+            "triggerId": "CVE-2026-34743+liblzma5"
+          },
+          {
+            "action": "warn",
+            "allowlistMatch": null,
+            "allowlisted": false,
+            "gate": "vulnerabilities",
+            "inheritedFromBase": null,
+            "message": "LOW Vulnerability found in os package type (dpkg) - libncursesw6-6.4+20240113-1ubuntu2    (CVE-2025-69720 - https://ubuntu.com/security/CVE-2025-69720)",
+            "policyId": "RA-5",
+            "recommendation": "RA-5 VULNERABILITY MONITORING AND SCANNING\n--\nNIST SP 800-53, REV. 5 Page 242\n--\nVulnerabilities were found in the image. Please update or remediate these findings",
+            "ruleId": "0821c410-b0d4-4a25-90d7-aa71b46d7e32",
+            "trigger": "package",
+            "triggerId": "CVE-2025-69720+libncursesw6"
+          },
+          {
+            "action": "warn",
+            "allowlistMatch": null,
+            "allowlisted": false,
+            "gate": "vulnerabilities",
+            "inheritedFromBase": null,
+            "message": "MEDIUM Vulnerability found in os package type (dpkg) - python3.12-venv-3.12.3-1ubuntu0.13    (CVE-2026-1299 - https://ubuntu.com/security/CVE-2026-1299)",
+            "policyId": "RA-5",
+            "recommendation": "RA-5 VULNERABILITY MONITORING AND SCANNING\n--\nNIST SP 800-53, REV. 5 Page 242\n--\nVulnerabilities were found in the image. Please update or remediate these findings",
+            "ruleId": "0821c410-b0d4-4a25-90d7-aa71b46d7e32",
+            "trigger": "package",
+            "triggerId": "CVE-2026-1299+python3.12-venv"
+          },
+          {
+            "action": "warn",
+            "allowlistMatch": null,
+            "allowlisted": false,
+            "gate": "vulnerabilities",
+            "inheritedFromBase": null,
+            "message": "MEDIUM Vulnerability found in os package type (dpkg) - python3-pip-whl-24.0+dfsg-1ubuntu1.3    (CVE-2026-3219 - https://ubuntu.com/security/CVE-2026-3219)",
+            "policyId": "RA-5",
+            "recommendation": "RA-5 VULNERABILITY MONITORING AND SCANNING\n--\nNIST SP 800-53, REV. 5 Page 242\n--\nVulnerabilities were found in the image. Please update or remediate these findings",
+            "ruleId": "0821c410-b0d4-4a25-90d7-aa71b46d7e32",
+            "trigger": "package",
+            "triggerId": "CVE-2026-3219+python3-pip-whl"
+          },
+          {
+            "action": "warn",
+            "allowlistMatch": null,
+            "allowlisted": false,
+            "gate": "vulnerabilities",
+            "inheritedFromBase": null,
+            "message": "MEDIUM Vulnerability found in os package type (dpkg) - python3.12-3.12.3-1ubuntu0.13    (CVE-2026-6019 - https://ubuntu.com/security/CVE-2026-6019)",
+            "policyId": "RA-5",
+            "recommendation": "RA-5 VULNERABILITY MONITORING AND SCANNING\n--\nNIST SP 800-53, REV. 5 Page 242\n--\nVulnerabilities were found in the image. Please update or remediate these findings",
+            "ruleId": "0821c410-b0d4-4a25-90d7-aa71b46d7e32",
+            "trigger": "package",
+            "triggerId": "CVE-2026-6019+python3.12"
+          },
+          {
+            "action": "warn",
+            "allowlistMatch": null,
+            "allowlisted": false,
+            "gate": "vulnerabilities",
+            "inheritedFromBase": null,
+            "message": "MEDIUM Vulnerability found in os package type (dpkg) - libpython3.12-stdlib-3.12.3-1ubuntu0.13    (CVE-2026-3644 - https://ubuntu.com/security/CVE-2026-3644)",
+            "policyId": "RA-5",
+            "recommendation": "RA-5 VULNERABILITY MONITORING AND SCANNING\n--\nNIST SP 800-53, REV. 5 Page 242\n--\nVulnerabilities were found in the image. Please update or remediate these findings",
+            "ruleId": "0821c410-b0d4-4a25-90d7-aa71b46d7e32",
+            "trigger": "package",
+            "triggerId": "CVE-2026-3644+libpython3.12-stdlib"
+          },
+          {
+            "action": "warn",
+            "allowlistMatch": null,
+            "allowlisted": false,
+            "gate": "vulnerabilities",
+            "inheritedFromBase": null,
+            "message": "MEDIUM Vulnerability found in os package type (dpkg) - python3.12-minimal-3.12.3-1ubuntu0.13    (CVE-2026-4519 - https://ubuntu.com/security/CVE-2026-4519)",
+            "policyId": "RA-5",
+            "recommendation": "RA-5 VULNERABILITY MONITORING AND SCANNING\n--\nNIST SP 800-53, REV. 5 Page 242\n--\nVulnerabilities were found in the image. Please update or remediate these findings",
+            "ruleId": "0821c410-b0d4-4a25-90d7-aa71b46d7e32",
+            "trigger": "package",
+            "triggerId": "CVE-2026-4519+python3.12-minimal"
+          },
+          {
+            "action": "warn",
+            "allowlistMatch": null,
+            "allowlisted": false,
+            "gate": "vulnerabilities",
+            "inheritedFromBase": null,
+            "message": "MEDIUM Vulnerability found in os package type (dpkg) - python3.12-venv-3.12.3-1ubuntu0.13    (CVE-2026-6019 - https://ubuntu.com/security/CVE-2026-6019)",
+            "policyId": "RA-5",
+            "recommendation": "RA-5 VULNERABILITY MONITORING AND SCANNING\n--\nNIST SP 800-53, REV. 5 Page 242\n--\nVulnerabilities were found in the image. Please update or remediate these findings",
+            "ruleId": "0821c410-b0d4-4a25-90d7-aa71b46d7e32",
+            "trigger": "package",
+            "triggerId": "CVE-2026-6019+python3.12-venv"
+          },
+          {
+            "action": "warn",
+            "allowlistMatch": null,
+            "allowlisted": false,
+            "gate": "vulnerabilities",
+            "inheritedFromBase": null,
+            "message": "MEDIUM Vulnerability found in os package type (dpkg) - libexpat1-2.6.1-2ubuntu0.4    (CVE-2025-66382 - https://ubuntu.com/security/CVE-2025-66382)",
+            "policyId": "RA-5",
+            "recommendation": "RA-5 VULNERABILITY MONITORING AND SCANNING\n--\nNIST SP 800-53, REV. 5 Page 242\n--\nVulnerabilities were found in the image. Please update or remediate these findings",
+            "ruleId": "0821c410-b0d4-4a25-90d7-aa71b46d7e32",
+            "trigger": "package",
+            "triggerId": "CVE-2025-66382+libexpat1"
+          },
+          {
+            "action": "warn",
+            "allowlistMatch": null,
+            "allowlisted": false,
+            "gate": "vulnerabilities",
+            "inheritedFromBase": null,
+            "message": "MEDIUM Vulnerability found in os package type (dpkg) - python3.12-venv-3.12.3-1ubuntu0.13    (CVE-2026-5713 - https://ubuntu.com/security/CVE-2026-5713)",
+            "policyId": "RA-5",
+            "recommendation": "RA-5 VULNERABILITY MONITORING AND SCANNING\n--\nNIST SP 800-53, REV. 5 Page 242\n--\nVulnerabilities were found in the image. Please update or remediate these findings",
+            "ruleId": "0821c410-b0d4-4a25-90d7-aa71b46d7e32",
+            "trigger": "package",
+            "triggerId": "CVE-2026-5713+python3.12-venv"
+          },
+          {
+            "action": "warn",
+            "allowlistMatch": null,
+            "allowlisted": false,
+            "gate": "vulnerabilities",
+            "inheritedFromBase": null,
+            "message": "LOW Vulnerability found in os package type (dpkg) - libtinfo6-6.4+20240113-1ubuntu2    (CVE-2025-6141 - https://ubuntu.com/security/CVE-2025-6141)",
+            "policyId": "RA-5",
+            "recommendation": "RA-5 VULNERABILITY MONITORING AND SCANNING\n--\nNIST SP 800-53, REV. 5 Page 242\n--\nVulnerabilities were found in the image. Please update or remediate these findings",
+            "ruleId": "0821c410-b0d4-4a25-90d7-aa71b46d7e32",
+            "trigger": "package",
+            "triggerId": "CVE-2025-6141+libtinfo6"
+          },
+          {
+            "action": "warn",
+            "allowlistMatch": null,
+            "allowlisted": false,
+            "gate": "vulnerabilities",
+            "inheritedFromBase": null,
+            "message": "MEDIUM Vulnerability found in os package type (dpkg) - python3.12-3.12.3-1ubuntu0.13    (CVE-2026-3479 - https://ubuntu.com/security/CVE-2026-3479)",
+            "policyId": "RA-5",
+            "recommendation": "RA-5 VULNERABILITY MONITORING AND SCANNING\n--\nNIST SP 800-53, REV. 5 Page 242\n--\nVulnerabilities were found in the image. Please update or remediate these findings",
+            "ruleId": "0821c410-b0d4-4a25-90d7-aa71b46d7e32",
+            "trigger": "package",
+            "triggerId": "CVE-2026-3479+python3.12"
+          },
+          {
+            "action": "warn",
+            "allowlistMatch": null,
+            "allowlisted": false,
+            "gate": "vulnerabilities",
+            "inheritedFromBase": null,
+            "message": "MEDIUM Vulnerability found in os package type (dpkg) - libc6-2.39-0ubuntu8.7    (CVE-2026-6238 - https://ubuntu.com/security/CVE-2026-6238)",
+            "policyId": "RA-5",
+            "recommendation": "RA-5 VULNERABILITY MONITORING AND SCANNING\n--\nNIST SP 800-53, REV. 5 Page 242\n--\nVulnerabilities were found in the image. Please update or remediate these findings",
+            "ruleId": "0821c410-b0d4-4a25-90d7-aa71b46d7e32",
+            "trigger": "package",
+            "triggerId": "CVE-2026-6238+libc6"
+          },
+          {
+            "action": "warn",
+            "allowlistMatch": null,
+            "allowlisted": false,
+            "gate": "vulnerabilities",
+            "inheritedFromBase": null,
+            "message": "MEDIUM Vulnerability found in os package type (dpkg) - python3.12-3.12.3-1ubuntu0.13    (CVE-2026-3446 - https://ubuntu.com/security/CVE-2026-3446)",
+            "policyId": "RA-5",
+            "recommendation": "RA-5 VULNERABILITY MONITORING AND SCANNING\n--\nNIST SP 800-53, REV. 5 Page 242\n--\nVulnerabilities were found in the image. Please update or remediate these findings",
+            "ruleId": "0821c410-b0d4-4a25-90d7-aa71b46d7e32",
+            "trigger": "package",
+            "triggerId": "CVE-2026-3446+python3.12"
+          },
+          {
+            "action": "warn",
+            "allowlistMatch": null,
+            "allowlisted": false,
+            "gate": "vulnerabilities",
+            "inheritedFromBase": null,
+            "message": "MEDIUM Vulnerability found in os package type (dpkg) - python3.12-3.12.3-1ubuntu0.13    (CVE-2026-4519 - https://ubuntu.com/security/CVE-2026-4519)",
+            "policyId": "RA-5",
+            "recommendation": "RA-5 VULNERABILITY MONITORING AND SCANNING\n--\nNIST SP 800-53, REV. 5 Page 242\n--\nVulnerabilities were found in the image. Please update or remediate these findings",
+            "ruleId": "0821c410-b0d4-4a25-90d7-aa71b46d7e32",
+            "trigger": "package",
+            "triggerId": "CVE-2026-4519+python3.12"
+          },
+          {
+            "action": "warn",
+            "allowlistMatch": null,
+            "allowlisted": false,
+            "gate": "vulnerabilities",
+            "inheritedFromBase": null,
+            "message": "MEDIUM Vulnerability found in os package type (dpkg) - python3.12-3.12.3-1ubuntu0.13    (CVE-2026-3087 - https://ubuntu.com/security/CVE-2026-3087)",
+            "policyId": "RA-5",
+            "recommendation": "RA-5 VULNERABILITY MONITORING AND SCANNING\n--\nNIST SP 800-53, REV. 5 Page 242\n--\nVulnerabilities were found in the image. Please update or remediate these findings",
+            "ruleId": "0821c410-b0d4-4a25-90d7-aa71b46d7e32",
+            "trigger": "package",
+            "triggerId": "CVE-2026-3087+python3.12"
+          },
+          {
+            "action": "warn",
+            "allowlistMatch": null,
+            "allowlisted": false,
+            "gate": "vulnerabilities",
+            "inheritedFromBase": null,
+            "message": "MEDIUM Vulnerability found in os package type (dpkg) - sed-4.9-2build1 (fixed in: 4.9-2ubuntu0.24.04.1)   (CVE-2026-5958 - https://ubuntu.com/security/CVE-2026-5958)",
+            "policyId": "RA-5",
+            "recommendation": "RA-5 VULNERABILITY MONITORING AND SCANNING\n--\nNIST SP 800-53, REV. 5 Page 242\n--\nVulnerabilities were found in the image. Please update or remediate these findings",
+            "ruleId": "0821c410-b0d4-4a25-90d7-aa71b46d7e32",
+            "trigger": "package",
+            "triggerId": "CVE-2026-5958+sed"
+          },
+          {
+            "action": "warn",
+            "allowlistMatch": null,
+            "allowlisted": false,
+            "gate": "vulnerabilities",
+            "inheritedFromBase": null,
+            "message": "MEDIUM Vulnerability found in os package type (dpkg) - python3.12-venv-3.12.3-1ubuntu0.13    (CVE-2026-1502 - https://ubuntu.com/security/CVE-2026-1502)",
+            "policyId": "RA-5",
+            "recommendation": "RA-5 VULNERABILITY MONITORING AND SCANNING\n--\nNIST SP 800-53, REV. 5 Page 242\n--\nVulnerabilities were found in the image. Please update or remediate these findings",
+            "ruleId": "0821c410-b0d4-4a25-90d7-aa71b46d7e32",
+            "trigger": "package",
+            "triggerId": "CVE-2026-1502+python3.12-venv"
+          },
+          {
+            "action": "warn",
+            "allowlistMatch": null,
+            "allowlisted": false,
+            "gate": "vulnerabilities",
+            "inheritedFromBase": null,
+            "message": "MEDIUM Vulnerability found in os package type (dpkg) - libpython3.12-stdlib-3.12.3-1ubuntu0.13    (CVE-2026-4519 - https://ubuntu.com/security/CVE-2026-4519)",
+            "policyId": "RA-5",
+            "recommendation": "RA-5 VULNERABILITY MONITORING AND SCANNING\n--\nNIST SP 800-53, REV. 5 Page 242\n--\nVulnerabilities were found in the image. Please update or remediate these findings",
+            "ruleId": "0821c410-b0d4-4a25-90d7-aa71b46d7e32",
+            "trigger": "package",
+            "triggerId": "CVE-2026-4519+libpython3.12-stdlib"
+          },
+          {
+            "action": "warn",
+            "allowlistMatch": null,
+            "allowlisted": false,
+            "gate": "vulnerabilities",
+            "inheritedFromBase": null,
+            "message": "LOW Vulnerability found in os package type (dpkg) - python3-pip-whl-24.0+dfsg-1ubuntu1.3    (CVE-2026-1703 - https://ubuntu.com/security/CVE-2026-1703)",
+            "policyId": "RA-5",
+            "recommendation": "RA-5 VULNERABILITY MONITORING AND SCANNING\n--\nNIST SP 800-53, REV. 5 Page 242\n--\nVulnerabilities were found in the image. Please update or remediate these findings",
+            "ruleId": "0821c410-b0d4-4a25-90d7-aa71b46d7e32",
+            "trigger": "package",
+            "triggerId": "CVE-2026-1703+python3-pip-whl"
+          },
+          {
+            "action": "warn",
+            "allowlistMatch": null,
+            "allowlisted": false,
+            "gate": "vulnerabilities",
+            "inheritedFromBase": null,
+            "message": "MEDIUM Vulnerability found in os package type (dpkg) - python3.12-3.12.3-1ubuntu0.13    (CVE-2026-2297 - https://ubuntu.com/security/CVE-2026-2297)",
+            "policyId": "RA-5",
+            "recommendation": "RA-5 VULNERABILITY MONITORING AND SCANNING\n--\nNIST SP 800-53, REV. 5 Page 242\n--\nVulnerabilities were found in the image. Please update or remediate these findings",
+            "ruleId": "0821c410-b0d4-4a25-90d7-aa71b46d7e32",
+            "trigger": "package",
+            "triggerId": "CVE-2026-2297+python3.12"
+          },
+          {
+            "action": "warn",
+            "allowlistMatch": null,
+            "allowlisted": false,
+            "gate": "vulnerabilities",
+            "inheritedFromBase": null,
+            "message": "MEDIUM Vulnerability found in os package type (dpkg) - python3.12-minimal-3.12.3-1ubuntu0.13    (CVE-2026-3087 - https://ubuntu.com/security/CVE-2026-3087)",
+            "policyId": "RA-5",
+            "recommendation": "RA-5 VULNERABILITY MONITORING AND SCANNING\n--\nNIST SP 800-53, REV. 5 Page 242\n--\nVulnerabilities were found in the image. Please update or remediate these findings",
+            "ruleId": "0821c410-b0d4-4a25-90d7-aa71b46d7e32",
+            "trigger": "package",
+            "triggerId": "CVE-2026-3087+python3.12-minimal"
+          },
+          {
+            "action": "warn",
+            "allowlistMatch": null,
+            "allowlisted": false,
+            "gate": "vulnerabilities",
+            "inheritedFromBase": null,
+            "message": "MEDIUM Vulnerability found in os package type (dpkg) - python3.12-venv-3.12.3-1ubuntu0.13    (CVE-2026-4786 - https://ubuntu.com/security/CVE-2026-4786)",
+            "policyId": "RA-5",
+            "recommendation": "RA-5 VULNERABILITY MONITORING AND SCANNING\n--\nNIST SP 800-53, REV. 5 Page 242\n--\nVulnerabilities were found in the image. Please update or remediate these findings",
+            "ruleId": "0821c410-b0d4-4a25-90d7-aa71b46d7e32",
+            "trigger": "package",
+            "triggerId": "CVE-2026-4786+python3.12-venv"
+          },
+          {
+            "action": "warn",
+            "allowlistMatch": null,
+            "allowlisted": false,
+            "gate": "vulnerabilities",
+            "inheritedFromBase": null,
+            "message": "MEDIUM Vulnerability found in os package type (dpkg) - libgnutls30t64-3.8.3-1.1ubuntu3.5    (CVE-2026-3833 - https://ubuntu.com/security/CVE-2026-3833)",
+            "policyId": "RA-5",
+            "recommendation": "RA-5 VULNERABILITY MONITORING AND SCANNING\n--\nNIST SP 800-53, REV. 5 Page 242\n--\nVulnerabilities were found in the image. Please update or remediate these findings",
+            "ruleId": "0821c410-b0d4-4a25-90d7-aa71b46d7e32",
+            "trigger": "package",
+            "triggerId": "CVE-2026-3833+libgnutls30t64"
+          },
+          {
+            "action": "warn",
+            "allowlistMatch": null,
+            "allowlisted": false,
+            "gate": "vulnerabilities",
+            "inheritedFromBase": null,
+            "message": "MEDIUM Vulnerability found in os package type (dpkg) - libgnutls30t64-3.8.3-1.1ubuntu3.5    (CVE-2026-42011 - https://ubuntu.com/security/CVE-2026-42011)",
+            "policyId": "RA-5",
+            "recommendation": "RA-5 VULNERABILITY MONITORING AND SCANNING\n--\nNIST SP 800-53, REV. 5 Page 242\n--\nVulnerabilities were found in the image. Please update or remediate these findings",
+            "ruleId": "0821c410-b0d4-4a25-90d7-aa71b46d7e32",
+            "trigger": "package",
+            "triggerId": "CVE-2026-42011+libgnutls30t64"
+          },
+          {
+            "action": "warn",
+            "allowlistMatch": null,
+            "allowlisted": false,
+            "gate": "vulnerabilities",
+            "inheritedFromBase": null,
+            "message": "MEDIUM Vulnerability found in os package type (dpkg) - libpython3.12-minimal-3.12.3-1ubuntu0.13    (CVE-2026-3644 - https://ubuntu.com/security/CVE-2026-3644)",
+            "policyId": "RA-5",
+            "recommendation": "RA-5 VULNERABILITY MONITORING AND SCANNING\n--\nNIST SP 800-53, REV. 5 Page 242\n--\nVulnerabilities were found in the image. Please update or remediate these findings",
+            "ruleId": "0821c410-b0d4-4a25-90d7-aa71b46d7e32",
+            "trigger": "package",
+            "triggerId": "CVE-2026-3644+libpython3.12-minimal"
+          },
+          {
+            "action": "warn",
+            "allowlistMatch": null,
+            "allowlisted": false,
+            "gate": "vulnerabilities",
+            "inheritedFromBase": null,
+            "message": "MEDIUM Vulnerability found in os package type (dpkg) - libpython3.12-stdlib-3.12.3-1ubuntu0.13    (CVE-2026-3087 - https://ubuntu.com/security/CVE-2026-3087)",
+            "policyId": "RA-5",
+            "recommendation": "RA-5 VULNERABILITY MONITORING AND SCANNING\n--\nNIST SP 800-53, REV. 5 Page 242\n--\nVulnerabilities were found in the image. Please update or remediate these findings",
+            "ruleId": "0821c410-b0d4-4a25-90d7-aa71b46d7e32",
+            "trigger": "package",
+            "triggerId": "CVE-2026-3087+libpython3.12-stdlib"
+          },
+          {
+            "action": "warn",
+            "allowlistMatch": null,
+            "allowlisted": false,
+            "gate": "vulnerabilities",
+            "inheritedFromBase": null,
+            "message": "LOW Vulnerability found in os package type (dpkg) - ncurses-base-6.4+20240113-1ubuntu2    (CVE-2025-6141 - https://ubuntu.com/security/CVE-2025-6141)",
+            "policyId": "RA-5",
+            "recommendation": "RA-5 VULNERABILITY MONITORING AND SCANNING\n--\nNIST SP 800-53, REV. 5 Page 242\n--\nVulnerabilities were found in the image. Please update or remediate these findings",
+            "ruleId": "0821c410-b0d4-4a25-90d7-aa71b46d7e32",
+            "trigger": "package",
+            "triggerId": "CVE-2025-6141+ncurses-base"
+          },
+          {
+            "action": "warn",
+            "allowlistMatch": null,
+            "allowlisted": false,
+            "gate": "vulnerabilities",
+            "inheritedFromBase": null,
+            "message": "MEDIUM Vulnerability found in os package type (dpkg) - libgnutls30t64-3.8.3-1.1ubuntu3.5    (CVE-2026-42009 - https://ubuntu.com/security/CVE-2026-42009)",
+            "policyId": "RA-5",
+            "recommendation": "RA-5 VULNERABILITY MONITORING AND SCANNING\n--\nNIST SP 800-53, REV. 5 Page 242\n--\nVulnerabilities were found in the image. Please update or remediate these findings",
+            "ruleId": "0821c410-b0d4-4a25-90d7-aa71b46d7e32",
+            "trigger": "package",
+            "triggerId": "CVE-2026-42009+libgnutls30t64"
+          },
+          {
+            "action": "warn",
+            "allowlistMatch": null,
+            "allowlisted": false,
+            "gate": "vulnerabilities",
+            "inheritedFromBase": null,
+            "message": "MEDIUM Vulnerability found in os package type (dpkg) - libudev1-255.4-1ubuntu8.15    (CVE-2026-40228 - https://ubuntu.com/security/CVE-2026-40228)",
+            "policyId": "RA-5",
+            "recommendation": "RA-5 VULNERABILITY MONITORING AND SCANNING\n--\nNIST SP 800-53, REV. 5 Page 242\n--\nVulnerabilities were found in the image. Please update or remediate these findings",
+            "ruleId": "0821c410-b0d4-4a25-90d7-aa71b46d7e32",
+            "trigger": "package",
+            "triggerId": "CVE-2026-40228+libudev1"
+          },
+          {
+            "action": "warn",
+            "allowlistMatch": null,
+            "allowlisted": false,
+            "gate": "vulnerabilities",
+            "inheritedFromBase": null,
+            "message": "MEDIUM Vulnerability found in os package type (dpkg) - python3-pip-whl-24.0+dfsg-1ubuntu1.3    (CVE-2025-66471 - https://ubuntu.com/security/CVE-2025-66471)",
+            "policyId": "RA-5",
+            "recommendation": "RA-5 VULNERABILITY MONITORING AND SCANNING\n--\nNIST SP 800-53, REV. 5 Page 242\n--\nVulnerabilities were found in the image. Please update or remediate these findings",
+            "ruleId": "0821c410-b0d4-4a25-90d7-aa71b46d7e32",
+            "trigger": "package",
+            "triggerId": "CVE-2025-66471+python3-pip-whl"
+          },
+          {
+            "action": "warn",
+            "allowlistMatch": null,
+            "allowlisted": false,
+            "gate": "vulnerabilities",
+            "inheritedFromBase": null,
+            "message": "MEDIUM Vulnerability found in os package type (dpkg) - libsystemd0-255.4-1ubuntu8.15    (CVE-2026-40225 - https://ubuntu.com/security/CVE-2026-40225)",
+            "policyId": "RA-5",
+            "recommendation": "RA-5 VULNERABILITY MONITORING AND SCANNING\n--\nNIST SP 800-53, REV. 5 Page 242\n--\nVulnerabilities were found in the image. Please update or remediate these findings",
+            "ruleId": "0821c410-b0d4-4a25-90d7-aa71b46d7e32",
+            "trigger": "package",
+            "triggerId": "CVE-2026-40225+libsystemd0"
+          },
+          {
+            "action": "warn",
+            "allowlistMatch": null,
+            "allowlisted": false,
+            "gate": "vulnerabilities",
+            "inheritedFromBase": null,
+            "message": "MEDIUM Vulnerability found in os package type (dpkg) - libgnutls30t64-3.8.3-1.1ubuntu3.5    (CVE-2026-42015 - https://ubuntu.com/security/CVE-2026-42015)",
+            "policyId": "RA-5",
+            "recommendation": "RA-5 VULNERABILITY MONITORING AND SCANNING\n--\nNIST SP 800-53, REV. 5 Page 242\n--\nVulnerabilities were found in the image. Please update or remediate these findings",
+            "ruleId": "0821c410-b0d4-4a25-90d7-aa71b46d7e32",
+            "trigger": "package",
+            "triggerId": "CVE-2026-42015+libgnutls30t64"
+          },
+          {
+            "action": "warn",
+            "allowlistMatch": null,
+            "allowlisted": false,
+            "gate": "vulnerabilities",
+            "inheritedFromBase": null,
+            "message": "MEDIUM Vulnerability found in os package type (dpkg) - libpython3.12-stdlib-3.12.3-1ubuntu0.13    (CVE-2026-2297 - https://ubuntu.com/security/CVE-2026-2297)",
+            "policyId": "RA-5",
+            "recommendation": "RA-5 VULNERABILITY MONITORING AND SCANNING\n--\nNIST SP 800-53, REV. 5 Page 242\n--\nVulnerabilities were found in the image. Please update or remediate these findings",
+            "ruleId": "0821c410-b0d4-4a25-90d7-aa71b46d7e32",
+            "trigger": "package",
+            "triggerId": "CVE-2026-2297+libpython3.12-stdlib"
+          },
+          {
+            "action": "warn",
+            "allowlistMatch": null,
+            "allowlisted": false,
+            "gate": "vulnerabilities",
+            "inheritedFromBase": null,
+            "message": "MEDIUM Vulnerability found in os package type (dpkg) - libexpat1-2.6.1-2ubuntu0.4    (CVE-2026-32777 - https://ubuntu.com/security/CVE-2026-32777)",
+            "policyId": "RA-5",
+            "recommendation": "RA-5 VULNERABILITY MONITORING AND SCANNING\n--\nNIST SP 800-53, REV. 5 Page 242\n--\nVulnerabilities were found in the image. Please update or remediate these findings",
+            "ruleId": "0821c410-b0d4-4a25-90d7-aa71b46d7e32",
+            "trigger": "package",
+            "triggerId": "CVE-2026-32777+libexpat1"
+          },
+          {
+            "action": "warn",
+            "allowlistMatch": null,
+            "allowlisted": false,
+            "gate": "vulnerabilities",
+            "inheritedFromBase": null,
+            "message": "MEDIUM Vulnerability found in os package type (dpkg) - libpython3.12-stdlib-3.12.3-1ubuntu0.13    (CVE-2026-6019 - https://ubuntu.com/security/CVE-2026-6019)",
+            "policyId": "RA-5",
+            "recommendation": "RA-5 VULNERABILITY MONITORING AND SCANNING\n--\nNIST SP 800-53, REV. 5 Page 242\n--\nVulnerabilities were found in the image. Please update or remediate these findings",
+            "ruleId": "0821c410-b0d4-4a25-90d7-aa71b46d7e32",
+            "trigger": "package",
+            "triggerId": "CVE-2026-6019+libpython3.12-stdlib"
+          },
+          {
+            "action": "warn",
+            "allowlistMatch": null,
+            "allowlisted": false,
+            "gate": "vulnerabilities",
+            "inheritedFromBase": null,
+            "message": "MEDIUM Vulnerability found in os package type (dpkg) - libc-bin-2.39-0ubuntu8.7    (CVE-2026-5435 - https://ubuntu.com/security/CVE-2026-5435)",
+            "policyId": "RA-5",
+            "recommendation": "RA-5 VULNERABILITY MONITORING AND SCANNING\n--\nNIST SP 800-53, REV. 5 Page 242\n--\nVulnerabilities were found in the image. Please update or remediate these findings",
+            "ruleId": "0821c410-b0d4-4a25-90d7-aa71b46d7e32",
+            "trigger": "package",
+            "triggerId": "CVE-2026-5435+libc-bin"
+          },
+          {
+            "action": "warn",
+            "allowlistMatch": null,
+            "allowlisted": false,
+            "gate": "vulnerabilities",
+            "inheritedFromBase": null,
+            "message": "LOW Vulnerability found in os package type (dpkg) - libtinfo6-6.4+20240113-1ubuntu2    (CVE-2025-69720 - https://ubuntu.com/security/CVE-2025-69720)",
+            "policyId": "RA-5",
+            "recommendation": "RA-5 VULNERABILITY MONITORING AND SCANNING\n--\nNIST SP 800-53, REV. 5 Page 242\n--\nVulnerabilities were found in the image. Please update or remediate these findings",
+            "ruleId": "0821c410-b0d4-4a25-90d7-aa71b46d7e32",
+            "trigger": "package",
+            "triggerId": "CVE-2025-69720+libtinfo6"
+          },
+          {
+            "action": "warn",
+            "allowlistMatch": null,
+            "allowlisted": false,
+            "gate": "vulnerabilities",
+            "inheritedFromBase": null,
+            "message": "MEDIUM Vulnerability found in os package type (dpkg) - tar-1.35+dfsg-3build1    (CVE-2025-45582 - https://ubuntu.com/security/CVE-2025-45582)",
+            "policyId": "RA-5",
+            "recommendation": "RA-5 VULNERABILITY MONITORING AND SCANNING\n--\nNIST SP 800-53, REV. 5 Page 242\n--\nVulnerabilities were found in the image. Please update or remediate these findings",
+            "ruleId": "0821c410-b0d4-4a25-90d7-aa71b46d7e32",
+            "trigger": "package",
+            "triggerId": "CVE-2025-45582+tar"
+          },
+          {
+            "action": "warn",
+            "allowlistMatch": null,
+            "allowlisted": false,
+            "gate": "vulnerabilities",
+            "inheritedFromBase": null,
+            "message": "MEDIUM Vulnerability found in os package type (dpkg) - libc6-2.39-0ubuntu8.7    (CVE-2026-4046 - https://ubuntu.com/security/CVE-2026-4046)",
+            "policyId": "RA-5",
+            "recommendation": "RA-5 VULNERABILITY MONITORING AND SCANNING\n--\nNIST SP 800-53, REV. 5 Page 242\n--\nVulnerabilities were found in the image. Please update or remediate these findings",
+            "ruleId": "0821c410-b0d4-4a25-90d7-aa71b46d7e32",
+            "trigger": "package",
+            "triggerId": "CVE-2026-4046+libc6"
+          },
+          {
+            "action": "warn",
+            "allowlistMatch": null,
+            "allowlisted": false,
+            "gate": "vulnerabilities",
+            "inheritedFromBase": null,
+            "message": "MEDIUM Vulnerability found in os package type (dpkg) - libexpat1-2.6.1-2ubuntu0.4    (CVE-2025-59375 - https://ubuntu.com/security/CVE-2025-59375)",
+            "policyId": "RA-5",
+            "recommendation": "RA-5 VULNERABILITY MONITORING AND SCANNING\n--\nNIST SP 800-53, REV. 5 Page 242\n--\nVulnerabilities were found in the image. Please update or remediate these findings",
+            "ruleId": "0821c410-b0d4-4a25-90d7-aa71b46d7e32",
+            "trigger": "package",
+            "triggerId": "CVE-2025-59375+libexpat1"
+          },
+          {
+            "action": "warn",
+            "allowlistMatch": null,
+            "allowlisted": false,
+            "gate": "vulnerabilities",
+            "inheritedFromBase": null,
+            "message": "MEDIUM Vulnerability found in os package type (dpkg) - libpython3.12-stdlib-3.12.3-1ubuntu0.13    (CVE-2026-5713 - https://ubuntu.com/security/CVE-2026-5713)",
+            "policyId": "RA-5",
+            "recommendation": "RA-5 VULNERABILITY MONITORING AND SCANNING\n--\nNIST SP 800-53, REV. 5 Page 242\n--\nVulnerabilities were found in the image. Please update or remediate these findings",
+            "ruleId": "0821c410-b0d4-4a25-90d7-aa71b46d7e32",
+            "trigger": "package",
+            "triggerId": "CVE-2026-5713+libpython3.12-stdlib"
+          },
+          {
+            "action": "warn",
+            "allowlistMatch": null,
+            "allowlisted": false,
+            "gate": "vulnerabilities",
+            "inheritedFromBase": null,
+            "message": "MEDIUM Vulnerability found in os package type (dpkg) - libc6-2.39-0ubuntu8.7    (CVE-2026-5450 - https://ubuntu.com/security/CVE-2026-5450)",
+            "policyId": "RA-5",
+            "recommendation": "RA-5 VULNERABILITY MONITORING AND SCANNING\n--\nNIST SP 800-53, REV. 5 Page 242\n--\nVulnerabilities were found in the image. Please update or remediate these findings",
+            "ruleId": "0821c410-b0d4-4a25-90d7-aa71b46d7e32",
+            "trigger": "package",
+            "triggerId": "CVE-2026-5450+libc6"
+          },
+          {
+            "action": "warn",
+            "allowlistMatch": null,
+            "allowlisted": false,
+            "gate": "vulnerabilities",
+            "inheritedFromBase": null,
+            "message": "LOW Vulnerability found in os package type (dpkg) - ncurses-bin-6.4+20240113-1ubuntu2    (CVE-2025-69720 - https://ubuntu.com/security/CVE-2025-69720)",
+            "policyId": "RA-5",
+            "recommendation": "RA-5 VULNERABILITY MONITORING AND SCANNING\n--\nNIST SP 800-53, REV. 5 Page 242\n--\nVulnerabilities were found in the image. Please update or remediate these findings",
+            "ruleId": "0821c410-b0d4-4a25-90d7-aa71b46d7e32",
+            "trigger": "package",
+            "triggerId": "CVE-2025-69720+ncurses-bin"
+          },
+          {
+            "action": "warn",
+            "allowlistMatch": null,
+            "allowlisted": false,
+            "gate": "vulnerabilities",
+            "inheritedFromBase": null,
+            "message": "MEDIUM Vulnerability found in os package type (dpkg) - libgnutls30t64-3.8.3-1.1ubuntu3.5    (CVE-2026-33845 - https://ubuntu.com/security/CVE-2026-33845)",
+            "policyId": "RA-5",
+            "recommendation": "RA-5 VULNERABILITY MONITORING AND SCANNING\n--\nNIST SP 800-53, REV. 5 Page 242\n--\nVulnerabilities were found in the image. Please update or remediate these findings",
+            "ruleId": "0821c410-b0d4-4a25-90d7-aa71b46d7e32",
+            "trigger": "package",
+            "triggerId": "CVE-2026-33845+libgnutls30t64"
+          },
+          {
+            "action": "warn",
+            "allowlistMatch": null,
+            "allowlisted": false,
+            "gate": "vulnerabilities",
+            "inheritedFromBase": null,
+            "message": "MEDIUM Vulnerability found in os package type (dpkg) - bsdutils-1:2.39.3-9ubuntu6.5    (CVE-2026-27456 - https://ubuntu.com/security/CVE-2026-27456)",
+            "policyId": "RA-5",
+            "recommendation": "RA-5 VULNERABILITY MONITORING AND SCANNING\n--\nNIST SP 800-53, REV. 5 Page 242\n--\nVulnerabilities were found in the image. Please update or remediate these findings",
+            "ruleId": "0821c410-b0d4-4a25-90d7-aa71b46d7e32",
+            "trigger": "package",
+            "triggerId": "CVE-2026-27456+bsdutils"
+          },
+          {
+            "action": "warn",
+            "allowlistMatch": null,
+            "allowlisted": false,
+            "gate": "vulnerabilities",
+            "inheritedFromBase": null,
+            "message": "LOW Vulnerability found in os package type (dpkg) - coreutils-9.4-3ubuntu6.2    (CVE-2025-5278 - https://ubuntu.com/security/CVE-2025-5278)",
+            "policyId": "RA-5",
+            "recommendation": "RA-5 VULNERABILITY MONITORING AND SCANNING\n--\nNIST SP 800-53, REV. 5 Page 242\n--\nVulnerabilities were found in the image. Please update or remediate these findings",
+            "ruleId": "0821c410-b0d4-4a25-90d7-aa71b46d7e32",
+            "trigger": "package",
+            "triggerId": "CVE-2025-5278+coreutils"
+          },
+          {
+            "action": "warn",
+            "allowlistMatch": null,
+            "allowlisted": false,
+            "gate": "vulnerabilities",
+            "inheritedFromBase": null,
+            "message": "MEDIUM Vulnerability found in os package type (dpkg) - libblkid1-2.39.3-9ubuntu6.5    (CVE-2026-27456 - https://ubuntu.com/security/CVE-2026-27456)",
+            "policyId": "RA-5",
+            "recommendation": "RA-5 VULNERABILITY MONITORING AND SCANNING\n--\nNIST SP 800-53, REV. 5 Page 242\n--\nVulnerabilities were found in the image. Please update or remediate these findings",
+            "ruleId": "0821c410-b0d4-4a25-90d7-aa71b46d7e32",
+            "trigger": "package",
+            "triggerId": "CVE-2026-27456+libblkid1"
+          },
+          {
+            "action": "warn",
+            "allowlistMatch": null,
+            "allowlisted": false,
+            "gate": "vulnerabilities",
+            "inheritedFromBase": null,
+            "message": "MEDIUM Vulnerability found in os package type (dpkg) - libc-bin-2.39-0ubuntu8.7    (CVE-2026-4437 - https://ubuntu.com/security/CVE-2026-4437)",
+            "policyId": "RA-5",
+            "recommendation": "RA-5 VULNERABILITY MONITORING AND SCANNING\n--\nNIST SP 800-53, REV. 5 Page 242\n--\nVulnerabilities were found in the image. Please update or remediate these findings",
+            "ruleId": "0821c410-b0d4-4a25-90d7-aa71b46d7e32",
+            "trigger": "package",
+            "triggerId": "CVE-2026-4437+libc-bin"
+          },
+          {
+            "action": "warn",
+            "allowlistMatch": null,
+            "allowlisted": false,
+            "gate": "vulnerabilities",
+            "inheritedFromBase": null,
+            "message": "MEDIUM Vulnerability found in os package type (dpkg) - libpython3.12-stdlib-3.12.3-1ubuntu0.13    (CVE-2025-13462 - https://ubuntu.com/security/CVE-2025-13462)",
+            "policyId": "RA-5",
+            "recommendation": "RA-5 VULNERABILITY MONITORING AND SCANNING\n--\nNIST SP 800-53, REV. 5 Page 242\n--\nVulnerabilities were found in the image. Please update or remediate these findings",
+            "ruleId": "0821c410-b0d4-4a25-90d7-aa71b46d7e32",
+            "trigger": "package",
+            "triggerId": "CVE-2025-13462+libpython3.12-stdlib"
+          },
+          {
+            "action": "warn",
+            "allowlistMatch": null,
+            "allowlisted": false,
+            "gate": "vulnerabilities",
+            "inheritedFromBase": null,
+            "message": "MEDIUM Vulnerability found in os package type (dpkg) - libpython3.12-minimal-3.12.3-1ubuntu0.13    (CVE-2026-3087 - https://ubuntu.com/security/CVE-2026-3087)",
+            "policyId": "RA-5",
+            "recommendation": "RA-5 VULNERABILITY MONITORING AND SCANNING\n--\nNIST SP 800-53, REV. 5 Page 242\n--\nVulnerabilities were found in the image. Please update or remediate these findings",
+            "ruleId": "0821c410-b0d4-4a25-90d7-aa71b46d7e32",
+            "trigger": "package",
+            "triggerId": "CVE-2026-3087+libpython3.12-minimal"
+          },
+          {
+            "action": "warn",
+            "allowlistMatch": null,
+            "allowlisted": false,
+            "gate": "vulnerabilities",
+            "inheritedFromBase": null,
+            "message": "MEDIUM Vulnerability found in os package type (dpkg) - python3.12-minimal-3.12.3-1ubuntu0.13    (CVE-2026-5713 - https://ubuntu.com/security/CVE-2026-5713)",
+            "policyId": "RA-5",
+            "recommendation": "RA-5 VULNERABILITY MONITORING AND SCANNING\n--\nNIST SP 800-53, REV. 5 Page 242\n--\nVulnerabilities were found in the image. Please update or remediate these findings",
+            "ruleId": "0821c410-b0d4-4a25-90d7-aa71b46d7e32",
+            "trigger": "package",
+            "triggerId": "CVE-2026-5713+python3.12-minimal"
+          },
+          {
+            "action": "warn",
+            "allowlistMatch": null,
+            "allowlisted": false,
+            "gate": "vulnerabilities",
+            "inheritedFromBase": null,
+            "message": "MEDIUM Vulnerability found in os package type (dpkg) - libc-bin-2.39-0ubuntu8.7    (CVE-2026-5450 - https://ubuntu.com/security/CVE-2026-5450)",
+            "policyId": "RA-5",
+            "recommendation": "RA-5 VULNERABILITY MONITORING AND SCANNING\n--\nNIST SP 800-53, REV. 5 Page 242\n--\nVulnerabilities were found in the image. Please update or remediate these findings",
+            "ruleId": "0821c410-b0d4-4a25-90d7-aa71b46d7e32",
+            "trigger": "package",
+            "triggerId": "CVE-2026-5450+libc-bin"
+          },
+          {
+            "action": "warn",
+            "allowlistMatch": null,
+            "allowlisted": false,
+            "gate": "vulnerabilities",
+            "inheritedFromBase": null,
+            "message": "MEDIUM Vulnerability found in os package type (dpkg) - libpython3.12-minimal-3.12.3-1ubuntu0.13    (CVE-2025-13462 - https://ubuntu.com/security/CVE-2025-13462)",
+            "policyId": "RA-5",
+            "recommendation": "RA-5 VULNERABILITY MONITORING AND SCANNING\n--\nNIST SP 800-53, REV. 5 Page 242\n--\nVulnerabilities were found in the image. Please update or remediate these findings",
+            "ruleId": "0821c410-b0d4-4a25-90d7-aa71b46d7e32",
+            "trigger": "package",
+            "triggerId": "CVE-2025-13462+libpython3.12-minimal"
+          },
+          {
+            "action": "warn",
+            "allowlistMatch": null,
+            "allowlisted": false,
+            "gate": "vulnerabilities",
+            "inheritedFromBase": null,
+            "message": "MEDIUM Vulnerability found in os package type (dpkg) - libc-bin-2.39-0ubuntu8.7    (CVE-2026-5358 - https://ubuntu.com/security/CVE-2026-5358)",
+            "policyId": "RA-5",
+            "recommendation": "RA-5 VULNERABILITY MONITORING AND SCANNING\n--\nNIST SP 800-53, REV. 5 Page 242\n--\nVulnerabilities were found in the image. Please update or remediate these findings",
+            "ruleId": "0821c410-b0d4-4a25-90d7-aa71b46d7e32",
+            "trigger": "package",
+            "triggerId": "CVE-2026-5358+libc-bin"
+          },
+          {
+            "action": "warn",
+            "allowlistMatch": null,
+            "allowlisted": false,
+            "gate": "vulnerabilities",
+            "inheritedFromBase": null,
+            "message": "MEDIUM Vulnerability found in os package type (dpkg) - python3.12-venv-3.12.3-1ubuntu0.13    (CVE-2026-3479 - https://ubuntu.com/security/CVE-2026-3479)",
+            "policyId": "RA-5",
+            "recommendation": "RA-5 VULNERABILITY MONITORING AND SCANNING\n--\nNIST SP 800-53, REV. 5 Page 242\n--\nVulnerabilities were found in the image. Please update or remediate these findings",
+            "ruleId": "0821c410-b0d4-4a25-90d7-aa71b46d7e32",
+            "trigger": "package",
+            "triggerId": "CVE-2026-3479+python3.12-venv"
+          },
+          {
+            "action": "warn",
+            "allowlistMatch": null,
+            "allowlisted": false,
+            "gate": "vulnerabilities",
+            "inheritedFromBase": null,
+            "message": "MEDIUM Vulnerability found in os package type (dpkg) - libc6-2.39-0ubuntu8.7    (CVE-2026-4438 - https://ubuntu.com/security/CVE-2026-4438)",
+            "policyId": "RA-5",
+            "recommendation": "RA-5 VULNERABILITY MONITORING AND SCANNING\n--\nNIST SP 800-53, REV. 5 Page 242\n--\nVulnerabilities were found in the image. Please update or remediate these findings",
+            "ruleId": "0821c410-b0d4-4a25-90d7-aa71b46d7e32",
+            "trigger": "package",
+            "triggerId": "CVE-2026-4438+libc6"
+          },
+          {
+            "action": "warn",
+            "allowlistMatch": null,
+            "allowlisted": false,
+            "gate": "vulnerabilities",
+            "inheritedFromBase": null,
+            "message": "MEDIUM Vulnerability found in os package type (dpkg) - python3.12-3.12.3-1ubuntu0.13    (CVE-2025-69534 - https://ubuntu.com/security/CVE-2025-69534)",
+            "policyId": "RA-5",
+            "recommendation": "RA-5 VULNERABILITY MONITORING AND SCANNING\n--\nNIST SP 800-53, REV. 5 Page 242\n--\nVulnerabilities were found in the image. Please update or remediate these findings",
+            "ruleId": "0821c410-b0d4-4a25-90d7-aa71b46d7e32",
+            "trigger": "package",
+            "triggerId": "CVE-2025-69534+python3.12"
+          },
+          {
+            "action": "warn",
+            "allowlistMatch": null,
+            "allowlisted": false,
+            "gate": "vulnerabilities",
+            "inheritedFromBase": null,
+            "message": "MEDIUM Vulnerability found in os package type (dpkg) - libpython3.12-stdlib-3.12.3-1ubuntu0.13    (CVE-2026-3446 - https://ubuntu.com/security/CVE-2026-3446)",
+            "policyId": "RA-5",
+            "recommendation": "RA-5 VULNERABILITY MONITORING AND SCANNING\n--\nNIST SP 800-53, REV. 5 Page 242\n--\nVulnerabilities were found in the image. Please update or remediate these findings",
+            "ruleId": "0821c410-b0d4-4a25-90d7-aa71b46d7e32",
+            "trigger": "package",
+            "triggerId": "CVE-2026-3446+libpython3.12-stdlib"
+          },
+          {
+            "action": "warn",
+            "allowlistMatch": null,
+            "allowlisted": false,
+            "gate": "vulnerabilities",
+            "inheritedFromBase": null,
+            "message": "MEDIUM Vulnerability found in os package type (dpkg) - python3.12-venv-3.12.3-1ubuntu0.13    (CVE-2026-4519 - https://ubuntu.com/security/CVE-2026-4519)",
+            "policyId": "RA-5",
+            "recommendation": "RA-5 VULNERABILITY MONITORING AND SCANNING\n--\nNIST SP 800-53, REV. 5 Page 242\n--\nVulnerabilities were found in the image. Please update or remediate these findings",
+            "ruleId": "0821c410-b0d4-4a25-90d7-aa71b46d7e32",
+            "trigger": "package",
+            "triggerId": "CVE-2026-4519+python3.12-venv"
+          },
+          {
+            "action": "warn",
+            "allowlistMatch": null,
+            "allowlisted": false,
+            "gate": "vulnerabilities",
+            "inheritedFromBase": null,
+            "message": "MEDIUM Vulnerability found in os package type (dpkg) - libpython3.12-minimal-3.12.3-1ubuntu0.13    (CVE-2026-5713 - https://ubuntu.com/security/CVE-2026-5713)",
+            "policyId": "RA-5",
+            "recommendation": "RA-5 VULNERABILITY MONITORING AND SCANNING\n--\nNIST SP 800-53, REV. 5 Page 242\n--\nVulnerabilities were found in the image. Please update or remediate these findings",
+            "ruleId": "0821c410-b0d4-4a25-90d7-aa71b46d7e32",
+            "trigger": "package",
+            "triggerId": "CVE-2026-5713+libpython3.12-minimal"
+          },
+          {
+            "action": "warn",
+            "allowlistMatch": null,
+            "allowlisted": false,
+            "gate": "vulnerabilities",
+            "inheritedFromBase": null,
+            "message": "MEDIUM Vulnerability found in os package type (dpkg) - python3.12-venv-3.12.3-1ubuntu0.13    (CVE-2026-3446 - https://ubuntu.com/security/CVE-2026-3446)",
+            "policyId": "RA-5",
+            "recommendation": "RA-5 VULNERABILITY MONITORING AND SCANNING\n--\nNIST SP 800-53, REV. 5 Page 242\n--\nVulnerabilities were found in the image. Please update or remediate these findings",
+            "ruleId": "0821c410-b0d4-4a25-90d7-aa71b46d7e32",
+            "trigger": "package",
+            "triggerId": "CVE-2026-3446+python3.12-venv"
+          },
+          {
+            "action": "warn",
+            "allowlistMatch": null,
+            "allowlisted": false,
+            "gate": "vulnerabilities",
+            "inheritedFromBase": null,
+            "message": "LOW Vulnerability found in os package type (dpkg) - python3-pip-whl-24.0+dfsg-1ubuntu1.3    (CVE-2026-25645 - https://ubuntu.com/security/CVE-2026-25645)",
+            "policyId": "RA-5",
+            "recommendation": "RA-5 VULNERABILITY MONITORING AND SCANNING\n--\nNIST SP 800-53, REV. 5 Page 242\n--\nVulnerabilities were found in the image. Please update or remediate these findings",
+            "ruleId": "0821c410-b0d4-4a25-90d7-aa71b46d7e32",
+            "trigger": "package",
+            "triggerId": "CVE-2026-25645+python3-pip-whl"
+          },
+          {
+            "action": "warn",
+            "allowlistMatch": null,
+            "allowlisted": false,
+            "gate": "vulnerabilities",
+            "inheritedFromBase": null,
+            "message": "MEDIUM Vulnerability found in os package type (dpkg) - libmount1-2.39.3-9ubuntu6.5    (CVE-2026-27456 - https://ubuntu.com/security/CVE-2026-27456)",
+            "policyId": "RA-5",
+            "recommendation": "RA-5 VULNERABILITY MONITORING AND SCANNING\n--\nNIST SP 800-53, REV. 5 Page 242\n--\nVulnerabilities were found in the image. Please update or remediate these findings",
+            "ruleId": "0821c410-b0d4-4a25-90d7-aa71b46d7e32",
+            "trigger": "package",
+            "triggerId": "CVE-2026-27456+libmount1"
+          },
+          {
+            "action": "warn",
+            "allowlistMatch": null,
+            "allowlisted": false,
+            "gate": "vulnerabilities",
+            "inheritedFromBase": null,
+            "message": "MEDIUM Vulnerability found in os package type (dpkg) - python3.12-minimal-3.12.3-1ubuntu0.13    (CVE-2025-13462 - https://ubuntu.com/security/CVE-2025-13462)",
+            "policyId": "RA-5",
+            "recommendation": "RA-5 VULNERABILITY MONITORING AND SCANNING\n--\nNIST SP 800-53, REV. 5 Page 242\n--\nVulnerabilities were found in the image. Please update or remediate these findings",
+            "ruleId": "0821c410-b0d4-4a25-90d7-aa71b46d7e32",
+            "trigger": "package",
+            "triggerId": "CVE-2025-13462+python3.12-minimal"
+          },
+          {
+            "action": "warn",
+            "allowlistMatch": null,
+            "allowlisted": false,
+            "gate": "vulnerabilities",
+            "inheritedFromBase": null,
+            "message": "MEDIUM Vulnerability found in os package type (dpkg) - python3.12-3.12.3-1ubuntu0.13    (CVE-2026-5713 - https://ubuntu.com/security/CVE-2026-5713)",
+            "policyId": "RA-5",
+            "recommendation": "RA-5 VULNERABILITY MONITORING AND SCANNING\n--\nNIST SP 800-53, REV. 5 Page 242\n--\nVulnerabilities were found in the image. Please update or remediate these findings",
+            "ruleId": "0821c410-b0d4-4a25-90d7-aa71b46d7e32",
+            "trigger": "package",
+            "triggerId": "CVE-2026-5713+python3.12"
+          },
+          {
+            "action": "warn",
+            "allowlistMatch": null,
+            "allowlisted": false,
+            "gate": "vulnerabilities",
+            "inheritedFromBase": null,
+            "message": "MEDIUM Vulnerability found in os package type (dpkg) - python3-pip-whl-24.0+dfsg-1ubuntu1.3    (CVE-2026-24049 - https://ubuntu.com/security/CVE-2026-24049)",
+            "policyId": "RA-5",
+            "recommendation": "RA-5 VULNERABILITY MONITORING AND SCANNING\n--\nNIST SP 800-53, REV. 5 Page 242\n--\nVulnerabilities were found in the image. Please update or remediate these findings",
+            "ruleId": "0821c410-b0d4-4a25-90d7-aa71b46d7e32",
+            "trigger": "package",
+            "triggerId": "CVE-2026-24049+python3-pip-whl"
+          },
+          {
+            "action": "warn",
+            "allowlistMatch": null,
+            "allowlisted": false,
+            "gate": "vulnerabilities",
+            "inheritedFromBase": null,
+            "message": "MEDIUM Vulnerability found in os package type (dpkg) - python3.12-minimal-3.12.3-1ubuntu0.13    (CVE-2026-2297 - https://ubuntu.com/security/CVE-2026-2297)",
+            "policyId": "RA-5",
+            "recommendation": "RA-5 VULNERABILITY MONITORING AND SCANNING\n--\nNIST SP 800-53, REV. 5 Page 242\n--\nVulnerabilities were found in the image. Please update or remediate these findings",
+            "ruleId": "0821c410-b0d4-4a25-90d7-aa71b46d7e32",
+            "trigger": "package",
+            "triggerId": "CVE-2026-2297+python3.12-minimal"
+          },
+          {
+            "action": "warn",
+            "allowlistMatch": null,
+            "allowlisted": false,
+            "gate": "vulnerabilities",
+            "inheritedFromBase": null,
+            "message": "MEDIUM Vulnerability found in os package type (dpkg) - libgcrypt20-1.10.3-2build1    (CVE-2026-41989 - https://ubuntu.com/security/CVE-2026-41989)",
+            "policyId": "RA-5",
+            "recommendation": "RA-5 VULNERABILITY MONITORING AND SCANNING\n--\nNIST SP 800-53, REV. 5 Page 242\n--\nVulnerabilities were found in the image. Please update or remediate these findings",
+            "ruleId": "0821c410-b0d4-4a25-90d7-aa71b46d7e32",
+            "trigger": "package",
+            "triggerId": "CVE-2026-41989+libgcrypt20"
+          },
+          {
+            "action": "warn",
+            "allowlistMatch": null,
+            "allowlisted": false,
+            "gate": "vulnerabilities",
+            "inheritedFromBase": null,
+            "message": "MEDIUM Vulnerability found in os package type (dpkg) - libpython3.12-stdlib-3.12.3-1ubuntu0.13    (CVE-2026-4224 - https://ubuntu.com/security/CVE-2026-4224)",
+            "policyId": "RA-5",
+            "recommendation": "RA-5 VULNERABILITY MONITORING AND SCANNING\n--\nNIST SP 800-53, REV. 5 Page 242\n--\nVulnerabilities were found in the image. Please update or remediate these findings",
+            "ruleId": "0821c410-b0d4-4a25-90d7-aa71b46d7e32",
+            "trigger": "package",
+            "triggerId": "CVE-2026-4224+libpython3.12-stdlib"
+          },
+          {
+            "action": "warn",
+            "allowlistMatch": null,
+            "allowlisted": false,
+            "gate": "vulnerabilities",
+            "inheritedFromBase": null,
+            "message": "MEDIUM Vulnerability found in os package type (dpkg) - python3.12-3.12.3-1ubuntu0.13    (CVE-2026-3298 - https://ubuntu.com/security/CVE-2026-3298)",
+            "policyId": "RA-5",
+            "recommendation": "RA-5 VULNERABILITY MONITORING AND SCANNING\n--\nNIST SP 800-53, REV. 5 Page 242\n--\nVulnerabilities were found in the image. Please update or remediate these findings",
+            "ruleId": "0821c410-b0d4-4a25-90d7-aa71b46d7e32",
+            "trigger": "package",
+            "triggerId": "CVE-2026-3298+python3.12"
+          },
+          {
+            "action": "warn",
+            "allowlistMatch": null,
+            "allowlisted": false,
+            "gate": "vulnerabilities",
+            "inheritedFromBase": null,
+            "message": "MEDIUM Vulnerability found in os package type (dpkg) - libexpat1-2.6.1-2ubuntu0.4    (CVE-2026-32776 - https://ubuntu.com/security/CVE-2026-32776)",
+            "policyId": "RA-5",
+            "recommendation": "RA-5 VULNERABILITY MONITORING AND SCANNING\n--\nNIST SP 800-53, REV. 5 Page 242\n--\nVulnerabilities were found in the image. Please update or remediate these findings",
+            "ruleId": "0821c410-b0d4-4a25-90d7-aa71b46d7e32",
+            "trigger": "package",
+            "triggerId": "CVE-2026-32776+libexpat1"
+          },
+          {
+            "action": "warn",
+            "allowlistMatch": null,
+            "allowlisted": false,
+            "gate": "vulnerabilities",
+            "inheritedFromBase": null,
+            "message": "LOW Vulnerability found in os package type (dpkg) - libgcrypt20-1.10.3-2build1    (CVE-2024-2236 - https://ubuntu.com/security/CVE-2024-2236)",
+            "policyId": "RA-5",
+            "recommendation": "RA-5 VULNERABILITY MONITORING AND SCANNING\n--\nNIST SP 800-53, REV. 5 Page 242\n--\nVulnerabilities were found in the image. Please update or remediate these findings",
+            "ruleId": "0821c410-b0d4-4a25-90d7-aa71b46d7e32",
+            "trigger": "package",
+            "triggerId": "CVE-2024-2236+libgcrypt20"
+          },
+          {
+            "action": "warn",
+            "allowlistMatch": null,
+            "allowlisted": false,
+            "gate": "vulnerabilities",
+            "inheritedFromBase": null,
+            "message": "MEDIUM Vulnerability found in os package type (dpkg) - python3.12-venv-3.12.3-1ubuntu0.13    (CVE-2025-69534 - https://ubuntu.com/security/CVE-2025-69534)",
+            "policyId": "RA-5",
+            "recommendation": "RA-5 VULNERABILITY MONITORING AND SCANNING\n--\nNIST SP 800-53, REV. 5 Page 242\n--\nVulnerabilities were found in the image. Please update or remediate these findings",
+            "ruleId": "0821c410-b0d4-4a25-90d7-aa71b46d7e32",
+            "trigger": "package",
+            "triggerId": "CVE-2025-69534+python3.12-venv"
+          },
+          {
+            "action": "warn",
+            "allowlistMatch": null,
+            "allowlisted": false,
+            "gate": "vulnerabilities",
+            "inheritedFromBase": null,
+            "message": "MEDIUM Vulnerability found in os package type (dpkg) - python3.12-3.12.3-1ubuntu0.13    (CVE-2026-6100 - https://ubuntu.com/security/CVE-2026-6100)",
+            "policyId": "RA-5",
+            "recommendation": "RA-5 VULNERABILITY MONITORING AND SCANNING\n--\nNIST SP 800-53, REV. 5 Page 242\n--\nVulnerabilities were found in the image. Please update or remediate these findings",
+            "ruleId": "0821c410-b0d4-4a25-90d7-aa71b46d7e32",
+            "trigger": "package",
+            "triggerId": "CVE-2026-6100+python3.12"
+          },
+          {
+            "action": "warn",
+            "allowlistMatch": null,
+            "allowlisted": false,
+            "gate": "vulnerabilities",
+            "inheritedFromBase": null,
+            "message": "MEDIUM Vulnerability found in os package type (dpkg) - libgnutls30t64-3.8.3-1.1ubuntu3.5    (CVE-2026-42012 - https://ubuntu.com/security/CVE-2026-42012)",
+            "policyId": "RA-5",
+            "recommendation": "RA-5 VULNERABILITY MONITORING AND SCANNING\n--\nNIST SP 800-53, REV. 5 Page 242\n--\nVulnerabilities were found in the image. Please update or remediate these findings",
+            "ruleId": "0821c410-b0d4-4a25-90d7-aa71b46d7e32",
+            "trigger": "package",
+            "triggerId": "CVE-2026-42012+libgnutls30t64"
+          },
+          {
+            "action": "warn",
+            "allowlistMatch": null,
+            "allowlisted": false,
+            "gate": "vulnerabilities",
+            "inheritedFromBase": null,
+            "message": "MEDIUM Vulnerability found in os package type (dpkg) - util-linux-2.39.3-9ubuntu6.5    (CVE-2026-27456 - https://ubuntu.com/security/CVE-2026-27456)",
+            "policyId": "RA-5",
+            "recommendation": "RA-5 VULNERABILITY MONITORING AND SCANNING\n--\nNIST SP 800-53, REV. 5 Page 242\n--\nVulnerabilities were found in the image. Please update or remediate these findings",
+            "ruleId": "0821c410-b0d4-4a25-90d7-aa71b46d7e32",
+            "trigger": "package",
+            "triggerId": "CVE-2026-27456+util-linux"
+          },
+          {
+            "action": "warn",
+            "allowlistMatch": null,
+            "allowlisted": false,
+            "gate": "vulnerabilities",
+            "inheritedFromBase": null,
+            "message": "MEDIUM Vulnerability found in os package type (dpkg) - libpython3.12-minimal-3.12.3-1ubuntu0.13    (CVE-2026-2297 - https://ubuntu.com/security/CVE-2026-2297)",
+            "policyId": "RA-5",
+            "recommendation": "RA-5 VULNERABILITY MONITORING AND SCANNING\n--\nNIST SP 800-53, REV. 5 Page 242\n--\nVulnerabilities were found in the image. Please update or remediate these findings",
+            "ruleId": "0821c410-b0d4-4a25-90d7-aa71b46d7e32",
+            "trigger": "package",
+            "triggerId": "CVE-2026-2297+libpython3.12-minimal"
+          },
+          {
+            "action": "warn",
+            "allowlistMatch": null,
+            "allowlisted": false,
+            "gate": "vulnerabilities",
+            "inheritedFromBase": null,
+            "message": "MEDIUM Vulnerability found in os package type (dpkg) - python3.12-minimal-3.12.3-1ubuntu0.13    (CVE-2026-3644 - https://ubuntu.com/security/CVE-2026-3644)",
+            "policyId": "RA-5",
+            "recommendation": "RA-5 VULNERABILITY MONITORING AND SCANNING\n--\nNIST SP 800-53, REV. 5 Page 242\n--\nVulnerabilities were found in the image. Please update or remediate these findings",
+            "ruleId": "0821c410-b0d4-4a25-90d7-aa71b46d7e32",
+            "trigger": "package",
+            "triggerId": "CVE-2026-3644+python3.12-minimal"
+          },
+          {
+            "action": "warn",
+            "allowlistMatch": null,
+            "allowlisted": false,
+            "gate": "vulnerabilities",
+            "inheritedFromBase": null,
+            "message": "MEDIUM Vulnerability found in os package type (dpkg) - libudev1-255.4-1ubuntu8.15    (CVE-2026-40226 - https://ubuntu.com/security/CVE-2026-40226)",
+            "policyId": "RA-5",
+            "recommendation": "RA-5 VULNERABILITY MONITORING AND SCANNING\n--\nNIST SP 800-53, REV. 5 Page 242\n--\nVulnerabilities were found in the image. Please update or remediate these findings",
+            "ruleId": "0821c410-b0d4-4a25-90d7-aa71b46d7e32",
+            "trigger": "package",
+            "triggerId": "CVE-2026-40226+libudev1"
+          },
+          {
+            "action": "warn",
+            "allowlistMatch": null,
+            "allowlisted": false,
+            "gate": "vulnerabilities",
+            "inheritedFromBase": null,
+            "message": "MEDIUM Vulnerability found in os package type (dpkg) - python3.12-3.12.3-1ubuntu0.13    (CVE-2025-13462 - https://ubuntu.com/security/CVE-2025-13462)",
+            "policyId": "RA-5",
+            "recommendation": "RA-5 VULNERABILITY MONITORING AND SCANNING\n--\nNIST SP 800-53, REV. 5 Page 242\n--\nVulnerabilities were found in the image. Please update or remediate these findings",
+            "ruleId": "0821c410-b0d4-4a25-90d7-aa71b46d7e32",
+            "trigger": "package",
+            "triggerId": "CVE-2025-13462+python3.12"
+          },
+          {
+            "action": "warn",
+            "allowlistMatch": null,
+            "allowlisted": false,
+            "gate": "vulnerabilities",
+            "inheritedFromBase": null,
+            "message": "MEDIUM Vulnerability found in os package type (dpkg) - libc-bin-2.39-0ubuntu8.7    (CVE-2026-5928 - https://ubuntu.com/security/CVE-2026-5928)",
+            "policyId": "RA-5",
+            "recommendation": "RA-5 VULNERABILITY MONITORING AND SCANNING\n--\nNIST SP 800-53, REV. 5 Page 242\n--\nVulnerabilities were found in the image. Please update or remediate these findings",
+            "ruleId": "0821c410-b0d4-4a25-90d7-aa71b46d7e32",
+            "trigger": "package",
+            "triggerId": "CVE-2026-5928+libc-bin"
+          },
+          {
+            "action": "warn",
+            "allowlistMatch": null,
+            "allowlisted": false,
+            "gate": "vulnerabilities",
+            "inheritedFromBase": null,
+            "message": "LOW Vulnerability found in os package type (dpkg) - passwd-1:4.13+dfsg1-4ubuntu3.2    (CVE-2024-56433 - https://ubuntu.com/security/CVE-2024-56433)",
+            "policyId": "RA-5",
+            "recommendation": "RA-5 VULNERABILITY MONITORING AND SCANNING\n--\nNIST SP 800-53, REV. 5 Page 242\n--\nVulnerabilities were found in the image. Please update or remediate these findings",
+            "ruleId": "0821c410-b0d4-4a25-90d7-aa71b46d7e32",
+            "trigger": "package",
+            "triggerId": "CVE-2024-56433+passwd"
+          },
+          {
+            "action": "warn",
+            "allowlistMatch": null,
+            "allowlisted": false,
+            "gate": "vulnerabilities",
+            "inheritedFromBase": null,
+            "message": "MEDIUM Vulnerability found in os package type (dpkg) - python3-pip-whl-24.0+dfsg-1ubuntu1.3    (CVE-2025-66418 - https://ubuntu.com/security/CVE-2025-66418)",
+            "policyId": "RA-5",
+            "recommendation": "RA-5 VULNERABILITY MONITORING AND SCANNING\n--\nNIST SP 800-53, REV. 5 Page 242\n--\nVulnerabilities were found in the image. Please update or remediate these findings",
+            "ruleId": "0821c410-b0d4-4a25-90d7-aa71b46d7e32",
+            "trigger": "package",
+            "triggerId": "CVE-2025-66418+python3-pip-whl"
+          },
+          {
+            "action": "warn",
+            "allowlistMatch": null,
+            "allowlisted": false,
+            "gate": "vulnerabilities",
+            "inheritedFromBase": null,
+            "message": "LOW Vulnerability found in os package type (dpkg) - zlib1g-1:1.3.dfsg-3.1ubuntu2.1    (CVE-2026-27171 - https://ubuntu.com/security/CVE-2026-27171)",
+            "policyId": "RA-5",
+            "recommendation": "RA-5 VULNERABILITY MONITORING AND SCANNING\n--\nNIST SP 800-53, REV. 5 Page 242\n--\nVulnerabilities were found in the image. Please update or remediate these findings",
+            "ruleId": "0821c410-b0d4-4a25-90d7-aa71b46d7e32",
+            "trigger": "package",
+            "triggerId": "CVE-2026-27171+zlib1g"
+          },
+          {
+            "action": "warn",
+            "allowlistMatch": null,
+            "allowlisted": false,
+            "gate": "vulnerabilities",
+            "inheritedFromBase": null,
+            "message": "MEDIUM Vulnerability found in os package type (dpkg) - libpython3.12-minimal-3.12.3-1ubuntu0.13    (CVE-2026-4786 - https://ubuntu.com/security/CVE-2026-4786)",
+            "policyId": "RA-5",
+            "recommendation": "RA-5 VULNERABILITY MONITORING AND SCANNING\n--\nNIST SP 800-53, REV. 5 Page 242\n--\nVulnerabilities were found in the image. Please update or remediate these findings",
+            "ruleId": "0821c410-b0d4-4a25-90d7-aa71b46d7e32",
+            "trigger": "package",
+            "triggerId": "CVE-2026-4786+libpython3.12-minimal"
+          },
+          {
+            "action": "warn",
+            "allowlistMatch": null,
+            "allowlisted": false,
+            "gate": "vulnerabilities",
+            "inheritedFromBase": null,
+            "message": "MEDIUM Vulnerability found in os package type (dpkg) - python3-pip-whl-24.0+dfsg-1ubuntu1.3    (CVE-2024-35195 - https://ubuntu.com/security/CVE-2024-35195)",
+            "policyId": "RA-5",
+            "recommendation": "RA-5 VULNERABILITY MONITORING AND SCANNING\n--\nNIST SP 800-53, REV. 5 Page 242\n--\nVulnerabilities were found in the image. Please update or remediate these findings",
+            "ruleId": "0821c410-b0d4-4a25-90d7-aa71b46d7e32",
+            "trigger": "package",
+            "triggerId": "CVE-2024-35195+python3-pip-whl"
+          },
+          {
+            "action": "warn",
+            "allowlistMatch": null,
+            "allowlisted": false,
+            "gate": "vulnerabilities",
+            "inheritedFromBase": null,
+            "message": "MEDIUM Vulnerability found in os package type (dpkg) - python3.12-minimal-3.12.3-1ubuntu0.13    (CVE-2026-4224 - https://ubuntu.com/security/CVE-2026-4224)",
+            "policyId": "RA-5",
+            "recommendation": "RA-5 VULNERABILITY MONITORING AND SCANNING\n--\nNIST SP 800-53, REV. 5 Page 242\n--\nVulnerabilities were found in the image. Please update or remediate these findings",
+            "ruleId": "0821c410-b0d4-4a25-90d7-aa71b46d7e32",
+            "trigger": "package",
+            "triggerId": "CVE-2026-4224+python3.12-minimal"
+          },
+          {
+            "action": "warn",
+            "allowlistMatch": null,
+            "allowlisted": false,
+            "gate": "vulnerabilities",
+            "inheritedFromBase": null,
+            "message": "MEDIUM Vulnerability found in os package type (dpkg) - libc-bin-2.39-0ubuntu8.7    (CVE-2026-4046 - https://ubuntu.com/security/CVE-2026-4046)",
+            "policyId": "RA-5",
+            "recommendation": "RA-5 VULNERABILITY MONITORING AND SCANNING\n--\nNIST SP 800-53, REV. 5 Page 242\n--\nVulnerabilities were found in the image. Please update or remediate these findings",
+            "ruleId": "0821c410-b0d4-4a25-90d7-aa71b46d7e32",
+            "trigger": "package",
+            "triggerId": "CVE-2026-4046+libc-bin"
+          },
+          {
+            "action": "warn",
+            "allowlistMatch": null,
+            "allowlisted": false,
+            "gate": "vulnerabilities",
+            "inheritedFromBase": null,
+            "message": "MEDIUM Vulnerability found in os package type (dpkg) - python3.12-venv-3.12.3-1ubuntu0.13    (CVE-2026-3298 - https://ubuntu.com/security/CVE-2026-3298)",
+            "policyId": "RA-5",
+            "recommendation": "RA-5 VULNERABILITY MONITORING AND SCANNING\n--\nNIST SP 800-53, REV. 5 Page 242\n--\nVulnerabilities were found in the image. Please update or remediate these findings",
+            "ruleId": "0821c410-b0d4-4a25-90d7-aa71b46d7e32",
+            "trigger": "package",
+            "triggerId": "CVE-2026-3298+python3.12-venv"
+          },
+          {
+            "action": "warn",
+            "allowlistMatch": null,
+            "allowlisted": false,
+            "gate": "vulnerabilities",
+            "inheritedFromBase": null,
+            "message": "MEDIUM Vulnerability found in os package type (dpkg) - libc-bin-2.39-0ubuntu8.7    (CVE-2026-4438 - https://ubuntu.com/security/CVE-2026-4438)",
+            "policyId": "RA-5",
+            "recommendation": "RA-5 VULNERABILITY MONITORING AND SCANNING\n--\nNIST SP 800-53, REV. 5 Page 242\n--\nVulnerabilities were found in the image. Please update or remediate these findings",
+            "ruleId": "0821c410-b0d4-4a25-90d7-aa71b46d7e32",
+            "trigger": "package",
+            "triggerId": "CVE-2026-4438+libc-bin"
+          },
+          {
+            "action": "warn",
+            "allowlistMatch": null,
+            "allowlisted": false,
+            "gate": "vulnerabilities",
+            "inheritedFromBase": null,
+            "message": "MEDIUM Vulnerability found in os package type (dpkg) - libsmartcols1-2.39.3-9ubuntu6.5    (CVE-2026-27456 - https://ubuntu.com/security/CVE-2026-27456)",
+            "policyId": "RA-5",
+            "recommendation": "RA-5 VULNERABILITY MONITORING AND SCANNING\n--\nNIST SP 800-53, REV. 5 Page 242\n--\nVulnerabilities were found in the image. Please update or remediate these findings",
+            "ruleId": "0821c410-b0d4-4a25-90d7-aa71b46d7e32",
+            "trigger": "package",
+            "triggerId": "CVE-2026-27456+libsmartcols1"
+          },
+          {
+            "action": "warn",
+            "allowlistMatch": null,
+            "allowlisted": false,
+            "gate": "vulnerabilities",
+            "inheritedFromBase": null,
+            "message": "MEDIUM Vulnerability found in os package type (dpkg) - mount-2.39.3-9ubuntu6.5    (CVE-2026-27456 - https://ubuntu.com/security/CVE-2026-27456)",
+            "policyId": "RA-5",
+            "recommendation": "RA-5 VULNERABILITY MONITORING AND SCANNING\n--\nNIST SP 800-53, REV. 5 Page 242\n--\nVulnerabilities were found in the image. Please update or remediate these findings",
+            "ruleId": "0821c410-b0d4-4a25-90d7-aa71b46d7e32",
+            "trigger": "package",
+            "triggerId": "CVE-2026-27456+mount"
+          },
+          {
+            "action": "warn",
+            "allowlistMatch": null,
+            "allowlisted": false,
+            "gate": "vulnerabilities",
+            "inheritedFromBase": null,
+            "message": "MEDIUM Vulnerability found in os package type (dpkg) - libexpat1-2.6.1-2ubuntu0.4    (CVE-2026-32778 - https://ubuntu.com/security/CVE-2026-32778)",
+            "policyId": "RA-5",
+            "recommendation": "RA-5 VULNERABILITY MONITORING AND SCANNING\n--\nNIST SP 800-53, REV. 5 Page 242\n--\nVulnerabilities were found in the image. Please update or remediate these findings",
+            "ruleId": "0821c410-b0d4-4a25-90d7-aa71b46d7e32",
+            "trigger": "package",
+            "triggerId": "CVE-2026-32778+libexpat1"
+          },
+          {
+            "action": "warn",
+            "allowlistMatch": null,
+            "allowlisted": false,
+            "gate": "vulnerabilities",
+            "inheritedFromBase": null,
+            "message": "MEDIUM Vulnerability found in os package type (dpkg) - libpython3.12-minimal-3.12.3-1ubuntu0.13    (CVE-2026-4519 - https://ubuntu.com/security/CVE-2026-4519)",
+            "policyId": "RA-5",
+            "recommendation": "RA-5 VULNERABILITY MONITORING AND SCANNING\n--\nNIST SP 800-53, REV. 5 Page 242\n--\nVulnerabilities were found in the image. Please update or remediate these findings",
+            "ruleId": "0821c410-b0d4-4a25-90d7-aa71b46d7e32",
+            "trigger": "package",
+            "triggerId": "CVE-2026-4519+libpython3.12-minimal"
+          },
+          {
+            "action": "warn",
+            "allowlistMatch": null,
+            "allowlisted": false,
+            "gate": "vulnerabilities",
+            "inheritedFromBase": null,
+            "message": "LOW Vulnerability found in os package type (dpkg) - ncurses-bin-6.4+20240113-1ubuntu2    (CVE-2025-6141 - https://ubuntu.com/security/CVE-2025-6141)",
+            "policyId": "RA-5",
+            "recommendation": "RA-5 VULNERABILITY MONITORING AND SCANNING\n--\nNIST SP 800-53, REV. 5 Page 242\n--\nVulnerabilities were found in the image. Please update or remediate these findings",
+            "ruleId": "0821c410-b0d4-4a25-90d7-aa71b46d7e32",
+            "trigger": "package",
+            "triggerId": "CVE-2025-6141+ncurses-bin"
+          },
+          {
+            "action": "warn",
+            "allowlistMatch": null,
+            "allowlisted": false,
+            "gate": "vulnerabilities",
+            "inheritedFromBase": null,
+            "message": "MEDIUM Vulnerability found in os package type (dpkg) - libpython3.12-minimal-3.12.3-1ubuntu0.13    (CVE-2026-1502 - https://ubuntu.com/security/CVE-2026-1502)",
+            "policyId": "RA-5",
+            "recommendation": "RA-5 VULNERABILITY MONITORING AND SCANNING\n--\nNIST SP 800-53, REV. 5 Page 242\n--\nVulnerabilities were found in the image. Please update or remediate these findings",
+            "ruleId": "0821c410-b0d4-4a25-90d7-aa71b46d7e32",
+            "trigger": "package",
+            "triggerId": "CVE-2026-1502+libpython3.12-minimal"
+          },
+          {
+            "action": "warn",
+            "allowlistMatch": null,
+            "allowlisted": false,
+            "gate": "vulnerabilities",
+            "inheritedFromBase": null,
+            "message": "MEDIUM Vulnerability found in os package type (dpkg) - libpython3.12-minimal-3.12.3-1ubuntu0.13    (CVE-2026-3446 - https://ubuntu.com/security/CVE-2026-3446)",
+            "policyId": "RA-5",
+            "recommendation": "RA-5 VULNERABILITY MONITORING AND SCANNING\n--\nNIST SP 800-53, REV. 5 Page 242\n--\nVulnerabilities were found in the image. Please update or remediate these findings",
+            "ruleId": "0821c410-b0d4-4a25-90d7-aa71b46d7e32",
+            "trigger": "package",
+            "triggerId": "CVE-2026-3446+libpython3.12-minimal"
+          },
+          {
+            "action": "stop",
+            "allowlistMatch": null,
+            "allowlisted": false,
+            "gate": "dockerfile",
+            "inheritedFromBase": null,
+            "message": "Dockerfile directive 'HEALTHCHECK' not found, matching condition 'not_exists' check",
+            "policyId": "SC-5",
+            "recommendation": "SC-5 DENIAL-OF-SERVICE PROTECTION\n--\nNIST SP 800-53, REV. 5 Page 296\n--\nThe image is missing a HEALTHCHECK instruction. Please add a HEALTHCHECK to the Dockerfile",
+            "ruleId": "9c222145-4a20-4347-bac2-bdd76d5dbbf0",
+            "trigger": "instruction",
+            "triggerId": "41cb7cdf04850e33a11f80c42bf660b3"
+          },
+          {
+            "action": "stop",
+            "allowlistMatch": null,
+            "allowlisted": false,
+            "gate": "dockerfile",
+            "inheritedFromBase": null,
+            "message": "Dockerfile directive 'FROM' check 'not_like' matched against '(registry1\\.dso\\.mil|docker\\.io|ghcr\\.io)' for line 'scratch'",
+            "policyId": "SR-4(4)",
+            "recommendation": "SR-4(4) PROVENANCE | SUPPLY CHAIN INTEGRITY — PEDIGREE\n--\nNIST SP 800-53, REV. 5 Page 368\n--\nOnly trusted registries should be used for base images. The Dockerfile should use full registry paths and only pull from trusted registries. The configured registries should be adjusted to match those used by your organization.",
+            "ruleId": "55e5316d-7fd0-46fa-a0f4-2c06dd5dce6c",
+            "trigger": "instruction",
+            "triggerId": "0e86a5162f74ba1e2e7851c7478fd242"
+          },
+          {
+            "action": "stop",
+            "allowlistMatch": null,
+            "allowlisted": false,
+            "gate": "files",
+            "inheritedFromBase": null,
+            "message": "SUID or SGID found set on file /usr/bin/chage. Mode: 0o102755",
+            "policyId": "15ccbfcd-77a4-427c-a4e6-b5d9127a6448",
+            "recommendation": "AC-6(8) LEAST PRIVILEGE | PRIVILEGE LEVELS FOR CODE EXECUTION\n--\nNIST SP 800-53, REV. 5 Page 38\n--\nNo setuid or setgid binaries should be present on the system to prevent non privileged users from executing privileged functions. setuid and setgid binaries should have the setuid/setgid bits removed, or remove the binary from the container image",
+            "ruleId": "e0c0daa6-edbc-4f22-83ab-e6def5e34867",
+            "trigger": "suid_or_guid_set",
+            "triggerId": "75d08d8c7b064bbd44f2f524c924d17b"
+          },
+          {
+            "action": "stop",
+            "allowlistMatch": null,
+            "allowlisted": false,
+            "gate": "files",
+            "inheritedFromBase": null,
+            "message": "SUID or SGID found set on file /usr/bin/chfn. Mode: 0o104755",
+            "policyId": "15ccbfcd-77a4-427c-a4e6-b5d9127a6448",
+            "recommendation": "AC-6(8) LEAST PRIVILEGE | PRIVILEGE LEVELS FOR CODE EXECUTION\n--\nNIST SP 800-53, REV. 5 Page 38\n--\nNo setuid or setgid binaries should be present on the system to prevent non privileged users from executing privileged functions. setuid and setgid binaries should have the setuid/setgid bits removed, or remove the binary from the container image",
+            "ruleId": "e0c0daa6-edbc-4f22-83ab-e6def5e34867",
+            "trigger": "suid_or_guid_set",
+            "triggerId": "6329fe232b699ab5b4c9002b9f1b1f9e"
+          },
+          {
+            "action": "stop",
+            "allowlistMatch": null,
+            "allowlisted": false,
+            "gate": "files",
+            "inheritedFromBase": null,
+            "message": "SUID or SGID found set on file /usr/bin/chsh. Mode: 0o104755",
+            "policyId": "15ccbfcd-77a4-427c-a4e6-b5d9127a6448",
+            "recommendation": "AC-6(8) LEAST PRIVILEGE | PRIVILEGE LEVELS FOR CODE EXECUTION\n--\nNIST SP 800-53, REV. 5 Page 38\n--\nNo setuid or setgid binaries should be present on the system to prevent non privileged users from executing privileged functions. setuid and setgid binaries should have the setuid/setgid bits removed, or remove the binary from the container image",
+            "ruleId": "e0c0daa6-edbc-4f22-83ab-e6def5e34867",
+            "trigger": "suid_or_guid_set",
+            "triggerId": "e56b64c2a7d254d4174ecaed69899327"
+          },
+          {
+            "action": "go",
+            "allowlistMatch": {
+              "id": "38bb4356-c66c-48d0-8105-31b10dfad9ba",
+              "matchedRuleId": "7dfe4eb0-6a0e-408e-a3f2-edf956923586",
+              "name": "DEB SUID Files"
+            },
+            "allowlisted": true,
+            "gate": "files",
+            "inheritedFromBase": null,
+            "message": "SUID or SGID found set on file /usr/bin/expiry. Mode: 0o102755",
+            "policyId": "15ccbfcd-77a4-427c-a4e6-b5d9127a6448",
+            "recommendation": "AC-6(8) LEAST PRIVILEGE | PRIVILEGE LEVELS FOR CODE EXECUTION\n--\nNIST SP 800-53, REV. 5 Page 38\n--\nNo setuid or setgid binaries should be present on the system to prevent non privileged users from executing privileged functions. setuid and setgid binaries should have the setuid/setgid bits removed, or remove the binary from the container image",
+            "ruleId": "e0c0daa6-edbc-4f22-83ab-e6def5e34867",
+            "trigger": "suid_or_guid_set",
+            "triggerId": "eec438eed6560f1ea7792b726009538e"
+          },
+          {
+            "action": "go",
+            "allowlistMatch": {
+              "id": "98c2d7fd-c6b0-44cc-9cba-1b35760c9bd6",
+              "matchedRuleId": "7230781a-adfe-41c1-8a60-9424015b4d2f",
+              "name": "Common RHEL DEB SUID Files"
+            },
+            "allowlisted": true,
+            "gate": "files",
+            "inheritedFromBase": null,
+            "message": "SUID or SGID found set on file /usr/bin/gpasswd. Mode: 0o104755",
+            "policyId": "15ccbfcd-77a4-427c-a4e6-b5d9127a6448",
+            "recommendation": "AC-6(8) LEAST PRIVILEGE | PRIVILEGE LEVELS FOR CODE EXECUTION\n--\nNIST SP 800-53, REV. 5 Page 38\n--\nNo setuid or setgid binaries should be present on the system to prevent non privileged users from executing privileged functions. setuid and setgid binaries should have the setuid/setgid bits removed, or remove the binary from the container image",
+            "ruleId": "e0c0daa6-edbc-4f22-83ab-e6def5e34867",
+            "trigger": "suid_or_guid_set",
+            "triggerId": "c2e44319ae5b3b040044d8ae116d1c2f"
+          },
+          {
+            "action": "go",
+            "allowlistMatch": {
+              "id": "98c2d7fd-c6b0-44cc-9cba-1b35760c9bd6",
+              "matchedRuleId": "858e8b7c-62df-49a4-8d6d-a0c13816741d",
+              "name": "Common RHEL DEB SUID Files"
+            },
+            "allowlisted": true,
+            "gate": "files",
+            "inheritedFromBase": null,
+            "message": "SUID or SGID found set on file /usr/bin/mount. Mode: 0o104755",
+            "policyId": "15ccbfcd-77a4-427c-a4e6-b5d9127a6448",
+            "recommendation": "AC-6(8) LEAST PRIVILEGE | PRIVILEGE LEVELS FOR CODE EXECUTION\n--\nNIST SP 800-53, REV. 5 Page 38\n--\nNo setuid or setgid binaries should be present on the system to prevent non privileged users from executing privileged functions. setuid and setgid binaries should have the setuid/setgid bits removed, or remove the binary from the container image",
+            "ruleId": "e0c0daa6-edbc-4f22-83ab-e6def5e34867",
+            "trigger": "suid_or_guid_set",
+            "triggerId": "698044205a9c4a6d48b7937e66a6bf4f"
+          },
+          {
+            "action": "go",
+            "allowlistMatch": {
+              "id": "98c2d7fd-c6b0-44cc-9cba-1b35760c9bd6",
+              "matchedRuleId": "d7cc62c6-7fd4-4034-bfaa-fa1323c0fdd2",
+              "name": "Common RHEL DEB SUID Files"
+            },
+            "allowlisted": true,
+            "gate": "files",
+            "inheritedFromBase": null,
+            "message": "SUID or SGID found set on file /usr/bin/newgrp. Mode: 0o104755",
+            "policyId": "15ccbfcd-77a4-427c-a4e6-b5d9127a6448",
+            "recommendation": "AC-6(8) LEAST PRIVILEGE | PRIVILEGE LEVELS FOR CODE EXECUTION\n--\nNIST SP 800-53, REV. 5 Page 38\n--\nNo setuid or setgid binaries should be present on the system to prevent non privileged users from executing privileged functions. setuid and setgid binaries should have the setuid/setgid bits removed, or remove the binary from the container image",
+            "ruleId": "e0c0daa6-edbc-4f22-83ab-e6def5e34867",
+            "trigger": "suid_or_guid_set",
+            "triggerId": "463a9a24225c26f7a5bf3f38908e5cb3"
+          },
+          {
+            "action": "go",
+            "allowlistMatch": {
+              "id": "98c2d7fd-c6b0-44cc-9cba-1b35760c9bd6",
+              "matchedRuleId": "654c3344-1b21-4d13-a896-1acd3ffe5876",
+              "name": "Common RHEL DEB SUID Files"
+            },
+            "allowlisted": true,
+            "gate": "files",
+            "inheritedFromBase": null,
+            "message": "SUID or SGID found set on file /usr/bin/passwd. Mode: 0o104755",
+            "policyId": "15ccbfcd-77a4-427c-a4e6-b5d9127a6448",
+            "recommendation": "AC-6(8) LEAST PRIVILEGE | PRIVILEGE LEVELS FOR CODE EXECUTION\n--\nNIST SP 800-53, REV. 5 Page 38\n--\nNo setuid or setgid binaries should be present on the system to prevent non privileged users from executing privileged functions. setuid and setgid binaries should have the setuid/setgid bits removed, or remove the binary from the container image",
+            "ruleId": "e0c0daa6-edbc-4f22-83ab-e6def5e34867",
+            "trigger": "suid_or_guid_set",
+            "triggerId": "bcd159901fe47efddae5c095b4b0d7fd"
+          },
+          {
+            "action": "go",
+            "allowlistMatch": {
+              "id": "98c2d7fd-c6b0-44cc-9cba-1b35760c9bd6",
+              "matchedRuleId": "7593a55b-4d0c-4bf7-a0bb-678022875fd1",
+              "name": "Common RHEL DEB SUID Files"
+            },
+            "allowlisted": true,
+            "gate": "files",
+            "inheritedFromBase": null,
+            "message": "SUID or SGID found set on file /usr/bin/su. Mode: 0o104755",
+            "policyId": "15ccbfcd-77a4-427c-a4e6-b5d9127a6448",
+            "recommendation": "AC-6(8) LEAST PRIVILEGE | PRIVILEGE LEVELS FOR CODE EXECUTION\n--\nNIST SP 800-53, REV. 5 Page 38\n--\nNo setuid or setgid binaries should be present on the system to prevent non privileged users from executing privileged functions. setuid and setgid binaries should have the setuid/setgid bits removed, or remove the binary from the container image",
+            "ruleId": "e0c0daa6-edbc-4f22-83ab-e6def5e34867",
+            "trigger": "suid_or_guid_set",
+            "triggerId": "320a97c6816565eedf3545833df99dd0"
+          },
+          {
+            "action": "go",
+            "allowlistMatch": {
+              "id": "98c2d7fd-c6b0-44cc-9cba-1b35760c9bd6",
+              "matchedRuleId": "68f0da8b-db3d-4afb-bab8-f7656dc7dd7b",
+              "name": "Common RHEL DEB SUID Files"
+            },
+            "allowlisted": true,
+            "gate": "files",
+            "inheritedFromBase": null,
+            "message": "SUID or SGID found set on file /usr/bin/umount. Mode: 0o104755",
+            "policyId": "15ccbfcd-77a4-427c-a4e6-b5d9127a6448",
+            "recommendation": "AC-6(8) LEAST PRIVILEGE | PRIVILEGE LEVELS FOR CODE EXECUTION\n--\nNIST SP 800-53, REV. 5 Page 38\n--\nNo setuid or setgid binaries should be present on the system to prevent non privileged users from executing privileged functions. setuid and setgid binaries should have the setuid/setgid bits removed, or remove the binary from the container image",
+            "ruleId": "e0c0daa6-edbc-4f22-83ab-e6def5e34867",
+            "trigger": "suid_or_guid_set",
+            "triggerId": "e7573262736ef52353cde3bae2617782"
+          },
+          {
+            "action": "stop",
+            "allowlistMatch": null,
+            "allowlisted": false,
+            "gate": "files",
+            "inheritedFromBase": null,
+            "message": "SUID or SGID found set on file /usr/sbin/pam_extrausers_chkpwd. Mode: 0o102755",
+            "policyId": "15ccbfcd-77a4-427c-a4e6-b5d9127a6448",
+            "recommendation": "AC-6(8) LEAST PRIVILEGE | PRIVILEGE LEVELS FOR CODE EXECUTION\n--\nNIST SP 800-53, REV. 5 Page 38\n--\nNo setuid or setgid binaries should be present on the system to prevent non privileged users from executing privileged functions. setuid and setgid binaries should have the setuid/setgid bits removed, or remove the binary from the container image",
+            "ruleId": "e0c0daa6-edbc-4f22-83ab-e6def5e34867",
+            "trigger": "suid_or_guid_set",
+            "triggerId": "8030074f2c8ebd727f6071fea96456d1"
+          },
+          {
+            "action": "stop",
+            "allowlistMatch": null,
+            "allowlisted": false,
+            "gate": "files",
+            "inheritedFromBase": null,
+            "message": "SUID or SGID found set on file /usr/sbin/unix_chkpwd. Mode: 0o102755",
+            "policyId": "15ccbfcd-77a4-427c-a4e6-b5d9127a6448",
+            "recommendation": "AC-6(8) LEAST PRIVILEGE | PRIVILEGE LEVELS FOR CODE EXECUTION\n--\nNIST SP 800-53, REV. 5 Page 38\n--\nNo setuid or setgid binaries should be present on the system to prevent non privileged users from executing privileged functions. setuid and setgid binaries should have the setuid/setgid bits removed, or remove the binary from the container image",
+            "ruleId": "e0c0daa6-edbc-4f22-83ab-e6def5e34867",
+            "trigger": "suid_or_guid_set",
+            "triggerId": "b499a7c53e6a0110b1f81fea37c2d0b5"
+          },
+          {
+            "action": "go",
+            "allowlistMatch": {
+              "id": "38bb4356-c66c-48d0-8105-31b10dfad9ba",
+              "matchedRuleId": "6833f3bb-feac-4429-b11a-873c217aeec5",
+              "name": "DEB SUID Files"
+            },
+            "allowlisted": true,
+            "gate": "files",
+            "inheritedFromBase": null,
+            "message": "SUID or SGID found set on file /var/local. Mode: 0o42775",
+            "policyId": "15ccbfcd-77a4-427c-a4e6-b5d9127a6448",
+            "recommendation": "AC-6(8) LEAST PRIVILEGE | PRIVILEGE LEVELS FOR CODE EXECUTION\n--\nNIST SP 800-53, REV. 5 Page 38\n--\nNo setuid or setgid binaries should be present on the system to prevent non privileged users from executing privileged functions. setuid and setgid binaries should have the setuid/setgid bits removed, or remove the binary from the container image",
+            "ruleId": "e0c0daa6-edbc-4f22-83ab-e6def5e34867",
+            "trigger": "suid_or_guid_set",
+            "triggerId": "4f9abc83a7a1c95e222b659e0fab27fa"
+          },
+          {
+            "action": "go",
+            "allowlistMatch": {
+              "id": "38bb4356-c66c-48d0-8105-31b10dfad9ba",
+              "matchedRuleId": "a6e611c2-a954-42e7-b7eb-6afc46642a59",
+              "name": "DEB SUID Files"
+            },
+            "allowlisted": true,
+            "gate": "files",
+            "inheritedFromBase": null,
+            "message": "SUID or SGID found set on file /var/mail. Mode: 0o42775",
+            "policyId": "15ccbfcd-77a4-427c-a4e6-b5d9127a6448",
+            "recommendation": "AC-6(8) LEAST PRIVILEGE | PRIVILEGE LEVELS FOR CODE EXECUTION\n--\nNIST SP 800-53, REV. 5 Page 38\n--\nNo setuid or setgid binaries should be present on the system to prevent non privileged users from executing privileged functions. setuid and setgid binaries should have the setuid/setgid bits removed, or remove the binary from the container image",
+            "ruleId": "e0c0daa6-edbc-4f22-83ab-e6def5e34867",
+            "trigger": "suid_or_guid_set",
+            "triggerId": "da870e801836e419385f2f300713cf7f"
+          },
+          {
+            "action": "stop",
+            "allowlistMatch": null,
+            "allowlisted": false,
+            "gate": "malware",
+            "inheritedFromBase": null,
+            "message": "No malware scans found for image",
+            "policyId": "a27af3a4-9e85-4063-b3c6-ec6596707a7c",
+            "recommendation": "SI-3 MALICIOUS CODE PROTECTION\n--\nNIST SP 800-53, REV. 5 Page 334\n--\nThe malware scan failed to run, please try scanning the image again or contacting the Anchore Enterprise administrator",
+            "ruleId": "378f3bbd-1480-43f2-96dd-68a8fe0bfc67",
+            "trigger": "scan_not_run",
+            "triggerId": "7feaec55f790ab6b3edba15014b8b5f2"
+          },
+          {
+            "action": "stop",
+            "allowlistMatch": null,
+            "allowlisted": false,
+            "gate": "vulnerabilities",
+            "inheritedFromBase": null,
+            "message": "MEDIUM Vulnerability found in os package type (dpkg) - libcap2-1:2.66-5ubuntu2.2 (fixed in: 1:2.66-5ubuntu2.4)   (CVE-2026-4878 - https://ubuntu.com/security/CVE-2026-4878)",
+            "policyId": "2bc412b9-2c08-4706-896a-2bf82d6dee0f",
+            "recommendation": "RA-5 VULNERABILITY MONITORING AND SCANNING\n--\nNIST SP 800-53, REV. 5 Page 242\n--\nVulnerable packages with a fix available should be updated when possible. Please update the package to a version that contains the fix.",
+            "ruleId": "211fa08b-e69a-4165-a0df-05cd3bd0e002",
+            "trigger": "package",
+            "triggerId": "CVE-2026-4878+libcap2"
+          },
+          {
+            "action": "stop",
+            "allowlistMatch": null,
+            "allowlisted": false,
+            "gate": "vulnerabilities",
+            "inheritedFromBase": null,
+            "message": "MEDIUM Vulnerability found in os package type (dpkg) - dpkg-1.22.6ubuntu6.5 (fixed in: 1.22.6ubuntu6.6)   (CVE-2026-2219 - https://ubuntu.com/security/CVE-2026-2219)",
+            "policyId": "2bc412b9-2c08-4706-896a-2bf82d6dee0f",
+            "recommendation": "RA-5 VULNERABILITY MONITORING AND SCANNING\n--\nNIST SP 800-53, REV. 5 Page 242\n--\nVulnerable packages with a fix available should be updated when possible. Please update the package to a version that contains the fix.",
+            "ruleId": "211fa08b-e69a-4165-a0df-05cd3bd0e002",
+            "trigger": "package",
+            "triggerId": "CVE-2026-2219+dpkg"
+          },
+          {
+            "action": "stop",
+            "allowlistMatch": null,
+            "allowlisted": false,
+            "gate": "vulnerabilities",
+            "inheritedFromBase": null,
+            "message": "MEDIUM Vulnerability found in os package type (dpkg) - sed-4.9-2build1 (fixed in: 4.9-2ubuntu0.24.04.1)   (CVE-2026-5958 - https://ubuntu.com/security/CVE-2026-5958)",
+            "policyId": "2bc412b9-2c08-4706-896a-2bf82d6dee0f",
+            "recommendation": "RA-5 VULNERABILITY MONITORING AND SCANNING\n--\nNIST SP 800-53, REV. 5 Page 242\n--\nVulnerable packages with a fix available should be updated when possible. Please update the package to a version that contains the fix.",
+            "ruleId": "211fa08b-e69a-4165-a0df-05cd3bd0e002",
+            "trigger": "package",
+            "triggerId": "CVE-2026-5958+sed"
+          },
+          {
+            "action": "stop",
+            "allowlistMatch": null,
+            "allowlisted": false,
+            "gate": "dockerfile",
+            "inheritedFromBase": null,
+            "message": "Image was not analyzed with an actual Dockerfile",
+            "policyId": "af5232c5-f2b0-43a2-a49b-803086fbfd6b",
+            "recommendation": "Please provide a Dockerfile when uploading this image. Some of the control checks require a Dockerfile in order to run correctly",
+            "ruleId": "6e82d160-ff4b-49d2-8275-03d980aff337",
+            "trigger": "no_dockerfile_provided",
+            "triggerId": "b00b22232c1902075263067d2d2b8eea"
+          }
+        ],
+        "policy": {
+          "allowlistedImages": [
+            {
+              "description": "",
+              "id": "f7ca6df1-5d56-465e-8192-cbb20727f39d",
+              "image": {
+                "type": "tag",
+                "value": "*"
+              },
+              "name": "Approved Registry",
+              "registry": "approved_registry.io",
+              "repository": "*"
+            }
+          ],
+          "allowlists": [
+            {
+              "description": "Example allowlist with triggerIds of files that are expected to have SUID/SGID, for debian-based images",
+              "id": "38bb4356-c66c-48d0-8105-31b10dfad9ba",
+              "items": [
+                {
+                  "description": "",
+                  "expiresOn": null,
+                  "gate": "vulnerabilities",
+                  "id": "cf04c8dc-2ccd-40a9-8c0e-44631403d671",
+                  "triggerId": "75d08d8c7b064bbd44f2f524c924d17b+75d08d8c7b064bbd44f2f524c924d17b"
+                },
+                {
+                  "description": "",
+                  "expiresOn": null,
+                  "gate": "files",
+                  "id": "229038ab-b0f1-4c0a-ade9-e73913c1958a",
+                  "triggerId": "7cb64caf51d7f4215925e7ccc53ef26d"
+                },
+                {
+                  "description": "",
+                  "expiresOn": null,
+                  "gate": "files",
+                  "id": "7dfe4eb0-6a0e-408e-a3f2-edf956923586",
+                  "triggerId": "eec438eed6560f1ea7792b726009538e"
+                },
+                {
+                  "description": "",
+                  "expiresOn": null,
+                  "gate": "files",
+                  "id": "fe860460-6090-434f-8f9b-0db7598b36c5",
+                  "triggerId": "7218d80206fb8d9c1f61ca5650e4e018"
+                },
+                {
+                  "description": "",
+                  "expiresOn": null,
+                  "gate": "files",
+                  "id": "8e461763-5891-4187-b112-67d3b84f78e1",
+                  "triggerId": "8184a3fd4d19d4be5ce6ff8ccb7f3c0b"
+                },
+                {
+                  "description": "",
+                  "expiresOn": null,
+                  "gate": "files",
+                  "id": "ea781a63-858c-4c2c-aafb-299f83bb1ea4",
+                  "triggerId": "efec52a9e0047a01165a9b4c66c3e309"
+                },
+                {
+                  "description": "",
+                  "expiresOn": null,
+                  "gate": "files",
+                  "id": "0921d2cd-dc42-4567-890d-5418bf8696f9",
+                  "triggerId": "b594f2d6aa155f48667ccfaf5f2c3594"
+                },
+                {
+                  "description": "",
+                  "expiresOn": null,
+                  "gate": "files",
+                  "id": "5915152f-b2b5-467b-bf6f-d6e18c9f370d",
+                  "triggerId": "bba10ac5ebc153ba4e71697b3d418d65"
+                },
+                {
+                  "description": "",
+                  "expiresOn": null,
+                  "gate": "files",
+                  "id": "7eb2acfc-6a80-4fb0-ae54-6ad956a76e6a",
+                  "triggerId": "b75e281338ee0c7cbcd832b2ddb08ee2"
+                },
+                {
+                  "description": "",
+                  "expiresOn": null,
+                  "gate": "files",
+                  "id": "6651bf69-bcf6-47ce-b5f8-ff1a7eb6798e",
+                  "triggerId": "7a5f4bd77193410516ff14766bc7dcf7"
+                },
+                {
+                  "description": "",
+                  "expiresOn": null,
+                  "gate": "files",
+                  "id": "6e00e728-b197-4f92-90fd-61443b7fd976",
+                  "triggerId": "a6f6a511fa1f3e74819b16a5cfce0c64"
+                },
+                {
+                  "description": "",
+                  "expiresOn": null,
+                  "gate": "files",
+                  "id": "1bafaa01-ce7d-4144-a61e-7bf1ce604c63",
+                  "triggerId": "5b885be0bf4df9242b891ed99e19f2dd"
+                },
+                {
+                  "description": "",
+                  "expiresOn": null,
+                  "gate": "files",
+                  "id": "1e59efa8-4f4c-4d0e-807c-127a582dd7e4",
+                  "triggerId": "c8479172735f4621d6f0ee91508e8836"
+                },
+                {
+                  "description": "",
+                  "expiresOn": null,
+                  "gate": "files",
+                  "id": "0dd72ce6-a48c-4c88-9fc1-721e48a8e286",
+                  "triggerId": "0a273cc51988ca03e23154ce9672b2d4"
+                },
+                {
+                  "description": "",
+                  "expiresOn": null,
+                  "gate": "files",
+                  "id": "6833f3bb-feac-4429-b11a-873c217aeec5",
+                  "triggerId": "4f9abc83a7a1c95e222b659e0fab27fa"
+                },
+                {
+                  "description": "",
+                  "expiresOn": null,
+                  "gate": "files",
+                  "id": "a6e611c2-a954-42e7-b7eb-6afc46642a59",
+                  "triggerId": "da870e801836e419385f2f300713cf7f"
+                }
+              ],
+              "name": "DEB SUID Files",
+              "version": "2"
+            },
+            {
+              "description": "Example allowlist with triggerIds of files that are expected to have SUID/SGID, for rhel-based images",
+              "id": "926f4dd0-1477-4f86-8cdc-91d00b4d9151",
+              "items": [
+                {
+                  "description": "",
+                  "expiresOn": null,
+                  "gate": "files",
+                  "id": "c2adc0bd-a566-4f2a-b57c-b9636e15c57e",
+                  "triggerId": "addbb93c22e9b0988b8b40392a4538cb"
+                },
+                {
+                  "description": "",
+                  "expiresOn": null,
+                  "gate": "files",
+                  "id": "e7c2f14b-1213-4a67-9295-2b1c3c280b02",
+                  "triggerId": "3456a263793066e9b5063ada6e47917d"
+                },
+                {
+                  "description": "",
+                  "expiresOn": null,
+                  "gate": "files",
+                  "id": "8f5f8ebb-04da-4c80-9663-339d04a675bf",
+                  "triggerId": "3e5fad1c039f3ecfd1dcdc94d2f1f9a0"
+                },
+                {
+                  "description": "",
+                  "expiresOn": null,
+                  "gate": "files",
+                  "id": "e50325ea-0825-421f-87bd-e3addd082b16",
+                  "triggerId": "abb121e9621abdd452f65844954cf1c1"
+                },
+                {
+                  "description": "",
+                  "expiresOn": null,
+                  "gate": "files",
+                  "id": "638e18fa-8a35-4682-8291-690d513f8e93",
+                  "triggerId": "9bf2c560fb30cfb7930c21f51cf8fde6"
+                },
+                {
+                  "description": "",
+                  "expiresOn": null,
+                  "gate": "files",
+                  "id": "3d450b70-4c53-449b-bd75-658ee292d309",
+                  "triggerId": "91f4a963eabf2c9b123a640e3fff26e4"
+                },
+                {
+                  "description": "",
+                  "expiresOn": null,
+                  "gate": "files",
+                  "id": "f811bc69-0300-4687-8cf4-c98e7471839a",
+                  "triggerId": "c4ad80832b361f81df2a31e5b6b09864"
+                }
+              ],
+              "name": "RHEL SUID Files",
+              "version": "2"
+            },
+            {
+              "description": "Example allowlist with triggerIds of files that are expected to have SUID/SGID, for common base images (RHEL, Debian, other)...",
+              "id": "98c2d7fd-c6b0-44cc-9cba-1b35760c9bd6",
+              "items": [
+                {
+                  "description": "",
+                  "expiresOn": null,
+                  "gate": "files",
+                  "id": "9b37f652-81ea-4081-9696-e4078f13c02d",
+                  "triggerId": "639f6f1177735759703e928c14714a59"
+                },
+                {
+                  "description": "",
+                  "expiresOn": null,
+                  "gate": "files",
+                  "id": "ee1ab7ae-3f98-48a1-8cb5-1f3d69ae4b1f",
+                  "triggerId": "ad4759bf9c3ce28f10d9d2f6eae51fa1"
+                },
+                {
+                  "description": "",
+                  "expiresOn": null,
+                  "gate": "files",
+                  "id": "8ddedb38-bcb7-495d-9c7c-45c25033f171",
+                  "triggerId": "c67a2c13ebe88380113e7fbcb2437714"
+                },
+                {
+                  "description": "",
+                  "expiresOn": null,
+                  "gate": "files",
+                  "id": "7230781a-adfe-41c1-8a60-9424015b4d2f",
+                  "triggerId": "c2e44319ae5b3b040044d8ae116d1c2f"
+                },
+                {
+                  "description": "",
+                  "expiresOn": null,
+                  "gate": "files",
+                  "id": "858e8b7c-62df-49a4-8d6d-a0c13816741d",
+                  "triggerId": "698044205a9c4a6d48b7937e66a6bf4f"
+                },
+                {
+                  "description": "",
+                  "expiresOn": null,
+                  "gate": "files",
+                  "id": "d7cc62c6-7fd4-4034-bfaa-fa1323c0fdd2",
+                  "triggerId": "463a9a24225c26f7a5bf3f38908e5cb3"
+                },
+                {
+                  "description": "",
+                  "expiresOn": null,
+                  "gate": "files",
+                  "id": "654c3344-1b21-4d13-a896-1acd3ffe5876",
+                  "triggerId": "bcd159901fe47efddae5c095b4b0d7fd"
+                },
+                {
+                  "description": "",
+                  "expiresOn": null,
+                  "gate": "files",
+                  "id": "7593a55b-4d0c-4bf7-a0bb-678022875fd1",
+                  "triggerId": "320a97c6816565eedf3545833df99dd0"
+                },
+                {
+                  "description": "",
+                  "expiresOn": null,
+                  "gate": "files",
+                  "id": "68f0da8b-db3d-4afb-bab8-f7656dc7dd7b",
+                  "triggerId": "e7573262736ef52353cde3bae2617782"
+                },
+                {
+                  "description": "",
+                  "expiresOn": null,
+                  "gate": "files",
+                  "id": "eb36bb4f-8618-4be7-ae03-dd702c9b0c14",
+                  "triggerId": "34de21e516c0ca50a96e5386f163f8bf"
+                }
+              ],
+              "name": "Common RHEL DEB SUID Files",
+              "version": "2"
+            },
+            {
+              "description": "POAM List",
+              "id": "cd4fb567-9ade-4edb-9c71-f9831c480a9f",
+              "items": [
+                {
+                  "description": "GregTest1",
+                  "expiresOn": "2026-04-22T15:10:37Z",
+                  "gate": "dockerfile",
+                  "id": "c7800c54-5b2a-45c8-a8f3-4ea9c5fecd93",
+                  "triggerId": "b00b22232c1902075263067d2d2b8eea"
+                },
+                {
+                  "description": "",
+                  "expiresOn": "2022-07-30T16:39:19Z",
+                  "gate": "vulnerabilities",
+                  "id": "d19a5f50-0915-41d3-b514-f2817ed9d461",
+                  "triggerId": "CVE-2021-30139+apk-tools"
+                },
+                {
+                  "description": "",
+                  "expiresOn": "2022-06-15T18:39:20Z",
+                  "gate": "dockerfile",
+                  "id": "7ba74a6d-5732-4805-a900-c7e0aa037343",
+                  "triggerId": "10a0a99e5281745fe28207d8cd8031f2"
+                }
+              ],
+              "name": "poam",
+              "version": "2"
+            }
+          ],
+          "denylistedImages": [
+            {
+              "description": "",
+              "id": "c252a911-1386-4ff8-86c6-2d0e610ec370",
+              "image": {
+                "type": "tag",
+                "value": "*"
+              },
+              "name": "Docker Block",
+              "registry": "docker.io",
+              "repository": "*"
+            },
+            {
+              "description": "",
+              "id": "4e3bed1d-c7d6-475a-9ddf-0109df9d6687",
+              "image": {
+                "type": "tag",
+                "value": "*"
+              },
+              "name": "aeon miner",
+              "registry": "*",
+              "repository": "badrepo"
+            }
+          ],
+          "description": "Anchore Enterprise 5 NIST 800-53 checks (c) Copyright Anchore Inc 2025. All Rights Reserved.",
+          "id": "gregtest1",
+          "mappings": [
+            {
+              "allowlistIds": [
+                "38bb4356-c66c-48d0-8105-31b10dfad9ba",
+                "926f4dd0-1477-4f86-8cdc-91d00b4d9151",
+                "98c2d7fd-c6b0-44cc-9cba-1b35760c9bd6",
+                "cd4fb567-9ade-4edb-9c71-f9831c480a9f"
+              ],
+              "description": "",
+              "id": "042d5b75-ed9d-4fb7-8d41-ec174102f696",
+              "image": {
+                "type": "tag",
+                "value": "*"
+              },
+              "name": "default",
+              "registry": "*",
+              "repository": "*",
+              "ruleSetIds": [
+                "AC-6(10)",
+                "IA-5(7)",
+                "CM-7(1b)",
+                "RA-5",
+                "SC-5",
+                "SR-4(4)",
+                "a65a3e22-68a8-486c-b7ff-51beca0bf92c",
+                "15ccbfcd-77a4-427c-a4e6-b5d9127a6448",
+                "763afb20-511c-4201-a4d9-0e8b2c6a0483",
+                "a27af3a4-9e85-4063-b3c6-ec6596707a7c",
+                "43acae8c-c401-4bc6-a95c-ea100c2443d0",
+                "267b834e-25ac-49ad-b0f2-82db0d0c2647",
+                "2bc412b9-2c08-4706-896a-2bf82d6dee0f",
+                "af5232c5-f2b0-43a2-a49b-803086fbfd6b"
+              ]
+            }
+          ],
+          "name": "gregtest1",
+          "ruleSets": [
+            {
+              "artifactType": "image",
+              "description": "Container image should not run as root or docker users",
+              "id": "AC-6(10)",
+              "name": "NIST 800-53 AC-6(10) least privilege",
+              "rules": [
+                {
+                  "action": "STOP",
+                  "description": "Images should not run with elevated permissions",
+                  "gate": "dockerfile",
+                  "id": "fbe300b9-085b-4648-ba54-00d0b1130ae4",
+                  "params": [
+                    {
+                      "name": "type",
+                      "value": "denylist"
+                    },
+                    {
+                      "name": "users",
+                      "value": "root,docker"
+                    }
+                  ],
+                  "recommendation": "AC-6(10) LEAST PRIVILEGE | PROHIBIT NON-PRIVILEGED USERS FROM EXECUTING PRIVILEGED FUNCTIONS\n--\nNIST SP 800-53, REV. 5 Page 38\n--\nThe container should not run as the root user. A root user running inside of a container is an excessive level of privilege. A USER line should be added to the Dockerfile to drop root privileges",
+                  "trigger": "effective_user"
+                }
+              ],
+              "version": "2"
+            },
+            {
+              "artifactType": "image",
+              "description": "Automated Secret Detection",
+              "id": "IA-5(7)",
+              "name": "NIST 800-53 IA-5(7) authenticator management",
+              "rules": [
+                {
+                  "action": "STOP",
+                  "description": "Detect secrets in configuration files",
+                  "gate": "secret_scans",
+                  "id": "d8b5e008-47ad-4353-8c44-893bff313c12",
+                  "params": [
+                    {
+                      "name": "match_type",
+                      "value": "found"
+                    }
+                  ],
+                  "recommendation": "IA-5(7) AUTHENTICATOR MANAGEMENT | NO EMBEDDED UNENCRYPTED STATIC AUTHENTICATORS\n--\nNIST SP 800-53, REV. 5 Page 140\n--\nNo configuration files should contain secrets.\n\nIf additional regular expressions are added to the secret scan configuration, they will need to be explicitly defined here.",
+                  "trigger": "content_regex_checks"
+                }
+              ],
+              "version": "2"
+            },
+            {
+              "artifactType": "image",
+              "description": "Allow network ports",
+              "id": "CM-7(1b)",
+              "name": "NIST 800-53 CM-7(1b) allow ports [CONFIGURE]",
+              "rules": [
+                {
+                  "action": "STOP",
+                  "description": "Explicitly allow certain ports",
+                  "gate": "dockerfile",
+                  "id": "9ceb709a-7023-488b-9f25-89229579997f",
+                  "params": [
+                    {
+                      "name": "type",
+                      "value": "allowlist"
+                    },
+                    {
+                      "name": "ports",
+                      "value": "123456"
+                    }
+                  ],
+                  "recommendation": "CM-7(1b) Disable or remove [Assignment: organization-defined functions, ports, protocols,\nsoftware, and services within the system deemed to be unnecessary and/or\nnonsecure].\n--\nNIST SP 800-53, REV. 5 Page 105\n--\nExplicitly allow only defined ports in a container image. The ports required by your application should be added to this list",
+                  "trigger": "exposed_ports"
+                }
+              ],
+              "version": "2"
+            },
+            {
+              "artifactType": "image",
+              "description": "Software Vulnerability Checks",
+              "id": "RA-5",
+              "name": "NIST 800-53 RA-5 vulnerability scan",
+              "rules": [
+                {
+                  "action": "WARN",
+                  "description": "Software Vulnerability Checks",
+                  "gate": "vulnerabilities",
+                  "id": "0821c410-b0d4-4a25-90d7-aa71b46d7e32",
+                  "params": [
+                    {
+                      "name": "package_type",
+                      "value": "all"
+                    },
+                    {
+                      "name": "severity",
+                      "value": "low"
+                    },
+                    {
+                      "name": "severity_comparison",
+                      "value": "\u003e="
+                    },
+                    {
+                      "name": "vendor_only",
+                      "value": "true"
+                    }
+                  ],
+                  "recommendation": "RA-5 VULNERABILITY MONITORING AND SCANNING\n--\nNIST SP 800-53, REV. 5 Page 242\n--\nVulnerabilities were found in the image. Please update or remediate these findings",
+                  "trigger": "package"
+                }
+              ],
+              "version": "2"
+            },
+            {
+              "artifactType": "image",
+              "description": "Denial of service protection",
+              "id": "SC-5",
+              "name": "NIST 800-53 SC-5 denial of service protection",
+              "rules": [
+                {
+                  "action": "STOP",
+                  "description": "Denial of service protection",
+                  "gate": "dockerfile",
+                  "id": "9c222145-4a20-4347-bac2-bdd76d5dbbf0",
+                  "params": [
+                    {
+                      "name": "instruction",
+                      "value": "HEALTHCHECK"
+                    },
+                    {
+                      "name": "check",
+                      "value": "not_exists"
+                    }
+                  ],
+                  "recommendation": "SC-5 DENIAL-OF-SERVICE PROTECTION\n--\nNIST SP 800-53, REV. 5 Page 296\n--\nThe image is missing a HEALTHCHECK instruction. Please add a HEALTHCHECK to the Dockerfile",
+                  "trigger": "instruction"
+                }
+              ],
+              "version": "2"
+            },
+            {
+              "artifactType": "image",
+              "description": "Base Image Checks",
+              "id": "SR-4(4)",
+              "name": "NIST 800-53 SR-4(4) [CONFIGURE]",
+              "rules": [
+                {
+                  "action": "STOP",
+                  "description": "Only allow images from a trusted container image source",
+                  "gate": "dockerfile",
+                  "id": "55e5316d-7fd0-46fa-a0f4-2c06dd5dce6c",
+                  "params": [
+                    {
+                      "name": "value",
+                      "value": "(registry1\\.dso\\.mil|docker\\.io|ghcr\\.io)"
+                    },
+                    {
+                      "name": "instruction",
+                      "value": "FROM"
+                    },
+                    {
+                      "name": "check",
+                      "value": "not_like"
+                    }
+                  ],
+                  "recommendation": "SR-4(4) PROVENANCE | SUPPLY CHAIN INTEGRITY — PEDIGREE\n--\nNIST SP 800-53, REV. 5 Page 368\n--\nOnly trusted registries should be used for base images. The Dockerfile should use full registry paths and only pull from trusted registries. The configured registries should be adjusted to match those used by your organization.",
+                  "trigger": "instruction"
+                }
+              ],
+              "version": "2"
+            },
+            {
+              "artifactType": "image",
+              "description": "Deny network ports",
+              "id": "a65a3e22-68a8-486c-b7ff-51beca0bf92c",
+              "name": "NIST 800-53 CM-7(1b) deny ports [CONFIGURE]",
+              "rules": [
+                {
+                  "action": "STOP",
+                  "description": "Explicitly deny certain ports",
+                  "gate": "dockerfile",
+                  "id": "9ceb709a-7023-488b-9f25-89229579997d",
+                  "params": [
+                    {
+                      "name": "type",
+                      "value": "denylist"
+                    },
+                    {
+                      "name": "ports",
+                      "value": "0,1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25,26,27,28,29,30,31,32,33,34,35,36,37,38,39,40,41,42,43,44,45,46,47,48,49,50,51,52,53,54,55,56,57,58,59,60,61,62,63,64,65,66,67,68,69,70,71,72,73,74,75,76,77,78,79,80,81,82,83,84,85,86,87,88,89,90,91,92,93,94,95,96,97,98,99,100,101,102,103,104,105,106,107,108,109,110,111,112,113,114,115,116,117,118,119,120,121,122,123,124,125,126,127,128,129,130,131,132,133,134,135,136,137,138,139,140,141,142,143,144,145,146,147,148,149,150,151,152,153,154,155,156,157,158,159,160,161,162,163,164,165,166,167,168,169,170,171,172,173,174,175,176,177,178,179,180,181,182,183,184,185,186,187,188,189,190,191,192,193,194,195,196,197,198,199,200,201,202,203,204,205,206,207,208,209,210,211,212,213,214,215,216,217,218,219,220,221,222,223,224,225,226,227,228,229,230,231,232,233,234,235,236,237,238,239,240,241,242,243,244,245,246,247,248,249,250,251,252,253,254,255,256,257,258,259,260,261,262,263,264,265,266,267,268,269,270,271,272,273,274,275,276,277,278,279,280,281,282,283,284,285,286,287,288,289,290,291,292,293,294,295,296,297,298,299,300,301,302,303,304,305,306,307,308,309,310,311,312,313,314,315,316,317,318,319,320,321,322,323,324,325,326,327,328,329,330,331,332,333,334,335,336,337,338,339,340,341,342,343,344,345,346,347,348,349,350,351,352,353,354,355,356,357,358,359,360,361,362,363,364,365,366,367,368,369,370,371,372,373,374,375,376,377,378,379,380,381,382,383,384,385,386,387,388,389,390,391,392,393,394,395,396,397,398,399,400,401,402,403,404,405,406,407,408,409,410,411,412,413,414,415,416,417,418,419,420,421,422,423,424,425,426,427,428,429,430,431,432,433,434,435,436,437,438,439,440,441,442,443,444,445,446,447,448,449,450,451,452,453,454,455,456,457,458,459,460,461,462,463,464,465,466,467,468,469,470,471,472,473,474,475,476,477,478,479,480,481,482,483,484,485,486,487,488,489,490,491,492,493,494,495,496,497,498,499,500,501,502,503,504,505,506,507,508,509,510,511,512,513,514,515,516,517,518,519,520,521,522,523,524,525,526,527,528,529,530,531,532,533,534,535,536,537,538,539,540,541,542,543,544,545,546,547,548,549,550,551,552,553,554,555,556,557,558,559,560,561,562,563,564,565,566,567,568,569,570,571,572,573,574,575,576,577,578,579,580,581,582,583,584,585,586,587,588,589,590,591,592,593,594,595,596,597,598,599,600,601,602,603,604,605,606,607,608,609,610,611,612,613,614,615,616,617,618,619,620,621,622,623,624,625,626,627,628,629,630,631,632,633,634,635,636,637,638,639,640,641,642,643,644,645,646,647,648,649,650,651,652,653,654,655,656,657,658,659,660,661,662,663,664,665,666,667,668,669,670,671,672,673,674,675,676,677,678,679,680,681,682,683,684,685,686,687,688,689,690,691,692,693,694,695,696,697,698,699,700,701,702,703,704,705,706,707,708,709,710,711,712,713,714,715,716,717,718,719,720,721,722,723,724,725,726,727,728,729,730,731,732,733,734,735,736,737,738,739,740,741,742,743,744,745,746,747,748,749,750,751,752,753,754,755,756,757,758,759,760,761,762,763,764,765,766,767,768,769,770,771,772,773,774,775,776,777,778,779,780,781,782,783,784,785,786,787,788,789,790,791,792,793,794,795,796,797,798,799,800,801,802,803,804,805,806,807,808,809,810,811,812,813,814,815,816,817,818,819,820,821,822,823,824,825,826,827,828,829,830,831,832,833,834,835,836,837,838,839,840,841,842,843,844,845,846,847,848,849,850,851,852,853,854,855,856,857,858,859,860,861,862,863,864,865,866,867,868,869,870,871,872,873,874,875,876,877,878,879,880,881,882,883,884,885,886,887,888,889,890,891,892,893,894,895,896,897,898,899,900,901,902,903,904,905,906,907,908,909,910,911,912,913,914,915,916,917,918,919,920,921,922,923,924,925,926,927,928,929,930,931,932,933,934,935,936,937,938,939,940,941,942,943,944,945,946,947,948,949,950,951,952,953,954,955,956,957,958,959,960,961,962,963,964,965,966,967,968,969,970,971,972,973,974,975,976,977,978,979,980,981,982,983,984,985,986,987,988,989,990,991,992,993,994,995,996,997,998,999,1000,1001,1002,1003,1004,1005,1006,1007,1008,1009,1010,1011,1012,1013,1014,1015,1016,1017,1018,1019,1020,1021,1022,1023,1024"
+                    }
+                  ],
+                  "recommendation": "CM-7(1b) Disable or remove [Assignment: organization-defined functions, ports, protocols,\nsoftware, and services within the system deemed to be unnecessary and/or\nnonsecure].\n--\nNIST SP 800-53, REV. 5 Page 105\n--\nExplicitly deny defined ports in a container image. Any explicitly denied ports should be added to this list.",
+                  "trigger": "exposed_ports"
+                }
+              ],
+              "version": "2"
+            },
+            {
+              "artifactType": "image",
+              "description": "Restrict setuid and setgid binaries",
+              "id": "15ccbfcd-77a4-427c-a4e6-b5d9127a6448",
+              "name": "NIST 800-53 AC-6(8) least privilege",
+              "rules": [
+                {
+                  "action": "STOP",
+                  "description": "Images should not contain setuid or setgid files",
+                  "gate": "files",
+                  "id": "e0c0daa6-edbc-4f22-83ab-e6def5e34867",
+                  "params": [],
+                  "recommendation": "AC-6(8) LEAST PRIVILEGE | PRIVILEGE LEVELS FOR CODE EXECUTION\n--\nNIST SP 800-53, REV. 5 Page 38\n--\nNo setuid or setgid binaries should be present on the system to prevent non privileged users from executing privileged functions. setuid and setgid binaries should have the setuid/setgid bits removed, or remove the binary from the container image",
+                  "trigger": "suid_or_guid_set"
+                }
+              ],
+              "version": "2"
+            },
+            {
+              "artifactType": "image",
+              "description": "Deny packages",
+              "id": "763afb20-511c-4201-a4d9-0e8b2c6a0483",
+              "name": "NIST 800-53 CM-7(1b) deny packages [CONFIGURE]",
+              "rules": [
+                {
+                  "action": "STOP",
+                  "description": "Explicitly deny certain packages",
+                  "gate": "packages",
+                  "id": "805b28c7-48e9-4f87-a026-038ff7fa348d",
+                  "params": [
+                    {
+                      "name": "name",
+                      "value": "opensshd"
+                    }
+                  ],
+                  "recommendation": "CM-7(1b) Disable or remove [Assignment: organization-defined functions, ports, protocols,\nsoftware, and services within the system deemed to be unnecessary and/or\nnonsecure].\n--\nNIST SP 800-53, REV. 5 Page 105\n--\nExplicitly deny known packages that should not be allowed in an image",
+                  "trigger": "denylist"
+                },
+                {
+                  "action": "STOP",
+                  "description": "Explicitly deny certain packages",
+                  "gate": "packages",
+                  "id": "1c5fd2ee-00f9-47e6-ad40-59ac76a3f38b",
+                  "params": [
+                    {
+                      "name": "name",
+                      "value": "openssh-server"
+                    }
+                  ],
+                  "recommendation": "CM-7(1b) Disable or remove [Assignment: organization-defined functions, ports, protocols,\nsoftware, and services within the system deemed to be unnecessary and/or\nnonsecure].\n--\nNIST SP 800-53, REV. 5 Page 105\n--\nExplicitly deny known packages that should not be allowed in an image",
+                  "trigger": "denylist"
+                }
+              ],
+              "version": "2"
+            },
+            {
+              "artifactType": "image",
+              "description": "Scan images for malware",
+              "id": "a27af3a4-9e85-4063-b3c6-ec6596707a7c",
+              "name": "NIST 800-53 SI-3 malicious code protection",
+              "rules": [
+                {
+                  "action": "STOP",
+                  "description": "Fail on malware findings",
+                  "gate": "malware",
+                  "id": "6e2b186d-3cb2-4eeb-ac2a-ca106cbbeb74",
+                  "params": [],
+                  "recommendation": "SI-3 MALICIOUS CODE PROTECTION\n--\nNIST SP 800-53, REV. 5 Page 334\n--\nMalware has been found in this image, it should be removed",
+                  "trigger": "scans"
+                },
+                {
+                  "action": "STOP",
+                  "description": "Fail if the malware scan did not run",
+                  "gate": "malware",
+                  "id": "378f3bbd-1480-43f2-96dd-68a8fe0bfc67",
+                  "params": [],
+                  "recommendation": "SI-3 MALICIOUS CODE PROTECTION\n--\nNIST SP 800-53, REV. 5 Page 334\n--\nThe malware scan failed to run, please try scanning the image again or contacting the Anchore Enterprise administrator",
+                  "trigger": "scan_not_run"
+                }
+              ],
+              "version": "2"
+            },
+            {
+              "artifactType": "image",
+              "description": "Scan images for specific CVE IDs",
+              "id": "43acae8c-c401-4bc6-a95c-ea100c2443d0",
+              "name": "NIST 800-53 RA-5 specific CVE [CONFIGURE]",
+              "rules": [
+                {
+                  "action": "STOP",
+                  "description": "Example of denylisting a specific vulnerability ID. A comma delimited list may be used",
+                  "gate": "vulnerabilities",
+                  "id": "5716541e-c675-4e53-aa46-0582863e51a0",
+                  "params": [
+                    {
+                      "name": "vulnerability_ids",
+                      "value": "CVE-2021-44228"
+                    }
+                  ],
+                  "recommendation": "RA-5 VULNERABILITY MONITORING AND SCANNING\n--\nNIST SP 800-53, REV. 5 Page 242\n--\nA denylisted vulnerability has been found in this image, it should be removed.",
+                  "trigger": "denylist"
+                }
+              ],
+              "version": "2"
+            },
+            {
+              "artifactType": "image",
+              "description": "Ensure vulnerability feeds are available and updated",
+              "id": "267b834e-25ac-49ad-b0f2-82db0d0c2647",
+              "name": "NIST 800-53 RA-5 vulnerability feeds",
+              "rules": [
+                {
+                  "action": "STOP",
+                  "description": "Fail if the feed data has not been updated in 15 days",
+                  "gate": "vulnerabilities",
+                  "id": "e3a73079-fe16-4de6-9b2f-3982277e57d5",
+                  "params": [
+                    {
+                      "name": "max_days_since_sync",
+                      "value": "15"
+                    }
+                  ],
+                  "recommendation": "RA-5 VULNERABILITY MONITORING AND SCANNING\n--\nNIST SP 800-53, REV. 5 Page 242\n--\nThe vulnerability data is not receiving updates. Please contact the Anchore Enterprise administrator",
+                  "trigger": "stale_feed_data"
+                },
+                {
+                  "action": "STOP",
+                  "description": "Fail if the vulnerability data is not available",
+                  "gate": "vulnerabilities",
+                  "id": "aeff8bdb-82b5-44fd-87ef-d8fdd50893e8",
+                  "params": [],
+                  "recommendation": "RA-5 VULNERABILITY MONITORING AND SCANNING\n--\nNIST SP 800-53, REV. 5 Page 242\n--\nThe vulnerability data is not available. Please contact the Anchore Enterprise administrator",
+                  "trigger": "vulnerability_data_unavailable"
+                }
+              ],
+              "version": "2"
+            },
+            {
+              "artifactType": "image",
+              "description": "Alert if a vulnerability fix is available",
+              "id": "2bc412b9-2c08-4706-896a-2bf82d6dee0f",
+              "name": "NIST 800-53 RA-5 vulnerability fix available",
+              "rules": [
+                {
+                  "action": "STOP",
+                  "description": "Fail if a vulnerability is found that has a fix available",
+                  "gate": "vulnerabilities",
+                  "id": "211fa08b-e69a-4165-a0df-05cd3bd0e002",
+                  "params": [
+                    {
+                      "name": "fix_available",
+                      "value": "true"
+                    },
+                    {
+                      "name": "package_type",
+                      "value": "all"
+                    },
+                    {
+                      "name": "severity",
+                      "value": "unknown"
+                    },
+                    {
+                      "name": "severity_comparison",
+                      "value": "\u003e="
+                    }
+                  ],
+                  "recommendation": "RA-5 VULNERABILITY MONITORING AND SCANNING\n--\nNIST SP 800-53, REV. 5 Page 242\n--\nVulnerable packages with a fix available should be updated when possible. Please update the package to a version that contains the fix.",
+                  "trigger": "package"
+                }
+              ],
+              "version": "2"
+            },
+            {
+              "artifactType": "image",
+              "description": "Without a Dockerfile uploaded for an image, som checks cannot be completed",
+              "id": "af5232c5-f2b0-43a2-a49b-803086fbfd6b",
+              "name": "Dockerfile not found",
+              "rules": [
+                {
+                  "action": "STOP",
+                  "description": "Check if a Dockerfile exists for this image",
+                  "gate": "dockerfile",
+                  "id": "6e82d160-ff4b-49d2-8275-03d980aff337",
+                  "params": [],
+                  "recommendation": "Please provide a Dockerfile when uploading this image. Some of the control checks require a Dockerfile in order to run correctly",
+                  "trigger": "no_dockerfile_provided"
+                }
+              ],
+              "version": "2"
+            }
+          ],
+          "sbomMappings": [],
+          "sourceMappings": [],
+          "version": "2"
+        },
+        "policyAction": "stop",
+        "remediations": [
+          {
+            "suggestions": [
+              {
+                "message": "An issue was discovered in your Dockerfile. Please review the check output.",
+                "preferred": true
+              }
+            ],
+            "triggerIds": [
+              "cbff271f45d32e78dcc1979dbca9c14d",
+              "41cb7cdf04850e33a11f80c42bf660b3",
+              "0e86a5162f74ba1e2e7851c7478fd242",
+              "b00b22232c1902075263067d2d2b8eea"
+            ]
+          },
+          {
+            "suggestions": [
+              {
+                "message": "Use different dpkg",
+                "preferred": false
+              },
+              {
+                "message": "Remove dpkg",
+                "preferred": false
+              }
+            ],
+            "triggerIds": [
+              "CVE-2026-42013+libgnutls30t64",
+              "CVE-2026-40225+libudev1",
+              "CVE-2025-69534+libpython3.12-stdlib",
+              "CVE-2026-2297+python3.12-venv",
+              "CVE-2026-6100+libpython3.12-stdlib",
+              "CVE-2026-3087+python3.12-venv",
+              "CVE-2026-1502+libpython3.12-stdlib",
+              "CVE-2026-4224+python3.12",
+              "CVE-2026-1502+python3.12-minimal",
+              "CVE-2026-6100+python3.12-minimal",
+              "CVE-2026-5704+tar",
+              "CVE-2026-1299+libpython3.12-minimal",
+              "CVE-2026-1502+python3.12",
+              "CVE-2026-3832+libgnutls30t64",
+              "CVE-2026-3446+python3.12-minimal",
+              "CVE-2026-40224+libsystemd0",
+              "CVE-2026-40223+libudev1",
+              "CVE-2025-13462+python3.12-venv",
+              "CVE-2026-33846+libgnutls30t64",
+              "CVE-2026-6238+libc-bin",
+              "CVE-2026-1299+python3.12",
+              "CVE-2026-3479+python3.12-minimal",
+              "CVE-2026-3644+python3.12",
+              "CVE-2024-56433+login",
+              "CVE-2026-4739+libexpat1",
+              "CVE-2025-69720+ncurses-base",
+              "CVE-2025-6141+libncursesw6",
+              "CVE-2026-5358+libc6",
+              "CVE-2026-40226+libsystemd0",
+              "CVE-2026-21441+python3-pip-whl",
+              "CVE-2026-40228+libsystemd0",
+              "CVE-2026-40224+libudev1",
+              "CVE-2026-4786+python3.12-minimal",
+              "CVE-2026-40227+libudev1",
+              "CVE-2026-5435+libc6",
+              "CVE-2026-1299+libpython3.12-stdlib",
+              "CVE-2026-5928+libc6",
+              "CVE-2026-41080+libexpat1",
+              "CVE-2026-5419+libgnutls30t64",
+              "CVE-2026-6357+python3-pip-whl",
+              "CVE-2026-4786+python3.12",
+              "CVE-2026-3298+libpython3.12-stdlib",
+              "CVE-2026-6100+libpython3.12-minimal",
+              "CVE-2026-4224+python3.12-venv",
+              "CVE-2025-69534+libpython3.12-minimal",
+              "CVE-2025-69534+python3.12-minimal",
+              "CVE-2026-40223+libsystemd0",
+              "CVE-2026-45186+libexpat1",
+              "CVE-2026-4786+libpython3.12-stdlib",
+              "CVE-2026-3479+libpython3.12-stdlib",
+              "CVE-2026-4224+libpython3.12-minimal",
+              "CVE-2026-6019+libpython3.12-minimal",
+              "CVE-2026-5260+libgnutls30t64",
+              "CVE-2026-3644+python3.12-venv",
+              "CVE-2026-27456+libuuid1",
+              "CVE-2026-42010+libgnutls30t64",
+              "CVE-2026-41990+libgcrypt20",
+              "CVE-2026-40227+libsystemd0",
+              "CVE-2026-1299+python3.12-minimal",
+              "CVE-2026-3298+libpython3.12-minimal",
+              "CVE-2026-3298+python3.12-minimal",
+              "CVE-2026-42014+libgnutls30t64",
+              "CVE-2026-4437+libc6",
+              "CVE-2026-6019+python3.12-minimal",
+              "CVE-2026-6100+python3.12-venv",
+              "CVE-2026-3479+libpython3.12-minimal",
+              "CVE-2026-34743+liblzma5",
+              "CVE-2025-69720+libncursesw6",
+              "CVE-2026-1299+python3.12-venv",
+              "CVE-2026-3219+python3-pip-whl",
+              "CVE-2026-6019+python3.12",
+              "CVE-2026-3644+libpython3.12-stdlib",
+              "CVE-2026-4519+python3.12-minimal",
+              "CVE-2026-6019+python3.12-venv",
+              "CVE-2025-66382+libexpat1",
+              "CVE-2026-5713+python3.12-venv",
+              "CVE-2025-6141+libtinfo6",
+              "CVE-2026-3479+python3.12",
+              "CVE-2026-6238+libc6",
+              "CVE-2026-3446+python3.12",
+              "CVE-2026-4519+python3.12",
+              "CVE-2026-3087+python3.12",
+              "CVE-2026-1502+python3.12-venv",
+              "CVE-2026-4519+libpython3.12-stdlib",
+              "CVE-2026-1703+python3-pip-whl",
+              "CVE-2026-2297+python3.12",
+              "CVE-2026-3087+python3.12-minimal",
+              "CVE-2026-4786+python3.12-venv",
+              "CVE-2026-3833+libgnutls30t64",
+              "CVE-2026-42011+libgnutls30t64",
+              "CVE-2026-3644+libpython3.12-minimal",
+              "CVE-2026-3087+libpython3.12-stdlib",
+              "CVE-2025-6141+ncurses-base",
+              "CVE-2026-42009+libgnutls30t64",
+              "CVE-2026-40228+libudev1",
+              "CVE-2025-66471+python3-pip-whl",
+              "CVE-2026-40225+libsystemd0",
+              "CVE-2026-42015+libgnutls30t64",
+              "CVE-2026-2297+libpython3.12-stdlib",
+              "CVE-2026-32777+libexpat1",
+              "CVE-2026-6019+libpython3.12-stdlib",
+              "CVE-2026-5435+libc-bin",
+              "CVE-2025-69720+libtinfo6",
+              "CVE-2025-45582+tar",
+              "CVE-2026-4046+libc6",
+              "CVE-2025-59375+libexpat1",
+              "CVE-2026-5713+libpython3.12-stdlib",
+              "CVE-2026-5450+libc6",
+              "CVE-2025-69720+ncurses-bin",
+              "CVE-2026-33845+libgnutls30t64",
+              "CVE-2026-27456+bsdutils",
+              "CVE-2025-5278+coreutils",
+              "CVE-2026-27456+libblkid1",
+              "CVE-2026-4437+libc-bin",
+              "CVE-2025-13462+libpython3.12-stdlib",
+              "CVE-2026-3087+libpython3.12-minimal",
+              "CVE-2026-5713+python3.12-minimal",
+              "CVE-2026-5450+libc-bin",
+              "CVE-2025-13462+libpython3.12-minimal",
+              "CVE-2026-5358+libc-bin",
+              "CVE-2026-3479+python3.12-venv",
+              "CVE-2026-4438+libc6",
+              "CVE-2025-69534+python3.12",
+              "CVE-2026-3446+libpython3.12-stdlib",
+              "CVE-2026-4519+python3.12-venv",
+              "CVE-2026-5713+libpython3.12-minimal",
+              "CVE-2026-3446+python3.12-venv",
+              "CVE-2026-25645+python3-pip-whl",
+              "CVE-2026-27456+libmount1",
+              "CVE-2025-13462+python3.12-minimal",
+              "CVE-2026-5713+python3.12",
+              "CVE-2026-24049+python3-pip-whl",
+              "CVE-2026-2297+python3.12-minimal",
+              "CVE-2026-41989+libgcrypt20",
+              "CVE-2026-4224+libpython3.12-stdlib",
+              "CVE-2026-3298+python3.12",
+              "CVE-2026-32776+libexpat1",
+              "CVE-2024-2236+libgcrypt20",
+              "CVE-2025-69534+python3.12-venv",
+              "CVE-2026-6100+python3.12",
+              "CVE-2026-42012+libgnutls30t64",
+              "CVE-2026-27456+util-linux",
+              "CVE-2026-2297+libpython3.12-minimal",
+              "CVE-2026-3644+python3.12-minimal",
+              "CVE-2026-40226+libudev1",
+              "CVE-2025-13462+python3.12",
+              "CVE-2026-5928+libc-bin",
+              "CVE-2024-56433+passwd",
+              "CVE-2025-66418+python3-pip-whl",
+              "CVE-2026-27171+zlib1g",
+              "CVE-2026-4786+libpython3.12-minimal",
+              "CVE-2024-35195+python3-pip-whl",
+              "CVE-2026-4224+python3.12-minimal",
+              "CVE-2026-4046+libc-bin",
+              "CVE-2026-3298+python3.12-venv",
+              "CVE-2026-4438+libc-bin",
+              "CVE-2026-27456+libsmartcols1",
+              "CVE-2026-27456+mount",
+              "CVE-2026-32778+libexpat1",
+              "CVE-2026-4519+libpython3.12-minimal",
+              "CVE-2025-6141+ncurses-bin",
+              "CVE-2026-1502+libpython3.12-minimal",
+              "CVE-2026-3446+libpython3.12-minimal"
+            ]
+          },
+          {
+            "suggestions": [
+              {
+                "message": "Upgrade dpkg libcap2-1:2.66-5ubuntu2.2 to 1:2.66-5ubuntu2.4",
+                "preferred": true
+              },
+              {
+                "message": "Use different dpkg",
+                "preferred": false
+              },
+              {
+                "message": "Remove dpkg",
+                "preferred": false
+              }
+            ],
+            "triggerIds": [
+              "CVE-2026-4878+libcap2",
+              "CVE-2026-4878+libcap2"
+            ]
+          },
+          {
+            "suggestions": [
+              {
+                "message": "Upgrade dpkg dpkg-1.22.6ubuntu6.5 to 1.22.6ubuntu6.6",
+                "preferred": true
+              },
+              {
+                "message": "Use different dpkg",
+                "preferred": false
+              },
+              {
+                "message": "Remove dpkg",
+                "preferred": false
+              }
+            ],
+            "triggerIds": [
+              "CVE-2026-2219+dpkg",
+              "CVE-2026-2219+dpkg"
+            ]
+          },
+          {
+            "suggestions": [
+              {
+                "message": "Upgrade dpkg sed-4.9-2build1 to 4.9-2ubuntu0.24.04.1",
+                "preferred": true
+              },
+              {
+                "message": "Use different dpkg",
+                "preferred": false
+              },
+              {
+                "message": "Remove dpkg",
+                "preferred": false
+              }
+            ],
+            "triggerIds": [
+              "CVE-2026-5958+sed",
+              "CVE-2026-5958+sed"
+            ]
+          }
+        ]
+      },
+      "evaluationProblems": [],
+      "evaluationTime": "2026-05-11T18:04:45Z",
+      "finalAction": "stop",
+      "finalActionReason": "policy_evaluation",
+      "imageAllowlisted": false,
+      "imageDenylisted": false,
+      "imageMappedToRule": true,
+      "matchedAllowlistedImagesRule": null,
+      "matchedDenylistedImagesRule": null,
+      "matchedMappingRule": {
+        "allowlistIds": [
+          "38bb4356-c66c-48d0-8105-31b10dfad9ba",
+          "926f4dd0-1477-4f86-8cdc-91d00b4d9151",
+          "98c2d7fd-c6b0-44cc-9cba-1b35760c9bd6",
+          "cd4fb567-9ade-4edb-9c71-f9831c480a9f"
+        ],
+        "description": "",
+        "id": "042d5b75-ed9d-4fb7-8d41-ec174102f696",
+        "image": {
+          "type": "tag",
+          "value": "*"
+        },
+        "name": "default",
+        "registry": "*",
+        "repository": "*",
+        "ruleSetIds": [
+          "AC-6(10)",
+          "IA-5(7)",
+          "CM-7(1b)",
+          "RA-5",
+          "SC-5",
+          "SR-4(4)",
+          "a65a3e22-68a8-486c-b7ff-51beca0bf92c",
+          "15ccbfcd-77a4-427c-a4e6-b5d9127a6448",
+          "763afb20-511c-4201-a4d9-0e8b2c6a0483",
+          "a27af3a4-9e85-4063-b3c6-ec6596707a7c",
+          "43acae8c-c401-4bc6-a95c-ea100c2443d0",
+          "267b834e-25ac-49ad-b0f2-82db0d0c2647",
+          "2bc412b9-2c08-4706-896a-2bf82d6dee0f",
+          "af5232c5-f2b0-43a2-a49b-803086fbfd6b"
+        ]
+      },
+      "numberOfFindings": 188,
+      "status": "fail"
+    }
+  ],
+  "imageDigest": "sha256:1ff3b7d7b8a9c8f8547175f4fab85b5112821d94a01f8808e3df6e7c1f978915",
+  "policyId": "gregtest1"
+}
