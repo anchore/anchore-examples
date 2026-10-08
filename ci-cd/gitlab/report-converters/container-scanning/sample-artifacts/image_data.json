@@ -1,0 +1,73 @@
+{
+  "accountName": "admin",
+  "analysisStatus": "analyzed",
+  "analysisStatusDetail": [
+    {
+      "fromStatus": "not_analyzed",
+      "source": {
+        "analysisEngine": "syft-native-pipeline",
+        "enterpriseVersion": "5.27.0",
+        "hostId": "home-enterprise-analyzer-85b495c647-mh5zc",
+        "serviceName": "analyzer"
+      },
+      "timestamp": "2026-05-11T18:04:18Z",
+      "toStatus": "analyzing"
+    },
+    {
+      "fromStatus": "analyzing",
+      "source": {
+        "analysisEngine": "syft-native-pipeline",
+        "analysisUuid": "ba0dcca8-b6ae-4410-a4c4-e31143e152cd",
+        "enterpriseVersion": "5.27.0",
+        "hostId": "home-enterprise-analyzer-85b495c647-mh5zc",
+        "serviceName": "analyzer"
+      },
+      "timestamp": "2026-05-11T18:04:19Z",
+      "toStatus": "analyzed"
+    }
+  ],
+  "analysisUuid": "ba0dcca8-b6ae-4410-a4c4-e31143e152cd",
+  "analyzedAt": "2026-05-11T18:04:19Z",
+  "ancestorsCalculated": true,
+  "annotations": {
+    "anchoreSystemimportCompletedAt": "2026-05-11T18:04:17Z"
+  },
+  "createdAt": "2026-05-11T18:04:17Z",
+  "imageContent": {
+    "metadata": {
+      "arch": "amd64",
+      "distro": "ubuntu",
+      "distroVersion": "24.04",
+      "dockerfileMode": "Guessed",
+      "extendedSupport": false,
+      "imageSize": 183225008,
+      "layerCount": 2
+    }
+  },
+  "imageDetail": [
+    {
+      "accountName": "admin",
+      "createdAt": "2026-05-11T18:04:17Z",
+      "digest": "sha256:1ff3b7d7b8a9c8f8547175f4fab85b5112821d94a01f8808e3df6e7c1f978915",
+      "dockerfile": "RlJPTSBzY3JhdGNoCkFSRyBSRUxFQVNFCkFSRyBMQVVOQ0hQQURfQlVJTERfQVJDSApMQUJFTCBvcmcub3BlbmNvbnRhaW5lcnMuaW1hZ2UudmVyc2lvbj0yNC4wNApBREQgZmlsZTo4Y2UxY2FmMjQ2ZTdjNzc4YmNhODRjNTE2ZDAyZmQ0ZTgzNzY2YmIyYzUzMGEwZmZmYThhMzUxYjU2MGEyNzI4IGluIC8gCkNNRCBbIi9iaW4vYmFzaCJdCkVOViBERUJJQU5fRlJPTlRFTkQ9bm9uaW50ZXJhY3RpdmUKUlVOIC9iaW4vc2ggLWMgYXB0LWdldCB1cGRhdGUgJiYgYXB0LWdldCBpbnN0YWxsIC15IHB5dGhvbjMuMTIgcHl0aG9uMy4xMi12ZW52ICMgYnVpbGRraXQK",
+      "fullDigest": "registry.example.com/examples/python-ubuntu@sha256:1ff3b7d7b8a9c8f8547175f4fab85b5112821d94a01f8808e3df6e7c1f978915",
+      "fullTag": "registry.example.com/examples/python-ubuntu:0003ca701c1b510eb5f8c4916d4568be33419b3c",
+      "imageDigest": "sha256:1ff3b7d7b8a9c8f8547175f4fab85b5112821d94a01f8808e3df6e7c1f978915",
+      "imageId": "cc0a67207883bd9a0ae238a048a82052455b658d193d58429ee830cc6242c3a0",
+      "lastUpdated": "2026-05-11T18:04:19Z",
+      "registry": "registry.example.com",
+      "repo": "examples/python-ubuntu",
+      "tag": "0003ca701c1b510eb5f8c4916d4568be33419b3c",
+      "tagDetectedAt": "2026-05-11T18:04:17Z"
+    }
+  ],
+  "imageDigest": "sha256:1ff3b7d7b8a9c8f8547175f4fab85b5112821d94a01f8808e3df6e7c1f978915",
+  "imageStatus": "active",
+  "imageType": "docker",
+  "lastUpdated": "2026-05-11T18:04:19Z",
+  "layers": [
+    "sha256:b40150c1c2717d324cdb17278c8efdfa4dfcd2ffe083e976f0bcedf31115f081",
+    "sha256:b7ffa52b06ccce4ada50ff4639602bc61305b04af905a4ba072ff1a25ed69021"
+  ],
+  "parentDigest": "sha256:155e82158fd67c7ee9f47a44bb600c2e57ab715cc4e492d77977e8c0be326411"
+}

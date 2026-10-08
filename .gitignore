@@ -1,3 +1,4 @@
 anchore.env
 CLAUDE.md
 *.kate-swp
+__pycache__/

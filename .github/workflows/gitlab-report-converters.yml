@@ -1,0 +1,124 @@
+# ---------------------------------------------------------------------------
+# Part of the Anchore Examples Repository.
+# Licensed under the Apache License, Version 2.0 (the "License").
+#
+# THIS FILE IS UNMAINTAINED AND PROVIDED "AS IS", WITHOUT WARRANTIES OR
+# CONDITIONS OF ANY KIND. USE AT YOUR OWN RISK.
+# ---------------------------------------------------------------------------
+
+name: gitlab-report-converters
+
+# Run both converters over the bundled fixtures and validate the output against
+# GitLab's published schema. A change that breaks schema conformance fails here.
+#
+# The schemas are fetched at the pinned tag rather than committed: they are
+# GitLab's files, and this repo does not redistribute them.
+
+on:
+  push:
+    paths: &converter_paths
+      - 'ci-cd/gitlab/report-converters/container-scanning/convert.py'
+      - 'ci-cd/gitlab/report-converters/container-scanning/requirements.txt'
+      - 'ci-cd/gitlab/report-converters/container-scanning/sample-artifacts/**'
+      - 'ci-cd/gitlab/report-converters/sast/transform.py'
+      - 'ci-cd/gitlab/report-converters/sast/requirements.txt'
+      - '.github/workflows/gitlab-report-converters.yml'
+  pull_request:
+    paths: *converter_paths
+
+permissions:
+  contents: read
+
+env:
+  SCHEMA_VERSION: '15.2.4'
+  BASE: ci-cd/gitlab/report-converters
+
+jobs:
+  schema-validate:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.x'
+
+      - name: Install validator
+        run: |
+          python -m pip install --upgrade pip
+          pip install -r "$BASE/container-scanning/requirements.txt"
+          pip install -r "$BASE/sast/requirements.txt"
+
+      - name: Fetch the pinned GitLab schemas
+        run: |
+          root=https://gitlab.com/gitlab-org/security-products/security-report-schemas/-/raw/v${SCHEMA_VERSION}/dist
+          curl -sSfLo "$BASE/container-scanning/gitlab-container-scanning-schema-${SCHEMA_VERSION}.json" \
+            "$root/container-scanning-report-format.json"
+          curl -sSfLo "$BASE/sast/gitlab-sast-schema-${SCHEMA_VERSION}.json" \
+            "$root/sast-report-format.json"
+
+      - name: container-scanning report conforms to the GitLab schema
+        working-directory: ci-cd/gitlab/report-converters/container-scanning
+        run: |
+          python convert.py \
+            --vuln-data sample-artifacts/vulns.json \
+            --eval-data sample-artifacts/policy_eval.json \
+            --image-data sample-artifacts/image_data.json \
+            --output "$RUNNER_TEMP/gl-container-scan.json" \
+            --validate
+
+      # The SAST converter takes the same three inputs, so it reuses the
+      # container-scanning fixtures.
+      - name: sast report conforms to the GitLab schema
+        env:
+          FIXTURES: ci-cd/gitlab/report-converters/container-scanning/sample-artifacts
+        run: |
+          python "$BASE/sast/transform.py" \
+            --vuln-data "$FIXTURES/vulns.json" \
+            --eval-data "$FIXTURES/policy_eval.json" \
+            --image-data "$FIXTURES/image_data.json" \
+            --output "$RUNNER_TEMP/gl-sast-report.json" \
+            --validate
+
+      # Both converters advertise "camelCase or snake_case both accepted". Reading
+      # -o json-raw input with raw camelCase keys failed silently: the allowlist came
+      # back empty (allowlisted vulnerabilities republished) and recommendations were
+      # dropped, while the run still printed "schema OK". No schema check catches
+      # that, so assert the two casings produce the same report.
+      - name: snake_case (-o json-raw) input produces an identical report
+        env:
+          FIXTURES: ci-cd/gitlab/report-converters/container-scanning/sample-artifacts
+        run: |
+          python - "$FIXTURES" "$RUNNER_TEMP/snake" <<'PY'
+          import json, os, sys
+          src, dst = sys.argv[1], sys.argv[2]
+          os.makedirs(dst, exist_ok=True)
+          snake = lambda k: "".join("_" + c.lower() if c.isupper() else c for c in k)
+          def walk(o):
+              if isinstance(o, dict):
+                  return {snake(k): walk(v) for k, v in o.items()}
+              if isinstance(o, list):
+                  return [walk(x) for x in o]
+              return o
+          for name in ("vulns", "policy_eval", "image_data"):
+              with open(os.path.join(src, name + ".json")) as f:
+                  doc = walk(json.load(f))
+              with open(os.path.join(dst, name + ".json"), "w") as f:
+                  json.dump(doc, f)
+          PY
+          for pair in \
+            "$BASE/container-scanning/convert.py:gl-container-scan" \
+            "$BASE/sast/transform.py:gl-sast-report"; do
+            tool="${pair%%:*}"; out="${pair##*:}"
+            for case in camel snake; do
+              [ "$case" = camel ] && in="$FIXTURES" || in="$RUNNER_TEMP/snake"
+              python "$tool" \
+                --vuln-data "$in/vulns.json" \
+                --eval-data "$in/policy_eval.json" \
+                --image-data "$in/image_data.json" \
+                --output "$RUNNER_TEMP/$out.$case.json" \
+                --validate
+            done
+            diff "$RUNNER_TEMP/$out.camel.json" "$RUNNER_TEMP/$out.snake.json" \
+              || { echo "::error::$tool: snake_case input produced a different report"; exit 1; }
+            echo "$tool: camelCase and snake_case reports are identical"
+          done
