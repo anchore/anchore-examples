@@ -75,3 +75,24 @@ hostname is rewritten to `registry.example.com`.
 | `--on-missing-distro default` | Distroless/scratch images have no OS distro; by default that is a hard error rather than a silently mislabelled report. |
 | `--default-os` | The value used when the above is set. |
 | `--schema PATH` | Validate against a schema file you supply. |
+
+## License
+
+```
+# ---------------------------------------------------------------------------
+# Part of the Anchore Examples Repository.
+# Licensed under the Apache License, Version 2.0 (the "License").
+#
+# THIS FILE IS UNMAINTAINED AND PROVIDED "AS IS", WITHOUT WARRANTIES OR
+# CONDITIONS OF ANY KIND. USE AT YOUR OWN RISK.
+# ---------------------------------------------------------------------------
+```
+
+That notice is carried at the top of every file in this directory that supports
+comments. It applies equally to the JSON fixtures under
+`container-scanning/sample-artifacts/`, which cannot carry it inline because
+JSON has no comment syntax, and to this README.
+
+GitLab's report schemas are **not** covered by it — they are not redistributed
+here. They are fetched from GitLab at a pinned tag and remain under their own
+upstream licence.
