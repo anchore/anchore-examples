@@ -1,0 +1,43 @@
+# ---------------------------------------------------------------------------
+# Part of the Anchore Examples Repository.
+# Licensed under the Apache License, Version 2.0 (the "License").
+#
+# THIS SCRIPT IS UNMAINTAINED AND PROVIDED "AS IS", WITHOUT WARRANTIES OR
+# CONDITIONS OF ANY KIND. USE AT YOUR OWN RISK.
+# ---------------------------------------------------------------------------
+# Makes sure the host's App exists and adds this run's Version to it.
+# Both steps are safe to re-run.
+
+- name: Look up the App
+  ansible.builtin.command: "{{ anchorectl_cmd }} app get {{ anchore_app_name | quote }} -o json"
+  environment: "{{ anchorectl_env }}"
+  register: anchore_app_get
+  changed_when: false
+  failed_when: false
+
+- name: Create the App
+  ansible.builtin.command: >-
+    {{ anchorectl_cmd }} app add {{ anchore_app_name | quote }}
+    --contact-name {{ anchore_app_contact_name | quote }}
+    --description {{ anchore_app_description | quote }}
+  environment: "{{ anchorectl_env }}"
+  when: anchore_app_get.rc != 0
+  changed_when: true
+
+- name: Look up the App Version
+  ansible.builtin.command: >-
+    {{ anchorectl_cmd }} app version get {{ anchore_run_version | quote }}
+    --app {{ anchore_app_name | quote }} -o json
+  environment: "{{ anchorectl_env }}"
+  register: anchore_version_get
+  changed_when: false
+  failed_when: false
+
+- name: Create the App Version
+  ansible.builtin.command: >-
+    {{ anchorectl_cmd }} app version add {{ anchore_run_version | quote }}
+    --app {{ anchore_app_name | quote }}
+    --description {{ ('Ansible distributed analysis of ' ~ inventory_hostname) | quote }}
+  environment: "{{ anchorectl_env }}"
+  when: anchore_version_get.rc != 0
+  changed_when: true

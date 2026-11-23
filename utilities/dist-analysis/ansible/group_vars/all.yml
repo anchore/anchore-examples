@@ -1,0 +1,124 @@
+# ---------------------------------------------------------------------------
+# Part of the Anchore Examples Repository.
+# Licensed under the Apache License, Version 2.0 (the "License").
+#
+# THIS SCRIPT IS UNMAINTAINED AND PROVIDED "AS IS", WITHOUT WARRANTIES OR
+# CONDITIONS OF ANY KIND. USE AT YOUR OWN RISK.
+# ---------------------------------------------------------------------------
+# Default settings for distributed-analysis.yml. Override any of these in the
+# inventory, with -e on the command line, or in a vaulted vars file.
+
+# ---------------------------------------------------------------------------
+# Anchore Enterprise connection
+# ---------------------------------------------------------------------------
+# By default these are read from environment variables on the Ansible
+# controller, so nothing sensitive lives in this repo. To use ansible-vault
+# instead, see the README.
+anchore_url: "{{ lookup('ansible.builtin.env', 'ANCHORECTL_URL') }}"
+anchore_username: "{{ lookup('ansible.builtin.env', 'ANCHORECTL_USERNAME') }}"
+anchore_password: "{{ lookup('ansible.builtin.env', 'ANCHORECTL_PASSWORD') }}"
+# Optional: the Anchore account to use (blank = the user's default account).
+anchore_account: "{{ lookup('ansible.builtin.env', 'ANCHORECTL_ACCOUNT') }}"
+# Only for lab setups with self-signed certificates.
+anchore_tls_insecure: false
+
+# ---------------------------------------------------------------------------
+# anchorectl install
+# ---------------------------------------------------------------------------
+# Filesystem analysis uses the App / Version / Asset commands from anchorectl
+# v6. Match this to your Anchore Enterprise version.
+anchorectl_version: "6.2.0"
+
+# push = the controller fetches anchorectl once and copies it to every host
+#        (for hosts that can't reach the download location).
+# pull = every host downloads anchorectl itself from anchorectl_download_url
+#        (point this at an internal mirror such as Artifactory or Nexus).
+anchorectl_install_method: push
+
+# CPU architecture name used in the download URL, worked out per host.
+anchorectl_arch: "{{ {'x86_64': 'amd64', 'aarch64': 'arm64', 'arm64': 'arm64'}[ansible_facts['architecture']] | default('amd64') }}"
+
+# Where to fetch anchorectl from. Used by both methods (unless
+# anchorectl_local_path is set for push). Examples:
+#   Public releases (default):
+#     https://anchorectl-releases.anchore.io/anchorectl/v{{ anchorectl_version }}/anchorectl_{{ anchorectl_version }}_linux_{{ anchorectl_arch }}.tar.gz
+#   Internal mirror:
+#     https://artifactory.example.com/tools/anchorectl/{{ anchorectl_version }}/anchorectl_{{ anchorectl_version }}_linux_{{ anchorectl_arch }}.tar.gz
+#   Your Anchore Enterprise server (always matches the server version; needs
+#   anchorectl_download_username/password set to your Anchore credentials):
+#     {{ anchore_url | regex_replace('/$', '') }}/v2/system/anchorectl?operating_system=linux&architecture={{ anchorectl_arch }}
+anchorectl_download_url: >-
+  https://anchorectl-releases.anchore.io/anchorectl/v{{ anchorectl_version
+  }}/anchorectl_{{ anchorectl_version }}_linux_{{ anchorectl_arch }}.tar.gz
+# true if the URL serves a .tar.gz with the anchorectl binary inside,
+# false if it serves the bare binary.
+anchorectl_download_is_archive: true
+# Optional basic-auth credentials for the download URL.
+anchorectl_download_username: ""
+anchorectl_download_password: ""
+# Optional checksum, e.g. "sha256:abc123...". Only checked when the binary or
+# archive is downloaded (not for anchorectl_local_path).
+anchorectl_checksum: ""
+# Verify TLS certificates for the download.
+anchorectl_download_validate_certs: true
+
+# push only: an anchorectl binary (or .tar.gz, see anchorectl_download_is_archive)
+# that already exists on the controller. When set, nothing is downloaded.
+# Useful in air-gapped environments.
+anchorectl_local_path: ""
+# push only: where the controller caches downloads.
+anchorectl_controller_cache_dir: "{{ playbook_dir }}/.cache"
+
+# ---------------------------------------------------------------------------
+# Work directory on each target host
+# ---------------------------------------------------------------------------
+# anchorectl and its config file are placed here for the run.
+anchore_work_dir: /tmp/anchore-dist-analysis
+# Remove the work directory at the end of the run.
+anchore_cleanup: true
+
+# ---------------------------------------------------------------------------
+# Where results go in Anchore Enterprise
+# ---------------------------------------------------------------------------
+# One App per host, one Version per run: each run adds a dated snapshot.
+anchore_app_name: "{{ inventory_hostname }}"
+# The playbook evaluates this once per run, so all hosts share the label.
+anchore_app_version: "{{ now(utc=true, fmt='%Y%m%dT%H%M%SZ') }}"
+# Required by 'anchorectl app add' when the App is created.
+anchore_app_contact_name: "Platform Team"
+anchore_app_description: "Host {{ inventory_hostname }} (distributed analysis via Ansible)"
+
+# ---------------------------------------------------------------------------
+# Host filesystem analysis
+# ---------------------------------------------------------------------------
+anchore_scan_host: true
+# Each path becomes a 'filesystem' asset on the App Version. Scanning '/'
+# also walks container storage (/var/lib/docker, /var/lib/containers), so
+# list narrower paths if that matters to you (see README).
+anchore_host_scan_paths:
+  - /
+
+# ---------------------------------------------------------------------------
+# Container analysis
+# ---------------------------------------------------------------------------
+anchore_scan_containers: true
+# Runtimes to look at. A runtime whose CLI isn't installed is skipped.
+anchore_container_runtimes:
+  - docker
+  - podman
+# Podman runs per user. Root's containers are always checked (when podman is
+# in anchore_container_runtimes); list users here to check their rootless
+# containers too. Each user needs podman.socket running (see README).
+anchore_podman_users: []
+# Start the rootful podman.socket if it isn't running. anchorectl talks to
+# Podman through this socket.
+anchore_podman_start_socket: true
+
+# Also attach each running image as a 'container' asset on the host's App
+# Version, so the App gives a full picture of the host.
+anchore_attach_containers_to_app: true
+# Run 'anchorectl image check' (policy evaluation) for each image.
+anchore_policy_check: true
+# Fail the host if any image fails policy. Off by default so one bad image
+# doesn't stop the rest of the run.
+anchore_fail_on_policy: false

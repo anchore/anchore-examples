@@ -1,0 +1,19 @@
+# ---------------------------------------------------------------------------
+# Part of the Anchore Examples Repository.
+# Licensed under the Apache License, Version 2.0 (the "License").
+#
+# THIS SCRIPT IS UNMAINTAINED AND PROVIDED "AS IS", WITHOUT WARRANTIES OR
+# CONDITIONS OF ANY KIND. USE AT YOUR OWN RISK.
+# ---------------------------------------------------------------------------
+# anchorectl config rendered by Ansible ({{ ansible_managed | default('Ansible managed') }}).
+# The password is deliberately NOT stored here; the playbook passes it to
+# anchorectl through the ANCHORECTL_PASSWORD environment variable.
+url: "{{ anchore_url }}"
+username: "{{ anchore_username }}"
+{% if anchore_account | length > 0 %}
+account: "{{ anchore_account }}"
+{% endif %}
+quiet: true
+check-for-updates: false
+http:
+  tls-insecure: {{ anchore_tls_insecure | bool | lower }}

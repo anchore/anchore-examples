@@ -1,0 +1,126 @@
+# ---------------------------------------------------------------------------
+# Part of the Anchore Examples Repository.
+# Licensed under the Apache License, Version 2.0 (the "License").
+#
+# THIS SCRIPT IS UNMAINTAINED AND PROVIDED "AS IS", WITHOUT WARRANTIES OR
+# CONDITIONS OF ANY KIND. USE AT YOUR OWN RISK.
+# ---------------------------------------------------------------------------
+# Puts anchorectl at {{ anchore_work_dir }}/anchorectl on the target host.
+#
+#   anchorectl_install_method: push
+#     The controller downloads anchorectl once per CPU architecture (or uses
+#     anchorectl_local_path) and copies it to each host. Targets need no
+#     outbound access.
+#
+#   anchorectl_install_method: pull
+#     Each host downloads anchorectl from anchorectl_download_url, e.g. an
+#     internal Artifactory/Nexus mirror or the Anchore Enterprise server.
+
+- name: Check anchorectl_install_method
+  ansible.builtin.assert:
+    that: anchorectl_install_method in ['push', 'pull']
+    fail_msg: "anchorectl_install_method must be 'push' or 'pull' (got '{{ anchorectl_install_method }}')"
+    quiet: true
+
+- name: Create the work directory
+  ansible.builtin.file:
+    path: "{{ anchore_work_dir }}"
+    state: directory
+    mode: "0755"
+
+# --------------------------------------------------------------------------
+# push: fetch on the controller, copy to the hosts
+# --------------------------------------------------------------------------
+- name: Push anchorectl from the controller
+  when: anchorectl_install_method == 'push'
+  block:
+    - name: "Push | Create the download cache on the controller"
+      ansible.builtin.file:
+        path: "{{ anchorectl_controller_cache_dir }}"
+        state: directory
+        mode: "0755"
+      delegate_to: localhost
+      become: false
+      run_once: true
+      when: anchorectl_local_path | length == 0
+
+    # One download per architecture found among the hosts in this run.
+    - name: "Push | Download anchorectl on the controller"
+      ansible.builtin.get_url:
+        url: "{{ anchorectl_download_url }}"
+        dest: >-
+          {{ anchorectl_controller_cache_dir }}/anchorectl_{{ anchorectl_version }}_linux_{{ item
+          }}{{ '.tar.gz' if anchorectl_download_is_archive | bool else '' }}
+        mode: "0755"
+        url_username: "{{ anchorectl_download_username | default(omit, true) }}"
+        url_password: "{{ anchorectl_download_password | default(omit, true) }}"
+        force_basic_auth: "{{ anchorectl_download_username | length > 0 }}"
+        checksum: "{{ anchorectl_checksum | default(omit, true) }}"
+        validate_certs: "{{ anchorectl_download_validate_certs | bool }}"
+      vars:
+        anchorectl_arch: "{{ item }}"   # so anchorectl_download_url renders for this arch
+      loop: "{{ ansible_play_hosts | map('extract', hostvars, 'anchorectl_arch') | unique | list }}"
+      delegate_to: localhost
+      become: false
+      run_once: true
+      no_log: "{{ anchorectl_download_password | length > 0 }}"
+      when: anchorectl_local_path | length == 0
+
+    - name: "Push | Work out which file to send to this host"
+      ansible.builtin.set_fact:
+        anchorectl_push_src: >-
+          {{ anchorectl_local_path if anchorectl_local_path | length > 0 else
+             anchorectl_controller_cache_dir ~ '/anchorectl_' ~ anchorectl_version ~ '_linux_' ~ anchorectl_arch
+             ~ ('.tar.gz' if anchorectl_download_is_archive | bool else '') }}
+
+    # unarchive with remote_src=false copies the archive from the controller.
+    - name: "Push | Copy and unpack anchorectl on the host"
+      ansible.builtin.unarchive:
+        src: "{{ anchorectl_push_src }}"
+        dest: "{{ anchore_work_dir }}"
+        include: [anchorectl]
+        mode: "0755"
+      when: anchorectl_download_is_archive | bool
+
+    - name: "Push | Copy the anchorectl binary to the host"
+      ansible.builtin.copy:
+        src: "{{ anchorectl_push_src }}"
+        dest: "{{ anchorectl_bin }}"
+        mode: "0755"
+      when: not (anchorectl_download_is_archive | bool)
+
+# --------------------------------------------------------------------------
+# pull: every host downloads from the repository itself
+# --------------------------------------------------------------------------
+- name: Pull anchorectl on the host
+  when: anchorectl_install_method == 'pull'
+  block:
+    - name: "Pull | Download anchorectl"
+      ansible.builtin.get_url:
+        url: "{{ anchorectl_download_url }}"
+        dest: "{{ anchore_work_dir }}/{{ 'anchorectl.tar.gz' if anchorectl_download_is_archive | bool else 'anchorectl' }}"
+        mode: "0755"
+        url_username: "{{ anchorectl_download_username | default(omit, true) }}"
+        url_password: "{{ anchorectl_download_password | default(omit, true) }}"
+        force_basic_auth: "{{ anchorectl_download_username | length > 0 }}"
+        checksum: "{{ anchorectl_checksum | default(omit, true) }}"
+        validate_certs: "{{ anchorectl_download_validate_certs | bool }}"
+      no_log: "{{ anchorectl_download_password | length > 0 }}"
+
+    - name: "Pull | Unpack anchorectl"
+      ansible.builtin.unarchive:
+        src: "{{ anchore_work_dir }}/anchorectl.tar.gz"
+        dest: "{{ anchore_work_dir }}"
+        remote_src: true
+        include: [anchorectl]
+        mode: "0755"
+      when: anchorectl_download_is_archive | bool
+
+- name: Show the installed anchorectl version
+  ansible.builtin.command: "{{ anchorectl_bin }} version"
+  register: anchorectl_version_out
+  changed_when: false
+
+- name: Report anchorectl version
+  ansible.builtin.debug:
+    msg: "{{ anchorectl_version_out.stdout_lines | select('match', '^(Version|Platform):') | list }}"

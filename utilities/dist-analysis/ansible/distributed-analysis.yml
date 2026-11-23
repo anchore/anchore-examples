@@ -1,0 +1,123 @@
+# ---------------------------------------------------------------------------
+# Part of the Anchore Examples Repository.
+# Licensed under the Apache License, Version 2.0 (the "License").
+#
+# THIS SCRIPT IS UNMAINTAINED AND PROVIDED "AS IS", WITHOUT WARRANTIES OR
+# CONDITIONS OF ANY KIND. USE AT YOUR OWN RISK.
+# ---------------------------------------------------------------------------
+# Anchore Enterprise distributed analysis with Ansible.
+#
+# For every host in the inventory this playbook:
+#   1. Puts anchorectl in a temporary work directory (pushed from the
+#      controller or pulled from a repository; see anchorectl_install_method).
+#   2. Writes an anchorectl config that points back at Anchore Enterprise and
+#      checks connectivity with 'anchorectl system status'.
+#   3. Makes sure an App exists for the host and adds a Version for this run.
+#   4. Analyzes the host filesystem locally and uploads it as an asset.
+#   5. Finds running Docker / Podman containers, analyzes their images locally
+#      ('image add --from docker|podman') and optionally attaches them to the
+#      App Version and runs a policy check.
+#   6. Removes the work directory.
+#
+# Prerequisites: Ansible >= 2.14 on the controller, SSH + sudo on the targets,
+# Anchore Enterprise with App support (anchorectl v6), and ANCHORECTL_URL /
+# ANCHORECTL_USERNAME / ANCHORECTL_PASSWORD set on the controller (or vault).
+#
+# Example usage:
+#   ansible-playbook distributed-analysis.yml
+#   ansible-playbook distributed-analysis.yml -l podman_hosts --tags containers
+#   ansible-playbook distributed-analysis.yml -e anchorectl_install_method=pull
+
+- name: Anchore distributed analysis
+  hosts: all
+  become: true
+  gather_facts: true
+
+  vars:
+    anchorectl_bin: "{{ anchore_work_dir }}/anchorectl"
+    anchorectl_config: "{{ anchore_work_dir }}/anchorectl.yaml"
+    anchorectl_cmd: "{{ anchorectl_bin }} -c {{ anchorectl_config }}"
+    # The password only ever reaches anchorectl through the environment.
+    anchorectl_env:
+      ANCHORECTL_PASSWORD: "{{ anchore_password }}"
+
+  pre_tasks:
+    - name: Check that the Anchore connection details are set
+      ansible.builtin.assert:
+        that:
+          - anchore_url | length > 0
+          - anchore_username | length > 0
+          - anchore_password | length > 0
+        fail_msg: >-
+          Set ANCHORECTL_URL, ANCHORECTL_USERNAME and ANCHORECTL_PASSWORD on the
+          controller, or set anchore_url / anchore_username / anchore_password.
+        quiet: true
+      run_once: true  # noqa: run-once[task]
+      tags: [always]
+
+    - name: Fix the App Version label once so every host shares it
+      ansible.builtin.set_fact:
+        anchore_run_version: "{{ anchore_app_version }}"
+      run_once: true  # noqa: run-once[task]
+      tags: [always]
+
+  tasks:
+    # Tags: 'install' only installs/checks anchorectl, 'host' adds the
+    # filesystem scan, 'containers' adds the container scan. Cleanup always runs.
+    - name: Run the analysis
+      block:
+        - name: Install anchorectl
+          ansible.builtin.import_tasks: tasks/install-anchorectl.yml
+          tags: [install, host, containers]
+
+        - name: Write anchorectl config
+          ansible.builtin.template:
+            src: anchorectl.yaml.j2
+            dest: "{{ anchorectl_config }}"
+            mode: "0644"   # no secrets inside; readable so rootless podman users can use it
+          tags: [install, host, containers]
+
+        - name: Check connectivity to Anchore Enterprise
+          ansible.builtin.command: "{{ anchorectl_cmd }} system status"
+          environment: "{{ anchorectl_env }}"
+          changed_when: false
+          tags: [install, host, containers]
+
+        - name: Create the App and Version for this host
+          ansible.builtin.import_tasks: tasks/app-version.yml
+          tags: [host, containers]
+
+        - name: Analyze the host filesystem
+          ansible.builtin.import_tasks: tasks/scan-host.yml
+          when: anchore_scan_host | bool
+          tags: [host]
+
+        - name: Analyze running containers
+          ansible.builtin.import_tasks: tasks/scan-containers.yml
+          when: anchore_scan_containers | bool
+          tags: [containers]
+
+        - name: Summary
+          ansible.builtin.debug:
+            msg:
+              - "App: {{ anchore_app_name }}  Version: {{ anchore_run_version }}"
+              - "Filesystem assets: {{ anchore_host_scan_paths if (anchore_scan_host | bool) else 'skipped' }}"
+              - "Images analyzed: {{ anchore_analyzed_images | default([]) }}"
+              - "Images failing policy: {{ anchore_policy_failures | default([]) }}"
+          tags: [host, containers]
+
+        - name: Fail if any image failed policy and anchore_fail_on_policy is set
+          ansible.builtin.fail:
+            msg: "Policy check failed for: {{ anchore_policy_failures | join(', ') }}"
+          when:
+            - anchore_fail_on_policy | bool
+            - anchore_policy_failures | default([]) | length > 0
+          tags: [containers]
+
+      always:
+        - name: Remove the work directory
+          ansible.builtin.file:
+            path: "{{ anchore_work_dir }}"
+            state: absent
+          when: anchore_cleanup | bool
+          tags: [always]

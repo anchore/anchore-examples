@@ -1,0 +1,147 @@
+# ---------------------------------------------------------------------------
+# Part of the Anchore Examples Repository.
+# Licensed under the Apache License, Version 2.0 (the "License").
+#
+# THIS SCRIPT IS UNMAINTAINED AND PROVIDED "AS IS", WITHOUT WARRANTIES OR
+# CONDITIONS OF ANY KIND. USE AT YOUR OWN RISK.
+# ---------------------------------------------------------------------------
+# Analyzes the images of running containers for one runtime / user.
+# Included from scan-containers.yml with:
+#   anchore_runtime:      docker | podman
+#   anchore_runtime_user: root, or a user with rootless Podman containers
+
+- name: "Check whether the CLI is installed | {{ anchore_label }}"
+  ansible.builtin.shell: "command -v {{ anchore_runtime }}"  # noqa: command-instead-of-shell (builtin)
+  register: anchore_runtime_cli
+  changed_when: false
+  failed_when: false
+
+- name: "Skip, CLI not found | {{ anchore_label }}"
+  ansible.builtin.debug:
+    msg: "{{ anchore_runtime }} is not installed on {{ inventory_hostname }}; skipping."
+  when: anchore_runtime_cli.rc != 0
+
+- name: "Analyze running images | {{ anchore_label }}"
+  when: anchore_runtime_cli.rc == 0
+  become: true
+  become_user: "{{ anchore_runtime_user }}"
+  block:
+    # anchorectl reaches Podman through its API socket. Work out where it is.
+    - name: "Look up the user's UID | {{ anchore_label }}"
+      ansible.builtin.getent:
+        database: passwd
+        key: "{{ anchore_runtime_user }}"
+      when: anchore_runtime == 'podman' and anchore_runtime_user != 'root'
+
+    - name: "Set runtime environment | {{ anchore_label }}"
+      ansible.builtin.set_fact:
+        anchore_runtime_env: >-
+          {{ {} if anchore_runtime == 'docker' else
+             ({'CONTAINER_HOST': 'unix:///run/podman/podman.sock'} if anchore_runtime_user == 'root' else
+              {'XDG_RUNTIME_DIR': '/run/user/' ~ ansible_facts.getent_passwd[anchore_runtime_user][1],
+               'CONTAINER_HOST': 'unix:///run/user/' ~ ansible_facts.getent_passwd[anchore_runtime_user][1] ~ '/podman/podman.sock'}) }}
+
+    - name: "Start the rootful podman.socket | {{ anchore_label }}"
+      ansible.builtin.systemd_service:
+        name: podman.socket
+        state: started
+      become: true
+      become_user: root
+      when:
+        - anchore_runtime == 'podman'
+        - anchore_runtime_user == 'root'
+        - anchore_podman_start_socket | bool
+
+    - name: "Check the Podman socket exists | {{ anchore_label }}"
+      ansible.builtin.stat:
+        path: "{{ anchore_runtime_env.CONTAINER_HOST | regex_replace('^unix://', '') }}"
+      register: anchore_podman_sock
+      become: true
+      become_user: root
+      when: anchore_runtime == 'podman'
+
+    - name: "Warn about a missing Podman socket | {{ anchore_label }}"
+      ansible.builtin.debug:
+        msg: >-
+          No Podman socket at {{ anchore_runtime_env.CONTAINER_HOST }}; anchorectl
+          --from podman will likely fail. For rootless users run
+          'systemctl --user enable --now podman.socket' (and 'loginctl enable-linger').
+      when: anchore_runtime == 'podman' and not anchore_podman_sock.stat.exists
+
+    - name: "List running container images | {{ anchore_label }}"
+      ansible.builtin.command: "{{ anchore_runtime }} ps --format {% raw %}'{{.Image}}'{% endraw %}"
+      environment: "{{ anchore_runtime_env }}"
+      register: anchore_ps
+      changed_when: false
+
+    # Containers whose tag was removed show up as a bare image ID; there's no
+    # name to record them under, so they're skipped.
+    - name: "Build the image list | {{ anchore_label }}"
+      ansible.builtin.set_fact:
+        anchore_images: "{{ anchore_ps.stdout_lines | map('trim') | select | unique | reject('match', '^(sha256:)?[0-9a-f]{12,64}$') | list }}"
+        anchore_untagged: "{{ anchore_ps.stdout_lines | map('trim') | select | unique | select('match', '^(sha256:)?[0-9a-f]{12,64}$') | list }}"
+
+    - name: "Running images | {{ anchore_label }}"
+      ansible.builtin.debug:
+        msg:
+          - "To analyze: {{ anchore_images }}"
+          - "Skipped (no tag): {{ anchore_untagged }}"
+
+    # Local analysis: anchorectl reads the image from the runtime, builds the
+    # SBOM on this host and uploads it. Anchore never pulls from a registry.
+    # --no-auto-subscribe: the image may not exist in any registry.
+    - name: "Analyze images | {{ anchore_label }}"
+      ansible.builtin.command: >-
+        {{ anchorectl_cmd }} image add {{ item | quote }}
+        --from {{ anchore_runtime }}
+        --no-auto-subscribe
+        --annotation {{ ('host=' ~ inventory_hostname) | quote }}
+        --annotation {{ ('runtime=' ~ anchore_runtime) | quote }}
+        --annotation {{ ('runtime_user=' ~ anchore_runtime_user) | quote }}
+        --wait
+      environment: "{{ anchorectl_env | combine(anchore_runtime_env) }}"
+      loop: "{{ anchore_images }}"
+      changed_when: true
+
+    # Runs a second local analysis per image so it also appears in the host's
+    # App. Turn off with anchore_attach_containers_to_app: false.
+    - name: "Attach images to the App Version | {{ anchore_label }}"
+      ansible.builtin.command: >-
+        {{ anchorectl_cmd }} app version asset add container-image {{ item | quote }}
+        --from {{ anchore_runtime }}
+        --app {{ anchore_app_name | quote }}
+        --version {{ anchore_run_version | quote }}
+        --asset {{ (anchore_runtime ~ ':' ~ anchore_runtime_user ~ ':' ~ item) | quote }}
+        --annotations {{ ('host=' ~ inventory_hostname ~ ',runtime=' ~ anchore_runtime ~ ',runtime_user=' ~ anchore_runtime_user) | quote }}
+        --wait
+      environment: "{{ anchorectl_env | combine(anchore_runtime_env) }}"
+      loop: "{{ anchore_images }}"
+      when: anchore_attach_containers_to_app | bool
+      changed_when: true
+
+    # Exit code 1 means the policy evaluation failed (or anchorectl errored).
+    - name: "Policy check | {{ anchore_label }}"
+      ansible.builtin.command: "{{ anchorectl_cmd }} image check {{ item | quote }} --detail --fail-based-on-results"
+      environment: "{{ anchorectl_env }}"
+      loop: "{{ anchore_images }}"
+      register: anchore_checks
+      when: anchore_policy_check | bool
+      changed_when: false
+      failed_when: false
+
+    - name: "Policy results | {{ anchore_label }}"
+      ansible.builtin.debug:
+        msg: "{{ item.stdout_lines }}"
+      loop: "{{ anchore_checks.results | default([]) | selectattr('stdout_lines', 'defined') | list }}"
+      loop_control:
+        label: "{{ item.item }}"
+      when: anchore_policy_check | bool
+
+    - name: "Record results | {{ anchore_label }}"
+      ansible.builtin.set_fact:
+        anchore_analyzed_images: >-
+          {{ anchore_analyzed_images + (anchore_images
+             | map('regex_replace', '^', anchore_runtime ~ '(' ~ anchore_runtime_user ~ '): ') | list) }}
+        anchore_policy_failures: >-
+          {{ anchore_policy_failures + (anchore_checks.results | default([])
+             | selectattr('rc', 'defined') | selectattr('rc', '!=', 0) | map(attribute='item') | list) }}

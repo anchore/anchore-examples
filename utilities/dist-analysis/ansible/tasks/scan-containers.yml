@@ -1,0 +1,51 @@
+# ---------------------------------------------------------------------------
+# Part of the Anchore Examples Repository.
+# Licensed under the Apache License, Version 2.0 (the "License").
+#
+# THIS SCRIPT IS UNMAINTAINED AND PROVIDED "AS IS", WITHOUT WARRANTIES OR
+# CONDITIONS OF ANY KIND. USE AT YOUR OWN RISK.
+# ---------------------------------------------------------------------------
+# Finds running containers and analyzes their images on the host.
+# Rootful Docker and Podman run as root; each user in anchore_podman_users
+# gets their own pass for rootless Podman.
+
+- name: Reset per-host results
+  ansible.builtin.set_fact:
+    anchore_analyzed_images: []
+    anchore_policy_failures: []
+
+- name: Analyze Docker containers
+  ansible.builtin.include_tasks:
+    file: scan-runtime.yml
+    apply:
+      tags: [containers]
+  vars:
+    anchore_runtime: docker
+    anchore_runtime_user: root
+    anchore_label: "{{ anchore_runtime }} ({{ anchore_runtime_user }})"
+  when: "'docker' in anchore_container_runtimes"
+
+- name: Analyze rootful Podman containers
+  ansible.builtin.include_tasks:
+    file: scan-runtime.yml
+    apply:
+      tags: [containers]
+  vars:
+    anchore_runtime: podman
+    anchore_runtime_user: root
+    anchore_label: "{{ anchore_runtime }} ({{ anchore_runtime_user }})"
+  when: "'podman' in anchore_container_runtimes"
+
+- name: Analyze rootless Podman containers
+  ansible.builtin.include_tasks:
+    file: scan-runtime.yml
+    apply:
+      tags: [containers]
+  vars:
+    anchore_runtime: podman
+    anchore_runtime_user: "{{ podman_user }}"
+    anchore_label: "{{ anchore_runtime }} ({{ anchore_runtime_user }})"
+  loop: "{{ anchore_podman_users }}"
+  loop_control:
+    loop_var: podman_user
+  when: "'podman' in anchore_container_runtimes"

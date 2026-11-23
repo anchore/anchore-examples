@@ -1,0 +1,23 @@
+# ---------------------------------------------------------------------------
+# Part of the Anchore Examples Repository.
+# Licensed under the Apache License, Version 2.0 (the "License").
+#
+# THIS SCRIPT IS UNMAINTAINED AND PROVIDED "AS IS", WITHOUT WARRANTIES OR
+# CONDITIONS OF ANY KIND. USE AT YOUR OWN RISK.
+# ---------------------------------------------------------------------------
+# Analyzes each path in anchore_host_scan_paths on the host with anchorectl
+# (Syft runs locally) and uploads the SBOM as a 'filesystem' asset on the
+# host's App Version. Anchore Enterprise then matches vulnerabilities.
+
+- name: Analyze host filesystem paths
+  ansible.builtin.command: >-
+    {{ anchorectl_cmd }} app version asset add filesystem {{ item | quote }}
+    --app {{ anchore_app_name | quote }}
+    --version {{ anchore_run_version | quote }}
+    --asset {{ (inventory_hostname ~ ':' ~ item) | quote }}
+    --annotations {{ ('host=' ~ inventory_hostname ~ ',path=' ~ item) | quote }}
+    --wait
+  environment: "{{ anchorectl_env }}"
+  loop: "{{ anchore_host_scan_paths }}"
+  register: anchore_fs_results
+  changed_when: true

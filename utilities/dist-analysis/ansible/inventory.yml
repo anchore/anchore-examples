@@ -1,0 +1,45 @@
+# ---------------------------------------------------------------------------
+# Part of the Anchore Examples Repository.
+# Licensed under the Apache License, Version 2.0 (the "License").
+#
+# THIS SCRIPT IS UNMAINTAINED AND PROVIDED "AS IS", WITHOUT WARRANTIES OR
+# CONDITIONS OF ANY KIND. USE AT YOUR OWN RISK.
+# ---------------------------------------------------------------------------
+# Example inventory. Replace the sample hosts with your own VMs.
+#
+# Any variable from group_vars/all.yml can be overridden per group or per host
+# here, e.g. which container runtimes to look at or which paths to scan.
+
+all:
+  children:
+    docker_hosts:
+      vars:
+        anchore_container_runtimes: [docker]
+      hosts:
+        # app-vm-01.example.com:
+        # app-vm-02.example.com:
+        #   anchore_host_scan_paths: [/opt/app, /usr, /etc, /var/lib/rpm]
+
+    podman_hosts:
+      vars:
+        anchore_container_runtimes: [podman]
+        # Also scan rootless containers owned by these users:
+        # anchore_podman_users: [appuser]
+      hosts:
+        # rhel-vm-01.example.com:
+        #   ansible_user: cloud-user
+
+    # Hosts with no containers: only the host filesystem is analyzed.
+    plain_hosts:
+      vars:
+        anchore_container_runtimes: []
+      hosts:
+        # db-vm-01.example.com:
+
+    # Handy for trying the example on the Ansible controller itself:
+    #   ansible-playbook distributed-analysis.yml -l local
+    local:
+      hosts:
+        localhost:
+          ansible_connection: local
+          ansible_python_interpreter: "{{ ansible_playbook_python }}"
